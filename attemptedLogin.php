@@ -2,7 +2,7 @@
 <?php
     function functionFun(){
         $testName = $_POST['enteredName'];
-        $lastLoggedIn = $_COOKIE[$testName];
+        $lastLoggedIn = $_COOKIE['lastLoggedIn'];
         
         if($testName == $lastLoggedIn){
             echo "You don't need to log in again.";
@@ -16,8 +16,8 @@
 
     function initializeFunctionFun(){
         $testName = $_POST['enteredName'];
-        $_POST['lastLoggedIn'] = $testName;
-        $loggedInName = $_POST['lastLoggedIn'];
+        setCookie('lastLoggedIn', $testName, time() + (86400 * 90), "/");
+        $loggedInName = $testName;
         echo "This is the first time you were here, please enter password.";
         echo "This person is logged in ".$loggedInName.".";
         //Move on to password page
@@ -27,6 +27,7 @@
         functionFun();
     }
     else{
+        echo "Before anything, The last logged in Cookie is not set: ".$_COOKIE['lastLoggedIn'];
         initializeFunctionFun();
     }
 ?>
