@@ -9,10 +9,10 @@
         $database = 'jmg6m';
 
         if (!mysql_connect($db_host, $db_user, $db_pwd))
-        die("Can't connect to database");
+            die("Can't connect to database");
 
         if (!mysql_select_db($database))
-        die("Can't select database");
+            die("Can't select database");
 
         // sending query
         $result = mysql_query("SELECT Password FROM PEOPLE WHERE Username = $testPassword");
