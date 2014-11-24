@@ -1,34 +1,29 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <?php
-    function functionFun(){
-        $testName = $_POST['enteredName'];
-        $lastLoggedIn = $_COOKIE['lastLoggedIn'];
+    function checkPassword(){
+        $testPassword = $_POST['enteredPassword'];
+        $db_host = 'mysql.cs.mtsu.edu';
+        $db_user = 'jmg6m';
+        $db_pwd = 'From1248';
+
+        $database = 'jmg6m';
+
+        if (!mysql_connect($db_host, $db_user, $db_pwd))
+        die("Can't connect to database");
+
+        if (!mysql_select_db($database))
+        die("Can't select database");
+
+        // sending query
+        $result = mysql_query("SELECT Password FROM PEOPLE WHERE Username = $testPassword");
+        if (!$result) {
+            die("Query to show fields from table failed");
+        }
         
-        if($testName == $lastLoggedIn){
-            header("Location: homepage.html");
-        }
-        else{
-            echo "You weren't the last one to be here. Please enter password.";
-            header("Location: password.html");
-        }
-    }
+        echo "HERE IS THE RESULT!!! : ".$result."!!!"
 
-    function initializeFunctionFun(){
-        $testName = $_POST['enteredName'];
-        setCookie('lastLoggedIn', $testName, time() + (86400 * 90), "/");
-        $loggedInName = $testName;
-        echo "This is the first time you were here, please enter password.";
-        echo "This person is logged in ".$loggedInName.".";
-        header("Location: password.html");
     }
-
-    if (isset($_COOKIE['lastLoggedIn'])) {
-        functionFun();
-    }
-    else{
-        echo "Before anything, The last logged in Cookie is not set: ".$_COOKIE['lastLoggedIn'];
-        initializeFunctionFun();
-    }
+    checkPassword();
 ?>
 <html lang="en">
 	<head>
