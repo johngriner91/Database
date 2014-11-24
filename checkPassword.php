@@ -2,27 +2,40 @@
 <?php
     function checkPassword(){
         $testPassword = $_POST['enteredPassword'];
-        $db_host = 'mysql.cs.mtsu.edu';
-        $db_user = 'jmg6m';
-        $db_pwd = 'From1248';
+        $testUsername = $_POST['enteredName'];
+        $servername = 'mysql.cs.mtsu.edu';
+        $username = 'jmg6m';
+        $password = 'From1248';
 
         $database = 'jmg6m';
 
-        if (!mysql_connect($db_host, $db_user, $db_pwd))
-            die("Can't connect to database");
+        // Create connection
+        $conn = new mysqli($servername, $username, $password);
 
-        if (!mysql_select_db($database))
-            die("Can't select database");
-
-        // sending query
-        $result = mysql_query("SELECT Password FROM PEOPLE WHERE Username = $testPassword");
-        if (!$result) {
-            die("Query to show fields from table failed");
-        }
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
         
-        echo "HERE IS THE RESULT!!! : ".$result."!!!"
+        $con=mysqli_connect($servername,$username,$password,$database);
+        
+        $result = mysqli_query($con,"SELECT `Password` FROM `PEOPLE` WHERE `Username` = '.$testUsername.'");
 
+        $row = mysqli_fetch_array($result);
+        echo "Returned ".$row." from query.";
+        if($row == $testPassword){
+            echo "Returned ".$row." from query.";
+            $result = mysqli_query($con,"SELECT `Type` FROM `PEOPLE` WHERE `Username` = '.$testUsername.'");
+            if($result = "Admin")
+                header("Location: admin.html");
+            else
+                header("Location: homepage.html");
+        }
+        else{
+                header("Location: password.html");
+        }
     }
+
     checkPassword();
 ?>
 <html lang="en">
@@ -47,7 +60,7 @@
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
-		  <a class="navbar-brand" target="ext"><b>Schneider Electric</b></a>
+		  <a class="navbar-brand" target="ext" href="index.html"><b>Schneider Electric</b></a>
 		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		  </a>
@@ -56,7 +69,7 @@
 	</nav><!-- /.navbar -->
 
 	<div class="container">
-		
+						<h1 class="text-center login-title" name="Warning" >Guess what... only fools forget passwords.</h1>
 						<a href="index.html">Back</a>
 	</div> 
 
