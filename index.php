@@ -1,4 +1,54 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<?php
+  function runMyFunction() {
+    $db_host = 'mysql.cs.mtsu.edu';
+    $db_user = 'jmg6m';
+    $db_pwd = 'From1248';
+
+    $database = 'jmg6m';
+
+    if (!mysql_connect($db_host, $db_user, $db_pwd))
+    die("Can't connect to database");
+
+    if (!mysql_select_db($database))
+    die("Can't select database");
+
+    // sending query
+    $result = mysql_query("SELECT Ssn, Salary FROM EMPLOYEE");
+    if (!$result) {
+      die("Query to show fields from table failed");
+    }
+
+    $fields_num = mysql_num_fields($result);
+
+    echo "<h1>Table: EMPLOYEE</h1>";
+    echo "<table border='1'><tr>";
+      // printing table headers
+      for($i=0; $i<$fields_num; $i++)
+      {
+        $field = mysql_fetch_field($result);
+        echo "<td>{$field->name}</td>";
+      }
+      echo "</tr>\n";
+      // printing table rows
+      while($row = mysql_fetch_row($result))
+      {
+        echo "<tr>";
+
+          // $row is array... foreach( .. ) puts every element
+          // of $row to $cell variable
+          foreach($row as $cell)
+          echo "<td>$cell</td>";
+
+          echo "</tr>\n";
+        }
+        mysql_free_result($result);
+  }
+
+  if (isset($_GET['hello'])) {
+    runMyFunction();
+  }
+?>
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -43,7 +93,8 @@
         <label>
           <input type="checkbox"> Keep me logged in</label>
       </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" onclick= class="btn btn-default">Submit</button><br>
+  <a href='index.php?hello=true'>Click Here to test db connection</a>
 </form>
     <hr>
         <!-- /.container -->
