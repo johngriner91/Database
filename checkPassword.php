@@ -2,37 +2,54 @@
 <?php
     function checkPassword(){
         $testPassword = $_POST['enteredPassword'];
-        $testUsername = $_POST['enteredName'];
+        $testUsername = $_COOKIE['tryLogin'];
         $servername = 'mysql.cs.mtsu.edu';
         $username = 'jmg6m';
         $password = 'From1248';
-
         $database = 'jmg6m';
-
+        
+        /*echo "<------------------- DEBUGGING MODE ------------------------>\n";
+        echo "We are checking out the password for ".$testUsername.". \n";
+        echo "This person entered this password: ".$testPassword.". \n";*/
+        
+        $query = 'SELECT Password FROM PEOPLE WHERE Username = "'.$testUsername.'";';
         // Create connection
-        $conn = new mysqli($servername, $username, $password);
+        if (!mysql_connect($servername, $username, $password))
+            die("Can't connect to database");
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-        
-        $con=mysqli_connect($servername,$username,$password,$database);
-        
-        $result = mysqli_query($con,"SELECT `Password` FROM `PEOPLE` WHERE `Username` = '.$testUsername.'");
+        if (!mysql_select_db($database))
+            die("Can't select database");
 
-        $row = mysqli_fetch_array($result);
-        echo "Returned ".$row." from query.";
-        if($row == $testPassword){
-            echo "Returned ".$row." from query.";
-            $result = mysqli_query($con,"SELECT `Type` FROM `PEOPLE` WHERE `Username` = '.$testUsername.'");
-            if($result = "Admin")
-                header("Location: admin.html");
-            else
-                header("Location: homepage.html");
+        // sending query
+        $result = mysql_query($query);
+        if (!$result) {
+            die("Query to show fields from table failed");
         }
         else{
-                header("Location: password.html");
+            $fields_num = mysql_num_fields($result);
+            // printing table rows
+            while($row = mysql_fetch_row($result)){
+                foreach($row as $cell)
+                    if($cell == $testPassword){
+                        //echo "In the databse, the password for ".$testUsername." is ".$cell.". ";
+                        //echo "Password success. lastLoggedIn COOKIE was set.";
+                        setCookie('lastLoggedIn', $testUsername, time() + (86400 * 90), "/");
+                        if(isset($_COOKIE['tryLogin'])) {
+                            unset($_COOKIE['tryLogin']);
+                            setcookie('tryLogin', '', time() - 3600); // empty value and old timestamp
+                        }
+                        header("Location: homepage.html");
+                    }
+                    else{
+                        //echo "In the databse, the password for ".$testUsername." is ".$cell.". ";
+                        //echo "Password failed. lastLoggedIn COOKIE was not set.";
+                        if(isset($_COOKIE['tryLogin'])) {
+                            unset($_COOKIE['tryLogin']);
+                            setcookie('tryLogin', '', time() - 3600); // empty value and old timestamp
+                        }                    
+                    }
+            }
+            mysql_free_result($result);   
         }
     }
 
@@ -69,7 +86,7 @@
 	</nav><!-- /.navbar -->
 
 	<div class="container">
-						<h1 class="text-center login-title" name="Warning" >Guess what... only fools forget passwords.</h1>
+						<h1 class="text-center login-title" name="Warning" >Wrong password... you are just plain wrong.</h1>
 						<a href="index.html">Back</a>
 	</div> 
 

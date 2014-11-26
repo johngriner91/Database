@@ -4,21 +4,23 @@
         $testName = $_POST['enteredName'];
         $lastLoggedIn = $_COOKIE['lastLoggedIn'];
         
+        echo "testName is ".$testName.". ";
+        echo "lastLoggedIn is".$lastLoggedIn.". ";
+        
         if($testName == $lastLoggedIn){
             header("Location: homepage.html");
         }
         else{
-            echo "You weren't the last one to be here. Please enter password.";
+            setCookie('tryLogin', $testName, time() + (86400 * 1), "/");        
             header("Location: password.html");
         }
     }
 
     function initializeFunctionFun(){
         $testName = $_POST['enteredName'];
-        setCookie('lastLoggedIn', $testName, time() + (86400 * 90), "/");
+        setCookie('tryLogin', $testName, time() + (86400 * 1), "/");
         $loggedInName = $testName;
-        echo "This is the first time you were here, please enter password.";
-        echo "This person is logged in ".$loggedInName.".";
+        
         header("Location: password.html");
     }
 
@@ -26,7 +28,7 @@
         functionFun();
     }
     else{
-        echo "Before anything, The last logged in Cookie is not set: ".$_COOKIE['lastLoggedIn'];
+        echo "Before anything, The last logged in Cookie is not set. ";
         initializeFunctionFun();
     }
 ?>
