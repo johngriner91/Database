@@ -55,7 +55,7 @@
                           // printing table rows
                           while($row2 = mysql_fetch_row($result2)){
                             foreach($row2 as $cell2)
-                            if($cell2 == "1"){
+                            if($cell2){
                               header("Location: adminHomepage.html");
                             }
                             else{
