@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <?php
+    //FOR THE NEW DATABASE, HOWEVER FOR TESTING I WAS USING MY OWN DATABASE
+    //username: jls7h
+    //password: database2014
+    //database: jls7h
+
     function checkPassword(){
         $testPassword = $_POST['enteredPassword'];
         $testUsername = $_COOKIE['tryLogin'];
