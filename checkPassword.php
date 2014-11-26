@@ -9,16 +9,16 @@
         $testPassword = $_POST['enteredPassword'];
         $testUsername = $_COOKIE['tryLogin'];
         $servername = 'mysql.cs.mtsu.edu';
-        $username = 'jmg6m';
-        $password = 'From1248';
-        $database = 'jmg6m';
+        $username = 'jls7h';
+        $password = 'database2014';
+        $database = 'jls7h';
 
         /*echo "<------------------- DEBUGGING MODE ------------------------>\n";
         echo "We are checking out the password for ".$testUsername.". \n";
         echo "This person entered this password: ".$testPassword.". \n";*/
 
-        $query = 'SELECT Password FROM PEOPLE WHERE Username = "'.$testUsername.'";';
-        $query2 = 'SELECT Type FROM PEOPLE WHERE Username = "'.$testUsername.'";';
+        $query = 'SELECT Pword FROM USERS WHERE Uname = "'.$testUsername.'";';
+        $query2 = 'SELECT Admin FROM USERS WHERE Uname = "'.$testUsername.'";';
 
         // Create connection
         if (!mysql_connect($servername, $username, $password))
@@ -55,7 +55,7 @@
                           // printing table rows
                           while($row2 = mysql_fetch_row($result2)){
                             foreach($row2 as $cell2)
-                            if($cell2 == "Administrator"){
+                            if($cell2 == "1"){
                               header("Location: adminHomepage.html");
                             }
                             else{

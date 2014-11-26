@@ -14,10 +14,10 @@
 
         if($testName == $lastLoggedIn){
           $servername = 'mysql.cs.mtsu.edu';
-          $username = 'jmg6m';
-          $password = 'From1248';
-          $database = 'jmg6m';
-          $query = 'SELECT Type FROM PEOPLE WHERE Username = "'.$testName.'";';
+          $username = 'jls7h';
+          $password = 'database2014';
+          $database = 'jls7h';
+          $query = 'SELECT Admin FROM USERS WHERE Uname = "'.$testName.'";';
 
           if (!mysql_connect($servername, $username, $password))
             die("Can't connect to database");
@@ -35,7 +35,7 @@
             // printing table rows
             while($row = mysql_fetch_row($result)){
               foreach($row as $cell)
-                if($cell == "Administrator"){
+                if($cell == "1"){
                   header("Location: adminHomepage.html");
                 }
                 else{
