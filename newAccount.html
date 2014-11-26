@@ -21,25 +21,26 @@
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
-		  <a class="navbar-brand" target="ext"><b>Schneider Electronics</b></a>
+		  <a href="loginView.html" class="navbar-brand" target="ext"><b>Schneider Electronics</b></a>
 		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		  </a>
 		</div>
+		<ul class="nav navbar-nav navbar-right navbar-user">
+              <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+        </ul>
 		</div>
 	</nav><!-- /.navbar -->
 	
 	<!-- Begin Body -->
 	<div class="container">
-		<div class="no-gutter row">
-				
-					
+		<div class="no-gutter row">				
 				<!--mid column-->
 				<div class="col-md-6 col-md-offset-3">
 				  
 				  <div class="well">
 					  <form id="signup" class="form-horizontal" method="post" action="success.php">
-						<center><legend> Sign Up </legend></center>
+						<center><legend> Add User </legend></center>
 						<div class="control-group">
 							<label class="control-label">First Name</label>
 							<div class="controls">
@@ -50,22 +51,22 @@
 							</div>
 						</div><br>
 						
-						<div class="control-group ">
+						<div class="control-group">
 							<label class="control-label">Last Name</label>
 							<div class="controls">
 								<div class="input-prepend">
 								<span class="add-on"><i class="icon-user"></i></span>
-									<input type="text" style="width:300px" class="input-xlarge" id="lname" name="lname" placeholder="Last Name">
+									<input type="text" style="width:300px"class="input-xlarge" id="lname" name="lname" placeholder="Last Name">
 								</div>
 							</div>
 						</div><br>
 						
-						<div class="control-group">
-							<label class="control-label">Email</label>
+						<div class="control-group ">
+							<label class="control-label">User Name</label>
 							<div class="controls">
 								<div class="input-prepend">
-								<span class="add-on"><i class="icon-envelope"></i></span>
-									<input type="text" style="width:300px" class="input-xlarge" id="email" name="email" placeholder="Email">
+								<span class="add-on"><i class="icon-user"></i></span>
+									<input type="text" style="width:300px" class="input-xlarge" id="userName" name="userName" placeholder="User Name">
 								</div>
 							</div>
 						</div><br>
@@ -80,15 +81,15 @@
 							</div>
 						</div><br>
 						
-						<div class="control-group">
-							<label class="control-label">Confirm Password</label>
-							<div class="controls">
-								<div class="input-prepend">
-								<span class="add-on"><i class="icon-lock"></i></span>
-									<input type="Password" style="width:300px" id="conpasswd" class="input-xlarge" name="conpasswd" placeholder="Re-enter Password">
-								</div>
-							</div>
-						</div><br>
+						<div class="checkbox">
+							  <label><input type="checkbox" value="">Administrator</label>
+						</div>
+						<div class="checkbox">
+							  <label><input type="checkbox" value="">Tag Member</label>
+						</div>
+						<div class="checkbox">
+							  <label><input type="checkbox" value="">OE</label>
+						</div>
 
 						<div class="control-group">
 						<label class="control-label"></label>

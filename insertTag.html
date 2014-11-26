@@ -26,6 +26,10 @@
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		  </a>
 		</div>
+		<ul class="nav navbar-nav navbar-right navbar-user">
+              <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+        </ul>
+                  
 		</div>
 	</nav><!-- /.navbar -->
 	
@@ -66,11 +70,18 @@
 								</tr>
 									 
 								<tr>         <!--row1-->
-									<td> <form method="post"> <input type="text" style="width:30px" name="Tag"> <input type="text" style="width:70px" name="Number"> </form> </td>
+									<td> <form method="post"><input type="text" style="width:90px" name="tagNumber"> </form> </td>
 									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#"> </form></td>
 									<td> <form method="post"> <input type="text" style="width:80px" name="Date"></form></td>
 									<td> <form method="post"> <input type="text" style="width:175px" name="Sub-Category"></form></td>
-									<td> <form method="post"> <input type="text" style="width:80px" name="Complexity"></form></td>
+									<td><form method="get" action="">
+											<select id="complexity" name="complexity">
+											
+												<option>A</option> <!--temp -->
+												<option>B</option> <!--temp -->
+												
+											</select>   
+											</form></td>
 									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime"></form></td>
 								</tr>
 						</table> <br>
@@ -173,12 +184,7 @@
 									</tr>
 								</thead>
 							</table>
-					  </div> <!--table-responsive-->
-					  <table align="right">
-								<tr>	<!--row0-->
-									<th><button type="button" class="btn btn-default"><img style="width:20px; length:20px"src="images.jpg" style="width:400px; height=300px" alt=""></img></button></th>
-								</tr>
-					 </table>
+					  </div> <!--table-responsive-->					  
 				   </div> 
 				   </div><!--/panel-->
 				</div><!--/end mid column-->
