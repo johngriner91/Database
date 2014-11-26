@@ -2,55 +2,40 @@
 <?php
 
 function functionFun(){
-  $lastLoggedIn = $_COOKIE['lastLoggedIn'];
+  $currentlyLoggedIn = $_COOKIE['currentlyLoggedIn'];
 
-  echo "testName is ".$testName.". ";
-  echo "lastLoggedIn is ".$lastLoggedIn.". ";
+  $servername = 'mysql.cs.mtsu.edu';
+  $username = 'jls7h';
+  $password = 'database2014';
+  $database = 'jls7h';
+  $query = 'SELECT Admin FROM USERS WHERE Uname = "'.$currentlyLoggedIn.'";';
 
-  if($testName == $lastLoggedIn){
-    $servername = 'mysql.cs.mtsu.edu';
-    $username = 'jls7h';
-    $password = 'database2014';
-    $database = 'jls7h';
-    $query = 'SELECT Admin FROM USERS WHERE Uname = "'.$lastLoggedIn.'";';
-
-    if (!mysql_connect($servername, $username, $password))
+  if (!mysql_connect($servername, $username, $password))
     die("Can't connect to database");
 
-    if (!mysql_select_db($database))
+  if (!mysql_select_db($database))
     die("Can't select database");
 
-    // sending query
-    $result = mysql_query($query);
-    if (!$result) {
-      die("Query to show fields from table failed");
-    }
-    else{
-      $fields_num = mysql_num_fields($result);
-      // printing table rows
-      while($row = mysql_fetch_row($result)){
-        foreach($row as $cell)
-        if($cell){
-          header("Location: adminHomepage.html");
-        }
-        else{
-          header("Location: homepage.html");
-        }
+  // sending query
+  $result = mysql_query($query);
+  if (!$result) {
+    die("Query to show fields from table failed");
+  }
+  else{
+    $fields_num = mysql_num_fields($result);
+    // printing table rows
+    while($row = mysql_fetch_row($result)){
+      foreach($row as $cell)
+      if($cell){
+        echo "Currently an administrator.";
+        header("Location: adminHomepage.html");
+      }
+      else{
+        echo "Currently not an administrator.";
+        header("Location: homepage.html");
       }
     }
   }
-  else{
-    setCookie('tryLogin', $testName, time() + (86400 * 1), "/");
-    header("Location: password.html");
-  }
-}
-
-function initializeFunctionFun(){
-  $testName = $_POST['enteredName'];
-  setCookie('tryLogin', $testName, time() + (86400 * 1), "/");
-  $loggedInName = $testName;
-
-  header("Location: password.html");
 }
 
 if (isset($_COOKIE['lastLoggedIn'])) {
