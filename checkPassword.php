@@ -41,6 +41,7 @@
                         //echo "In the databse, the password for ".$testUsername." is ".$cell.". ";
                         //echo "Password success. lastLoggedIn COOKIE was set.";
                         setCookie('lastLoggedIn', $testUsername, time() + (86400 * 90), "/");
+                        setCookie('currentlyLoggedIn', $testUsername, time() + (86400 * 90), "/");
                         if(isset($_COOKIE['tryLogin'])) {
                             unset($_COOKIE['tryLogin']);
                             setcookie('tryLogin', '', time() - 3600); // empty value and old timestamp
