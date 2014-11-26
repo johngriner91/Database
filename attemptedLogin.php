@@ -8,15 +8,44 @@
     function functionFun(){
         $testName = $_POST['enteredName'];
         $lastLoggedIn = $_COOKIE['lastLoggedIn'];
-        
+
         echo "testName is ".$testName.". ";
-        echo "lastLoggedIn is".$lastLoggedIn.". ";
-        
+        echo "lastLoggedIn is ".$lastLoggedIn.". ";
+
         if($testName == $lastLoggedIn){
-            header("Location: homepage.html");
+          $servername = 'mysql.cs.mtsu.edu';
+          $username = 'jmg6m';
+          $password = 'From1248';
+          $database = 'jmg6m';
+          $query = 'SELECT Type FROM PEOPLE WHERE Username = "'.$testName.'";';
+
+          if (!mysql_connect($servername, $username, $password))
+            die("Can't connect to database");
+
+          if (!mysql_select_db($database))
+            die("Can't select database");
+
+          // sending query
+          $result = mysql_query($query);
+          if (!$result) {
+            die("Query to show fields from table failed");
+          }
+          else{
+            $fields_num = mysql_num_fields($result);
+            // printing table rows
+            while($row = mysql_fetch_row($result)){
+              foreach($row as $cell)
+                if($cell == "Administrator"){
+                  header("Location: adminHomepage.html");
+                }
+                else{
+                  header("Location: homepage.html");
+                }
+            }
+          }
         }
         else{
-            setCookie('tryLogin', $testName, time() + (86400 * 1), "/");        
+            setCookie('tryLogin', $testName, time() + (86400 * 1), "/");
             header("Location: password.html");
         }
     }
@@ -25,7 +54,7 @@
         $testName = $_POST['enteredName'];
         setCookie('tryLogin', $testName, time() + (86400 * 1), "/");
         $loggedInName = $testName;
-        
+
         header("Location: password.html");
     }
 
@@ -52,10 +81,10 @@
 		<!-- Custom CSS -->
 		<link href="css/landing-page.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		
+
 	</head>
 	<body>
-	
+
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
@@ -68,9 +97,9 @@
 	</nav><!-- /.navbar -->
 
 	<div class="container">
-		
+
 						<a href="index.html">Back</a>
-	</div> 
+	</div>
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

@@ -12,12 +12,14 @@
         $username = 'jmg6m';
         $password = 'From1248';
         $database = 'jmg6m';
-        
+
         /*echo "<------------------- DEBUGGING MODE ------------------------>\n";
         echo "We are checking out the password for ".$testUsername.". \n";
         echo "This person entered this password: ".$testPassword.". \n";*/
-        
+
         $query = 'SELECT Password FROM PEOPLE WHERE Username = "'.$testUsername.'";';
+        $query2 = 'SELECT Type FROM PEOPLE WHERE Username = "'.$testUsername.'";';
+
         // Create connection
         if (!mysql_connect($servername, $username, $password))
             die("Can't connect to database");
@@ -43,7 +45,23 @@
                             unset($_COOKIE['tryLogin']);
                             setcookie('tryLogin', '', time() - 3600); // empty value and old timestamp
                         }
-                        header("Location: homepage.html");
+                        $result2 = mysql_query($query2);
+                        if (!$result2) {
+                          die("Query to show fields from table failed");
+                        }
+                        else{
+                          $fields_num2 = mysql_num_fields($result2);
+                          // printing table rows
+                          while($row2 = mysql_fetch_row($result2)){
+                            foreach($row2 as $cell2)
+                            if($cell2 == "Administrator"){
+                              header("Location: adminHomepage.html");
+                            }
+                            else{
+                              header("Location: homepage.html");
+                            }
+                          }
+                        }
                     }
                     else{
                         //echo "In the databse, the password for ".$testUsername." is ".$cell.". ";
@@ -51,10 +69,10 @@
                         if(isset($_COOKIE['tryLogin'])) {
                             unset($_COOKIE['tryLogin']);
                             setcookie('tryLogin', '', time() - 3600); // empty value and old timestamp
-                        }                    
+                        }
                     }
             }
-            mysql_free_result($result);   
+            mysql_free_result($result);
         }
     }
 
@@ -75,10 +93,10 @@
 		<!-- Custom CSS -->
 		<link href="css/landing-page.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		
+
 	</head>
 	<body>
-	
+
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
@@ -93,7 +111,7 @@
 	<div class="container">
 						<h1 class="text-center login-title" name="Warning" >Wrong password... you are just plain wrong.</h1>
 						<a href="index.html">Back</a>
-	</div> 
+	</div>
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
