@@ -36,10 +36,11 @@
             while($row = mysql_fetch_row($result)){
               foreach($row as $cell){
                 $loginEntryIP = $_SERVER['REMOTE_ADDR'];
-                $time = date('h:i:s', time());
-                $date = date('m-d-Y', time());
+                $time = date('h:i:s a', time());
+                $date = date('Y-m-d', time());
+                $name = gethostname();
                 $query2 = 'INSERT INTO SESSIONS (Time, Date, Machine, IP,Uname)
-                VALUES ("'.$time.'", "'.$date.'", NULL, "'.$loginEntryIP.'", "'.$testName.'"
+                VALUES ("'.$time.'", "'.$date.'", "'.$name.'", "'.$loginEntryIP.'", "'.$testName.'"
                 );';
                 echo "Query 2 is ".$query2;
                 $result2 = mysql_query($query2);
@@ -47,10 +48,10 @@
                   die("Query to show fields from table failed");
                 }
                 if($cell){
-                //  header("Location: adminHomepage.html");
+                  header("Location: adminHomepage.html");
                 }
                 else{
-                //  header("Location: homepage.html");
+                  header("Location: homepage.html");
                 }
               }
             }

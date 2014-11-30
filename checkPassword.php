@@ -54,12 +54,25 @@
                           $fields_num2 = mysql_num_fields($result2);
                           // printing table rows
                           while($row2 = mysql_fetch_row($result2)){
-                            foreach($row2 as $cell2)
-                            if($cell2){
-                              header("Location: adminHomepage.html");
-                            }
-                            else{
-                              header("Location: homepage.html");
+                            foreach($row2 as $cell2){
+                              $loginEntryIP = $_SERVER['REMOTE_ADDR'];
+                              $time = date('h:i:s a', time());
+                              $date = date('Y-m-d', time());
+                              $name = gethostname();
+                              $query3 = 'INSERT INTO SESSIONS (Time, Date, Machine, IP,Uname)
+                              VALUES ("'.$time.'", "'.$date.'", "'.$name.'", "'.$loginEntryIP.'", "'.$testUsername.'"
+                              );';
+                              echo "Query 3 is ".$query3;
+                              $result3 = mysql_query($query3);
+                              if (!$result3) {
+                                die("Query to show fields from table failed");
+                              }
+                              if($cell2){
+                                header("Location: adminHomepage.html");
+                              }
+                              else{
+                                header("Location: homepage.html");
+                              }
                             }
                           }
                         }
