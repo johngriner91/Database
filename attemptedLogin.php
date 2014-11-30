@@ -41,12 +41,16 @@
                 $query2 = 'INSERT INTO SESSIONS (Time, Date, Machine, IP,Uname)
                 VALUES ("'.$time.'", "'.$date.'", NULL, "'.$loginEntryIP.'", "'.$testName.'"
                 );';
+                echo "Query 2 is ".$query2;
                 $result2 = mysql_query($query);
+                if (!$result2) {
+                  die("Query to show fields from table failed");
+                }
                 if($cell){
-                  header("Location: adminHomepage.html");
+                //  header("Location: adminHomepage.html");
                 }
                 else{
-                  header("Location: homepage.html");
+                //  header("Location: homepage.html");
                 }
               }
             }
