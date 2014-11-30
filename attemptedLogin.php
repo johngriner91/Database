@@ -42,7 +42,7 @@
                 VALUES ("'.$time.'", "'.$date.'", NULL, "'.$loginEntryIP.'", "'.$testName.'"
                 );';
                 echo "Query 2 is ".$query2;
-                $result2 = mysql_query($query);
+                $result2 = mysql_query($query2);
                 if (!$result2) {
                   die("Query to show fields from table failed");
                 }
