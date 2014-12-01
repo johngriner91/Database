@@ -1,38 +1,16 @@
-<?php
-
-if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
-{
-  $fileName = $_FILES['userfile']['name'];
-  $tmpName  = $_FILES['userfile']['tmp_name'];
-  $fileSize = $_FILES['userfile']['size'];
-  $fileType = $_FILES['userfile']['type'];
-
-  $fp      = fopen($tmpName, 'r');
-  $content = fread($fp, filesize($tmpName));
-  $content = addslashes($content);
-  fclose($fp);
-  $servername = 'mysql.cs.mtsu.edu';
-  $username = 'jls7h';
-  $password = 'database2014';
-  $database = 'jls7h';
-
-  if(!get_magic_quotes_gpc())
-  {
-    $fileName = addslashes($fileName);
-  }
-  include 'library/config.php';
-  include 'library/opendb.php';
-
-  $query = "INSERT INTO upload (name, size, type, content ) ".
-  "VALUES (0, 0, '$fileName', '$content')";
-
-  mysql_query($query) or die('Error, query failed');
-  include 'library/closedb.php';
-
-  echo "<br>File $fileName uploaded<br>";
-}
-?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<?
+# connect to mysql database
+
+//=============Configuring Server and Database=======
+$host = 'mysql.cs.mtsu.edu';
+$user = 'jls7h';
+$pass = 'database2014';
+$dbname = 'jls7h';
+
+$link = mysql_connect($hostname, $user, $pass);
+mysql_select_db($dbname, $link);
+?>
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -65,27 +43,8 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
       </ul>
     </div>
   </nav><!-- /.navbar -->
-
-  <h1><center>Login View Page</center></a></h1><br>
-
-  <!-- Begin Body -->
-  <div class="container">
-    <div class="no-gutter row">
-      <!-- left side column -->
-      <div class="col-md-2">
-        <div class="panel panel-default" id="sidebar">
-          <div class="panel-heading" style="background-color:#64F797"></div>
-          <div class="panel-body">
-            <ul class="nav nav-stacked">
-              <li><a href="newAccount.html">Add User </a></li>
-              <li><a href="deleteUser.html">Edit/Delete User</a></li>
-            </ul>
-
-          </div><!--/panel body-->
-        </div><!--/panel-->
-      </div><!--/end left column-->
-
-      <!--mid column-->
+  <body>
+    <div class="container">
       <div class="col-md-8">
         <div class="panel" id="midCol">
           <div class="panel-heading" style="background-color:#3DC66D"></div>
@@ -103,15 +62,36 @@ if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
                 </table>
               </form>
             </div> <!--table-responsive-->
+            <br><br><br>
           </div><!--/panel-->
         </div>
       </div> <!--/end mid column-->
     </div>
-  </div>
 
-  <!-- script references -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/scripts.js"></script>
-</body>
-</html>
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+  <?php
+  if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
+  {
+    $fileName = $_FILES['userfile']['name'];
+    $tmpName  = $_FILES['userfile']['tmp_name'];
+    $fileType = $_FILES['userfile']['type'];
+    $fileSize = $_FILES['userfile']['size'];
+    $fp      = fopen($tmpName, 'r');
+    $content = fread($fp, filesize($tmpName));
+    $content = addslashes($content);
+    fclose($fp);
+    if(!get_magic_quotes_gpc())
+    {
+      $fileName = addslashes($fileName);
+    }
+    $query = "INSERT INTO FILETESTING (filename, filetype, filesize, filecontents) ".
+    "VALUES ('$fileName', '$fileType', '$fileSize', '$content')";
+    mysql_query($query) or die('Error, query failed');
+    echo "<br>File $fileName uploaded<br>";
+  }
+  ?>
+  
