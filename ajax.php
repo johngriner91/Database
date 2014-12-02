@@ -10,6 +10,7 @@ if(!empty($_POST)){
 	if(isset($_POST['action']) && !empty($_POST['action'])){
 		switch($_POST['action']){
 			case 'search': search();break;
+			case 'insert': insert();break;
 			case 'display': display();break;
 			case 'update': update();break;
 			case 'attachments': attachments();break;
