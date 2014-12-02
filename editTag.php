@@ -304,23 +304,6 @@
 
 			window.onload = populateAndCalc();
 
-			window.onload=popFO;
-
-
-			function popFO(){
-				var TagNO = document.getElementById("NO").value;
-				var RevNO = document.getElementById("Rev").value;
-				var action = 'popFO';
-				var ajaxurl = 'ajax.php',
-				data = {'action':action,
-								'TagNo': TagNO,
-								'RevNo': RevNO};
-				$.post(ajaxurl,data,function(response){
-					$(".result").html(response);
-				});
-			}
-
-
 			function newFO(){
 
 				alert("We are starting the new FO function.");

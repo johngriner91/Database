@@ -259,7 +259,7 @@
 
 			window.onload = populateAndCalc;
 
-			window.onload=getFO;
+			window.onload = getFO;
 
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
@@ -269,6 +269,7 @@
 				data = {'action':action,
 				'TagNo': TagNO,
 				'RevNo': RevNO};
+				alert("about to do the ajax call");
 				$.post(ajaxurl,data,function(response){
 					$(".result").html(response);
 				});

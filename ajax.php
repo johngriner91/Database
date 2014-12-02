@@ -49,6 +49,7 @@ function popFO(){
 	$query = "SELECT NO, FOapp, Notes FROM FO_TABLE WHERE NO='".$_POST['TagNo']."';";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
+		echo "<h1>We found $result->num_rows rows.</h1>";
 		while($row = $result->fetch_assoc()){
 			echo "<tr>";
 			echo "<td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
