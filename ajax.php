@@ -21,11 +21,8 @@ if(!empty($_POST)){
 			case 'getCountries':getCountries();break;
 			case 'getComplexities':getComplexities();break;
 			case 'updateCountry':updateCountry();break;
-<<<<<<< HEAD
 			case 'insert':insertTag();break;
-=======
 			case 'updateComplexities':updateComplexities();break;
->>>>>>> origin/master
 		}
 	}
 }
