@@ -63,7 +63,6 @@
 				<div class="panel" id="midCol">
 					<div class="panel-heading" style="background-color:#3DC66D"></div>
 					<div class="panel-body">
-<<<<<<< HEAD
 					  <!--div class="table-responsive"-->
 					  <table class="table table-borderless">
 								<tr>         <!--row0-->
@@ -113,7 +112,6 @@
 								</tr>
 						</table>
 						<!--/div-->
-=======
 						<!--div class="table-responsive"-->
 						<table>
 							<tr>         <!--row0-->
@@ -145,7 +143,6 @@
 									</tr>
 								</table> <br>
 								<!--/div-->
->>>>>>> origin/master
 
 								<!--div class="table-responsive"-->
 								<table class="table table-borderless">
@@ -153,13 +150,11 @@
 										<td> Tag Description: </td>
 									</tr>
 
-<<<<<<< HEAD
 								<tr>		<!--row1-->
 									<td> <div class="form-group">
-=======
+
 									<tr>		<!--row1-->
 										<td> <div class="form-group">
->>>>>>> origin/master
 											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="Description"></textarea>
 										</div></form></td>
 									</tr>
@@ -168,18 +163,14 @@
 										<td> Tag Notes: </td>
 									</tr>
 
-<<<<<<< HEAD
 							   <tr>		<!--row3-->
 								   <td> <div class="form-group">
-=======
 									<tr>		<!--row3-->
 										<td> <div class="form-group">
->>>>>>> origin/master
 											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="Notes"></textarea>
 										</div></form></td>
 									</tr>
 
-<<<<<<< HEAD
 							  <tr>  	<!--row2-->
 							       <td> Price Note </td>
 							   </tr>
@@ -207,7 +198,6 @@
 										<td data-field="tag#">Tag Number</td>
 										<td data-field="fo#">FO Number Applied To</td>
 										<td data-field="notes"><center>Notes to Next Engineer</center></td>
-=======
 									<tr>  	<!--row2-->
 										<td> Price Note </td>
 									</tr>
@@ -215,7 +205,6 @@
 										<td>  <div class="form-group">
 											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="PriceNotes"></textarea>
 										</div>
->>>>>>> origin/master
 									</tr>
 
 									<!--div class="table-responsive"-->
@@ -245,7 +234,6 @@
 							</div><!--/panel-->
 						</div><!--/end mid column-->
 
-<<<<<<< HEAD
 						<h4><center><i>Product Types</i></center></h4>
 						<table align="center">
 							<tr>
@@ -371,120 +359,3 @@
 		</script>
 	</body>
 </html>
-=======
-						<!-- right content column-->
-						<div class="col-md-4">
-							<div class="panel" id ="rightcol">
-								<div class="panel-heading" style="background-color:#057A2E"></div>
-								<div class="panel-body">
-
-									<h4><center><i>Product Types</i></center></h4>
-									<table align="center">
-										<tr>
-											<td><input type="checkbox" class="checkbox" id="HVL"/></td><td> &nbsp;HVL </td>
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-											<td><input type="checkbox" class="checkbox" id="HVLCC"/></td><td> &nbsp;HVL/CC </td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" class="checkbox" id="MetalClad"/></td><td> &nbsp;Metal Clad </td>
-											<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-											<td><input type="checkbox" class="checkbox" id="MVMCC"/></td><td> &nbsp;MVMCC </td>
-										</tr>
-									</table>
-									<hr>
-
-									<h4><center><i>Pricing Information </i></center></h4>
-									<table class="table table-borderless">
-										<tr>	<!--row0-->
-											<th>Material: </th>
-											<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Material">$</form></th>
-										</tr>
-										<tr>	<!--row1-->
-											<th>Labor: </th>
-											<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Labor">hrs</form></th>
-										</tr>
-										<tr>	<!--row2-->
-											<th>Engineering: </th>
-											<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Engineering">hrs</form></th>
-										</tr>
-									</table>
-									<hr>
-									<table align="center">
-										<tr>	<!--row0-->
-											<th>Tag Member: &nbsp;</th>
-											<th><form method="post"> <input type="text" style="width:150px" name="TagMember"></form><br></th>
-										</tr>
-										<tr>	<!--row1-->
-											<th>Price Expires: &nbsp;</th>
-											<th><form method="post"> <input type="date" style="width:150px; text-align:right" name="PriceExpires"></form></th>
-										</tr>
-									</table>
-									<br>
-									<br>
-									<table align="center">
-										<tr>	<!--row0-->
-											<th><button type="button" style="width:150px" class="button" onclick="insertTag()">Save</button> </th>
-										</tr>
-									</table> <br>
-									<table align="center">
-										<tr>
-											<th><button type="button" style="width:150px" class="button">Add Attachments</button> </th>
-										</tr>
-									</table>
-								</div><!--/panel-body-->
-							</div><!--/panel-->
-							<!--/end right column-->
-						</div>
-					</div>
-				</div>
-
-				<!-- script references -->
-				<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-				<script src="js/bootstrap.min.js"></script>
-				<script src="js/scripts.js"></script>
-				<script type="text/javascript">
-
-					function insertTag(){
-						alert(new Date());
-						var d = new Date();
-						var date = (d.getMonth+1) + '/' + d.getDate() + '/' + d.getFullYear;
-						var desc = document.getElementById('Description').value;
-						var notes = document.getElementById('Notes').value;
-						var sub = document.getElementById('SubCategory').value;
-						var comp = document.getElementById('Complexity').value;
-						var time = document.getElementById('LeadTime').value;
-						var user = 'Tony';
-						var mat = document.getElementById('Material').value;
-						var lab = document.getElementById('Labor').value;
-						var eng = document.getElementById('Engineering').value;
-						var exp = document.getElementById('PriceExpires').value;
-						var hvl = document.getElementById('HVL').value;
-						var hvlcc = document.getElementById('HVLCC').value;
-						var mc = document.getElementById('MetalClad').value;
-						var mvmcc = document.getElementById('MVMCC').value;
-						var action = 'insert';
-						var ajaxurl = 'ajax.php',
-						data = {'action':action,
-												'NO':tag,
-												'Rev':rev,
-												'CurrentDate':date,
-						       			'SubCategory':sub,
-						       			'Complexity':comp,
-						       			'LeadTime':time,
-						       			'TAGMemmber':user,
-						       			'HVL':hvl,
-						       			'HVLCC':cc,
-						       			'MetalClad':metal,
-						       			'MVMCC':mvmcc,
-						       			'Obsolete':obs};
-						       	$.post(ajaxurl,data,function(response){
-						       		var jsonData = JSON.parse(response);
-						       		alert(jsonData.success);
-						       		window.location = "searchTag.php";
-						       	});
-					}
-
-				</script>
-				<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","licenseKey":"a2bd4af1a7","applicationID":"3173863","transactionName":"bl0DMhYCC0VVW0QLC1cXNBQNTAtQR1BfDwEWUg0VUwtKRkFaXAsHZlAVCwhMNURbUlUBEBZRDxUBERFiVV8eEgxJ","queueTime":0,"applicationTime":3,"atts":"QhoARF4YGEs=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-488.min.js"}</script></body>
-				</html>
->>>>>>> origin/master
