@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <?php
 	require './config.inc.php';
 ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -198,12 +198,12 @@
 
 						<div class="table-responsive">
 						<br><br>
-						<table>
+						<table name="checks">
 							<tr>
 								<th> Applied FO: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-								<td> <input type="checkbox" class="checkbox"/> </td>
+								<td> <input type="checkbox" name="ckQ" id="ckQ" class="checkbox"/> </td>
 								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-								<td> <input type="checkbox" class="checkbox"/> </td>
+								<td> <input type="checkbox" name="ckF" id="ckF" class="checkbox"/> </td>
 								<td> &nbsp;&nbsp; Factory order </th>
 							</tr>
 						</table><br> </div>
@@ -216,9 +216,8 @@
 										<td data-field="fo#">FO Number Applied To</td>
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
-									<?php
-
-									?>
+									</thead>
+									<tbody class="result"></tbody>
 									<tr>
 										<td>
 									</td>
@@ -226,12 +225,11 @@
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="fo#" id="fo#"></form></td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="notes" id="notes"></form></td>
 									</tr>
-								</thead>
 							</table>
 					  </div> <!--table-responsive-->
 					  <table align="right">
 								<tr>	<!--row0-->
-									<th><button type="button" class="btn btn-default">Apply new FO</button>&nbsp;&nbsp;&nbsp;</th>
+									<th><button type="button" class="btn btn-default" onclick="newFO()" >Apply new FO</button>&nbsp;&nbsp;&nbsp;</th>
 									<th><button type="button" class="btn btn-default"><img style="width:20px; length:20px"src="images.jpg" style="width:400px; height=300px" alt=""></img></button></th>
 								</tr>
 					 </table>
@@ -311,9 +309,67 @@
 
 			window.onload = populateAndCalc();
 
+			window.onload=popFO;
+
+
+			function popFO(){
+				var TagNO = document.getElementById("NO").value;
+				var RevNO = document.getElementById("Rev").value;
+				var action = 'popFO';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action,
+								'TagNo': TagNO,
+								'RevNo': RevNO};
+				$.post(ajaxurl,data,function(response){
+					$(".result").html(response);
+				});
+			}
+
+
+			function newFO(){
+
+				alert("We are starting the new FO function.");
+				var TagNO = document.getElementById("NO").value;
+				var RevNO = document.getElementById("Rev").value;
+				var FoNo = document.getElementById("fo#").value;
+				var Notes = document.getElementById("notes").value;
+				var x = document.getElementById("ckQ").checked;
+				if(x){
+					var CkQ = 1;
+				}
+				else{
+					var CkQ = 0;
+				}
+				var y = document.getElementById("ckF").checked;
+				if(y){
+					var CkF = 1;
+				}
+				else{
+					var CkF = 0;
+				}
+				var action = 'newFO';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action,
+				'TagNO':TagNO,
+				'RevNO':RevNO,
+				'FoNo':FoNo,
+				'Notes':Notes,
+				'CkQ':CkQ,
+				'CkF':CkF};
+				$.post(ajaxurl,data,function(response){
+					var jsonData = JSON.parse(response);
+					if(jsonData){
+						alert("Added FO successfully.");
+					}else{
+						alert("Error adding FO.");
+					}
+					window.location = "whereIsHome.php";
+				});
+			}
+
 			function upload(){
 				var TagNO = document.getElementById("NO").value;
-				var RevNO = document.getElementByID("Rev").value;
+				var RevNO = document.getElementById("Rev").value;
 				var fileName = document.getElementByID("userfile").value;
 
 				var action = 'uploadFile';

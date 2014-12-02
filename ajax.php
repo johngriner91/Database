@@ -24,10 +24,40 @@ if(!empty($_POST)){
 			case 'updateCountry':updateCountry();break;
 			case 'insert':insertTag();break;
 			case 'updateComplexities':updateComplexities();break;
+			case 'popFO':popFO();break;
+			case 'newFO':newFO();break;
 		}
 	}
 }
-	
+
+function newFO(){
+	require ("config.inc.php");
+	$query = "INSERT INTO FO_TABLE (NO, Rev, FOapp, Notes, FO, Quote) VALUES ('".$_POST['TagNO']."','".$_POST['RevNO']."', '".$_POST['FoNo']."','".$_POST['Notes']."','".$_POST['CkQ']."','".$_POST['CkF']."');";
+	$result = $db->query($query);
+	if($result2 = $db->query($query2)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	exit;
+}
+
+function popFO(){
+	require ("config.inc.php");
+	$query = "SELECT NO, FOapp, Notes FROM FO_TABLE WHERE NO='".$_POST['TagNo']."' and Rev= '".$_POST['RevNo']."';";
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()){
+			echo "<tr>";
+			echo "<td>".$row['NO']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
+			echo "</tr>";
+		}
+	}
+	exit;
+}
+
 function insertTag(){
 	require("config.inc.php");
 	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('"
