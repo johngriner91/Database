@@ -27,34 +27,7 @@ if(!empty($_POST)){
 		}
 	}
 }
-
-<<<<<<< HEAD
-function uploadFile(){
-	require ("config.inc.php");
-
-	if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
-	{
-		$fileName = $_FILES['userfile']['name'];
-		$tmpName  = $_FILES['userfile']['tmp_name'];
-		$fileType = $_FILES['userfile']['type'];
-		$fileSize = $_FILES['userfile']['size'];
-		$fp      = fopen($tmpName, 'r');
-		$content = fread($fp, filesize($tmpName));
-		$content = addslashes($content);
-		fclose($fp);
-		if(!get_magic_quotes_gpc())
-		{
-			$fileName = addslashes($fileName);
-		}
-		$query = "INSERT INTO FILETESTING (filename, filetype, filesize, filecontents) ".
-		"VALUES ('$fileName', '$fileType', '$fileSize', '$content')";
-		mysql_query($query) or die('Error, query failed');
-		echo "<br>File $fileName uploaded<br>";
-	}
-
-
-	print json_encode($success);
-=======
+	
 function insertTag(){
 	require("config.inc.php");
 	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('"
@@ -65,7 +38,6 @@ function insertTag(){
 		print json_encode($success);
 		exit;
 	}
->>>>>>> FETCH_HEAD
 	exit;
 }
 
