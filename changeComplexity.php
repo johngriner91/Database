@@ -24,7 +24,7 @@
   <nav class="navbar navbar-static">
      <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="whereIsHome.php" target=""><b>Schneider Electric</b></a>
+      <a class="navbar-brand" href="whereIsHome.php" target=""><b>Schneider Electric: Administrator</b></a>
       <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="glyphicon glyphicon-chevron-down"></span>
       </a>
@@ -43,15 +43,15 @@
         <!-- left side column -->
         <div class="col-md-2">
           <div class="panel panel-default" id="sidebar">
-          <div class="panel-heading" style="background-color:#64F797"></div>
+          <!--<div class="panel-heading" style="background-color:#64F797"></div>
           <div class="panel-body">
           <ul class="nav nav-stacked">
             <li><a href="newAccount.html">Add User </a></li>
             <li><a href="deleteUser.html">Edit/Delete User</a></li>
           </ul>
 
-          </div><!--/panel body-->
-          </div><!--/panel-->
+          </div>-->
+          </div>
         </div><!--/end left column-->
 
         <!--mid column-->

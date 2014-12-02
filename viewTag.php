@@ -43,7 +43,7 @@
 				<!-- left side column -->
 				<div class="col-md-2">
 					<div class="panel panel-default" id="sidebar">
-					<div class="panel-heading" style="background-color:#64F797"></div>
+						<!--<div class="panel-heading" style="background-color:#64F797"></div>
 					<div class="panel-body">
 					<ul class="nav nav-stacked">
 						<li><a href="searchTag.php">Tag Search</a></li>
@@ -51,7 +51,7 @@
 						<li><a href="viewTag.php">Tag View</a></li>
 					</ul>
 
-					</div><!--/panel body-->
+					</div>/panel body-->
 				  </div><!--/panel-->
 				</div><!--/end left column-->
 
@@ -123,7 +123,7 @@
 						</table></div>
 
 						<div class="table-responsive">
-						<br>						
+						<br>
 						<table>
 							<tr>	<!--row0-->
 								<th>	</th>
@@ -237,6 +237,7 @@
 								</tr>
 								<tr>
 									<th><button type="button" class="btn btn-default" onclick="viewAttachments();">Review Attachments</button> </th>
+									<th><button type="button" class="btn btn-default" onclick="window.print();">Print Me</button> </th>	
 							</table>
 
 						</div> <!--/btn-group-->
@@ -256,7 +257,7 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc;
-			
+
 			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');

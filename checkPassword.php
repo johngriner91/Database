@@ -76,7 +76,7 @@
                                 while($row3 = mysql_fetch_row($result3)){
                                   foreach($row3 as $cell3){
                                     if($cell3){
-                                      header("Location: homepage.html");
+                                      header("Location: Homepage.html");
 
                                     }
                                     else{
@@ -85,7 +85,7 @@
                                       while($row4 = mysql_fetch_row($result4)){
                                         foreach($row4 as $cell4){
                                           if($cell4){
-                                            header("Location: homepage.html");
+                                            header("Location: Homepage.html");
                                           }
                                           else{
                                             header("Location: sadHomepage.html");
