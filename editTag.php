@@ -30,7 +30,7 @@
 		  </a>
 		</div>
 		<ul class="nav navbar-nav navbar-right navbar-user">
-              <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
         </ul>
 		</div>
 	</nav><!-- /.navbar -->
@@ -216,8 +216,12 @@
 										<td data-field="fo#">FO Number Applied To</td>
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
+									<?php
+
+									?>
 									<tr>
-										<td></td>
+										<td>
+									</td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="tag#" id="tag#"></form></td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="fo#" id="fo#"></form></td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="notes" id="notes"></form></td>
