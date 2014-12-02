@@ -3,7 +3,7 @@
 //FILE: ajax.php
 //PURPOSE: Contains functions for TAGS database interactions
 
-require("config.inc.php"); 
+require("config.inc.php");
 
 //Switch on value 'action' in post
 if(!empty($_POST)){
@@ -18,7 +18,9 @@ if(!empty($_POST)){
 			case 'getUser':getUser();break;
 			case 'saveUser':saveUser();break;
 			case 'getCountries':getCountries();break;
+			case 'getComplexities':getComplexities();break;
 			case 'updateCountry':updateCountry();break;
+			case 'updateComplexities':updateComplexities();break;
 		}
 	}
 }
@@ -53,6 +55,28 @@ function updateCountry(){
 	exit;
 }
 
+function updateComplexities(){
+	require ("config.inc.php");
+	$query = "DELETE FROM COMPLEXITIES WHERE Complexity='".$_POST['DC']."';";
+	if($result = $db->query($query)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	$query2 = "INSERT INTO COMPLEXITIES (Complexity) VALUES ('".$_POST['IC']."');";
+	if($result2 = $db->query($query2)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	print json_encode($success);
+	exit;
+}
+
 function getCountries(){
 	require ("config.inc.php");
     $query = 'SELECT * FROM COUNTRY';
@@ -67,6 +91,20 @@ function getCountries(){
     	}
     }
     exit;
+}
+
+function getComplexities(){
+	require ("config.inc.php");
+	$query = 'SELECT * FROM COMPLEXITIES';
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()){
+			echo "<tr>";
+			echo "<td>".$row['Complexity']."</td>";
+			echo "</tr>";
+		}
+	}
+	exit;
 }
 
 //Updates the specified user record
@@ -341,9 +379,9 @@ function search(){
 	}else{
 		$_POST['MVMCC'] = 0;
 	}
-	
+
 	foreach($fields as $field){
-		if(isset($_POST[$field]) && !empty($_POST[$field])){ 
+		if(isset($_POST[$field]) && !empty($_POST[$field])){
 			$conditions[] = "$field LIKE '%" . $_POST[$field] . "%'";
 		}
 	}
@@ -378,4 +416,4 @@ function notEmpty($var){
 	return ($var==="0"||$var);
 }
 
-?>		
+?>
