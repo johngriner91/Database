@@ -13,8 +13,182 @@ if(!empty($_POST)){
 			case 'display': display();break;
 			case 'update': update();break;
 			case 'attachments': attachments();break;
+			case 'addUser': addUser();break;
+			case 'getUsers': getUsers();break;
+			case 'getUser':getUser();break;
+			case 'saveUser':saveUser();break;
+			case 'getCountries':getCountries();break;
+			case 'updateCountry':updateCountry();break;
 		}
 	}
+}
+
+function updateCountry(){
+	require ("config.inc.php");
+	$query = "UPDATE COUNTRY SET Mult=".$_POST['caMult']." WHERE Name='CA';";
+	if($result = $db->query($query)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	$query = "UPDATE COUNTRY SET Mult=".$_POST['mexMult']." WHERE Name='MEX';";
+	if($result = $db->query($query)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	$query = "UPDATE COUNTRY SET Mult=".$_POST['usMult']." WHERE Name='US';";
+	if($result = $db->query($query)){
+		$success = "true";
+	}else{
+		$success = "false";
+		print json_encode($success);
+		exit;
+	}
+	print json_encode($success);
+	exit;
+}
+
+function getCountries(){
+	require ("config.inc.php");
+    $query = 'SELECT * FROM COUNTRY';
+    $result = $db->query($query);
+    if($result->num_rows > 0){
+    	while($row = $result->fetch_assoc()){
+    		echo "<tr>";
+    		echo "<td>".$row['Name']."</td>";
+    		echo "<td><form method=".'"'."post".'"'."><input type=".'"'."text".'"'." style=".'"'."width:80px;".'"';
+    		echo " id=".'"'.$row['Name'].'"'." value=".'"'.$row['Mult'].'"'."></form></td>";
+    		echo "</tr>";
+    	}
+    }
+    exit;
+}
+
+//Updates the specified user record
+function saveUser(){
+	require("config.inc.php");
+	if($_POST['Admin'] == "true"){
+		$_POST['Admin'] = 1;
+	}else{
+		$_POST['Admin'] = 0;
+	}
+	if($_POST['OE'] == "true"){
+		$_POST['OE'] = 1;
+	}else{
+		$_POST['OE'] = 0;
+	}
+	if($_POST['TAGMember'] == "true"){
+		$_POST['TAGMember'] = 1;
+	}else{
+		$_POST['TAGMember'] = 0;
+	}
+
+	$query = "UPDATE USERS SET "
+		."Uname='".$_POST['Uname']."', "
+		."Pword='".$_POST['Pword']."', "
+		."Fname='".$_POST['Fname']."', "
+		."Lname='".$_POST['Lname']."', "
+		."Admin='".$_POST['Admin']."', "
+		."OE='".$_POST['OE']."', "
+		."TAGMember='".$_POST['TAGMember']."' "
+		."WHERE Uname='".$_POST['oldUname']."';";
+	if($result = $db->query($query)){
+		$response['success'] = "User updated successfully.";
+	}else{
+		$response['success'] = $query;
+	}
+	print json_encode($response);
+	exit;
+}
+
+//Get User specified by Uname
+function getUser(){
+	require("config.inc.php");
+	$query = "SELECT * FROM USERS WHERE Uname='".$_POST['Uname']."';";
+	$response = array();
+	$result = $db->query($query);
+	if($result->num_rows>0){
+		while($row = $result->fetch_assoc()){
+			$response['user'] = $row;
+		}
+	}
+	print json_encode($response);
+	exit;
+}
+
+//Get Users
+function getUsers(){
+	require("config.inc.php");
+	$query = "SELECT * FROM USERS";
+	$result = $db->query($query);
+	if ($result->num_rows > 0) {
+
+	    // output data of each row
+	    while($row = $result->fetch_assoc()) {
+	    	echo "<tr>";
+	        echo "<td>" . $row["Fname"] . "</td><td>" . $row["Lname"] . "</td><td>" . $row["Uname"] . "</td><td>" . $row["Pword"] . "</td>";
+	        if($row["Admin"]){
+	        	echo "<td>X</td>";
+	        }else{
+	        	echo "<td></td>";
+	        }
+	        if($row["OE"]){
+	        	echo "<td>X</td>";
+	        }else{
+	        	echo "<td></td>";
+	        }
+	        if($row["TAGMember"]){
+	        	echo "<td>X</td>";
+	        }else{
+	        	echo "<td></td>";
+	        }
+	        echo "<td><a onclick=".'"'."userCookie('".$row["Uname"]."'); ".'"'."href=" . '"' . "editUser.html" . '"' . ">Edit</a></td></tr>";
+	    }
+	} else {
+	    echo "0 results";
+	}
+	exit;
+}
+
+//Add user
+function addUser(){
+	require("config.inc.php");
+	if($_POST['Admin'] == "true"){
+		$_POST['Admin'] = 1;
+	}else{
+		$_POST['Admin'] = 0;
+	}
+	if($_POST['OE'] == "true"){
+		$_POST['OE'] = 1;
+	}else{
+		$_POST['OE'] = 0;
+	}
+	if($_POST['TAGMember'] == "true"){
+		$_POST['TAGMember'] = 1;
+	}else{
+		$_POST['TAGMember'] = 0;
+	}
+
+	$query = "INSERT INTO USERS(Uname,Pword,Fname,Lname,Admin,OE,TAGMember) VALUES('"
+		.$_POST['Uname']."', '"
+		.$_POST['Pword']."', '"
+		.$_POST['Fname']."', '"
+		.$_POST['Lname']."', '"
+		.$_POST['Admin']."', '"
+		.$_POST['OE']."', '"
+		.$_POST['TAGMember']."');";
+	if($result = $db->query($query)){
+		$response['success'] = "User added successfully.";
+	}else{
+		$response['success'] = "There was a problem inserting into the database.";
+	}
+	print json_encode($response);
+	exit;
 }
 
 //Review attachments
@@ -44,10 +218,10 @@ function update(){
 	}else{
 		$_POST['HVLCC'] = 0;
 	}
-	if($_POST['MetalClad'] == "true"){
-		$_POST['MetalClad'] = 1;
+	if($_POST['oe'] == "true"){
+		$_POST['oe'] = 1;
 	}else{
-		$_POST['MetalClad'] = 0;
+		$_POST['oe'] = 0;
 	}
 	if($_POST['MVMCC'] == "true"){
 		$_POST['MVMCC'] = 1;
@@ -58,7 +232,7 @@ function update(){
 	$query = "INSERT INTO REVISIONS ("
 		."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
 		."MatCost, LabCost, EngCost, InsCost, TAGMember, PriceExpires, "
-		."HVL, HVLCC, MetalClad, MVMCC, Obsolete) "
+		."HVL, HVLCC, oe, MVMCC, Obsolete) "
 		."VALUES("
 		. $_POST['NO'] . ", "
 		. $_POST['Rev'] . ", '"
@@ -75,7 +249,7 @@ function update(){
 		. $_POST['PriceExpires'] . "', "
 		. $_POST['HVL'] . ", "
 		. $_POST['HVLCC'] . ", "
-		. $_POST['MetalClad'] . ", "
+		. $_POST['oe'] . ", "
 		. $_POST['MVMCC'] . ", "
 		. $_POST['Obsolete'] . ");";
 	if($result = $db->query($query)){
@@ -138,7 +312,7 @@ function display(){
 //Fetches list of tags that match search criteria
 function search(){
 	require("config.inc.php");
-	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC','Obsolete');
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','oe','MVMCC','Obsolete');
 	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
@@ -157,10 +331,10 @@ function search(){
 	}else{
 		$_POST['HVLCC'] = 0;
 	}
-	if($_POST['MetalClad'] == "true"){
-		$_POST['MetalClad'] = 1;
+	if($_POST['oe'] == "true"){
+		$_POST['oe'] = 1;
 	}else{
-		$_POST['MetalClad'] = 0;
+		$_POST['oe'] = 0;
 	}
 	if($_POST['MVMCC'] == "true"){
 		$_POST['MVMCC'] = 1;
@@ -174,15 +348,11 @@ function search(){
 		}
 	}
 
-	//print_r($conditions);
-
 	$query = "SELECT * FROM view_TAGS ";
 	if(count($conditions)>0){
 		$query .= "WHERE " . implode(' AND ', $conditions);
 	}
-	
-	//echo $query;
-	
+
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
