@@ -30,12 +30,12 @@
         </a>
       </div>
       <ul class="nav navbar-nav navbar-right navbar-user">
-        <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+        <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
       </ul>
     </div>
   </nav><!-- /.navbar -->
 
-  <h1><center>Login View Page</center></a></h1><br>
+  <h1><center>Edit Country Mutiplyer</center></a></h1><br>
 
   <!-- Begin Body -->
   <div class="container">
@@ -46,8 +46,8 @@
           <div class="panel-heading" style="background-color:#64F797"></div>
           <div class="panel-body">
             <ul class="nav nav-stacked">
-              <li><a href="newAccount.html">Add User </a></li>
-              <li><a href="deleteUser.html">Edit/Delete User</a></li>
+              <li><a href="addUser.html">Add User </a></li>
+              <li><a href="viewUsers.html">Edit User</a></li>
             </ul>
 
           </div><!--/panel body-->
@@ -64,49 +64,56 @@
                 <thead>
                   <tr>
                     <td data-field="Country">Country</td>
-                    <td data-field="Multiplier">Date</td>
-                    <td data-field="button"></td>
+                    <td data-field="Multiplier">Multiplyer</td>
                   </tr>
                 </thead>
-                <?php
-                $servername = 'mysql.cs.mtsu.edu';
-                $username = 'jls7h';
-                $password = 'database2014';
-                $database = 'jls7h';
-
-                $query = 'SELECT Name, Mult FROM COUNTRY';
-                if (!mysql_connect($servername, $username, $password))
-                die("Can't connect to database");
-
-                if (!mysql_select_db($database))
-                die("Can't select database");
-
-                // sending query
-                $result = mysql_query($query);
-                if (!$result) {
-                  die("Query to show fields from table failed");
-                }
-                else{
-                  $fields_num = mysql_num_fields($result);
-                  // printing table rows
-                  while($row = mysql_fetch_row($result)){
-                    $name     = $row[0];
-                    $mult     = $row[1];
-                    echo "<tr><td>".$name."</td><td>".$mult."</td></tr>";
-                  }
-                }
-                ?>
+                <tbody class="result"></tbody>
               </table>
+              <button type="button" style="float:right;" class="button" name="save" onclick="updateCountry()" value="Save">Save</button>
             </div> <!--table-responsive-->
           </div><!--/panel-->
         </div>
       </div> <!--/end mid column-->
     </div>
   </div>
-
   <!-- script references -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script type="text/javascript">
+
+    window.onload=getCountries;
+
+    function updateCountry(){
+      var caMult = document.getElementById("CA").value;
+      var mexMult = document.getElementById("MEX").value;
+      var usMult = document.getElementById("US").value;
+      var action = 'updateCountry';
+      var ajaxurl = 'ajax.php',
+      data = {'action':action,
+              'caMult':caMult,
+              'mexMult':mexMult,
+              'usMult':usMult};
+      $.post(ajaxurl,data,function(response){
+        var jsonData = JSON.parse(response);
+        if(jsonData){
+          alert("Country multipliers updated successfully.");
+        }else{
+          alert("Error updating country multipliers.");
+        }
+        window.location = "adminHomepage.html";
+      });
+    }
+
+    function getCountries(){
+      var action = 'getCountries';
+      var ajaxurl = 'ajax.php',
+      data = {'action':action};
+      $.post(ajaxurl,data,function(response){
+        $(".result").html(response);
+      });
+    }
+
+  </script>
 </body>
 </html>

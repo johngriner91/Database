@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Project Edit User</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!-- Custom CSS -->
+		<link href="css/landing-page.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+	<nav class="navbar navbar-static">
+	   <div class="container">
+		<div class="navbar-header">
+		  <a href="whereIsHome.php" class="navbar-brand" target="ext"><b>Schneider Electric</b></a>
+		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="glyphicon glyphicon-chevron-down"></span>
+		  </a>
+		</div>
+		<ul class="nav navbar-nav navbar-right navbar-user">
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+        </ul>
+		</div>
+	</nav><!-- /.navbar -->
+
+	<h1><center>Edit User</center></a></h1><br>
+
+	<!-- Begin Body -->
+	<div class="container">
+		<div class="no-gutter row">
+				<!--mid column-->
+				<div class="col-md-12">
+				  <div class="panel" id="midCol">
+					<div class="panel-heading" style="background-color:#3DC66D"></div>
+					<div class="panel-body">
+					  <div class="table-responsive">
+							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<td data-field="fname"><b>First Name</b></td>
+										<td data-field="lname"><b>Last Name</b></td>
+										<td data-field="uname"><b>User Name</b></td>
+										<td data-field="pword"><b>Password</b></td>
+										<td data-field="tags"><b>Admin</b></td>
+										<td data-field="tags"><b>OE</b></td>
+										<td data-field="tags"><b>TAG</b></td>
+									</tr>
+									<tr>
+										<td><form method="post"> <input type="text" style="width:80px" name="FirstName" id="FirstName"></form></td>
+										<td><form method="post"> <input type="text" style="width:80px" name="LastName" id="LastName"></form></td>
+										<td><form method="post"> <input type="text" style="width:80px" name="UserName" id="UserName"></form></td>
+										<td><form method="post"> <input type="text" style="width:80px" name="PassWord" id="PassWord"></form></td>
+										<td><input type="checkbox" class="checkbox" id="Admin"/></td>
+										<td><input type="checkbox" class="checkbox" id="OE"/></td>
+										<td><input type="checkbox" class="checkbox" id="TAGMember"/></td>
+									</tr>
+								</thead>
+							</table>
+							<button style="float:right;" type="button" class="btn btn-default" onclick="saveUser();">Save</button>
+					  </div> <!--table-responsive-->
+				   </div><!--/panel-->
+				</div>
+			</div> <!--/end mid column-->
+			<div class="result"></div>
+	</div>
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+		<script type="text/javascript">
+
+			window.onload = getUser;
+
+			function saveUser(){
+				var oldUname = readCookie("user");
+				var fname = document.getElementById("FirstName").value;
+		        var lname = document.getElementById('LastName').value;
+		        var uname = document.getElementById('UserName').value;
+		        var pword = document.getElementById('PassWord').value;
+		        var admin = document.getElementById('Admin').checked;
+		        var oe = document.getElementById('OE').checked;
+		        var tag = document.getElementById('TAGMember').checked; 
+		        var action = 'saveUser';
+		        var ajaxurl = 'ajax.php',
+		        data = {'action':action,
+		        		'oldUname':oldUname,
+		        		'Fname':fname, 
+		        		'Lname':lname, 
+		        		'Uname':uname,
+		        		'Pword':pword,
+		        		'Admin':admin,
+		        		'OE':oe, 
+		        		'TAGMember':tag};
+		        $.post(ajaxurl, data, function (response) {
+		        	//$(".result").html(response);			//debug stuff
+					var jsonData = JSON.parse(response);
+					alert(jsonData.success);
+					eraseCookie('user');
+					window.location = "viewUsers.html";
+		        });
+			}
+
+			function getUser(){
+		        var uname = readCookie("user");
+		        var action = 'getUser';
+		        var ajaxurl = 'ajax.php',
+		        data = {'action':action,
+		        		'Uname':uname};
+		        $.post(ajaxurl, data, function (response) {
+		        	//$(".result").html(response);			//debug stuff
+					var jsonData = JSON.parse(response);
+					document.getElementById("FirstName").value = jsonData.user.Fname;
+					document.getElementById("LastName").value = jsonData.user.Lname;
+					document.getElementById("UserName").value = jsonData.user.Uname;
+					document.getElementById("PassWord").value = jsonData.user.Pword;
+					if(jsonData.user.Admin == 1)
+						document.getElementById("Admin").checked = true;
+					if(jsonData.user.OE == 1)
+						document.getElementById("OE").checked = true;
+					if(jsonData.user.TAGMember == 1)
+						document.getElementById("TAGMember").checked = true;
+		        });
+			}
+
+			function readCookie(name){
+				var nameEQ = name + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0; i<ca.length; i++){
+					var c = ca[i];
+					while (c.charAt(0)==' '){
+						c = c.substring(1, c.length);
+					}
+					if(c.indexOf(nameEQ) == 0){
+						return c.substring(nameEQ.length, c.length);
+					}
+				}
+				return null;
+			}
+
+			function eraseCookie(name){
+				createCookie(name,"",-1);
+			}
+
+		</script>
+	</body>
+</html>

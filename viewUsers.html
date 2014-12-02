@@ -27,12 +27,12 @@
 		  </a>
 		</div>
 		<ul class="nav navbar-nav navbar-right navbar-user">
-              <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
         </ul>
 		</div>
 	</nav><!-- /.navbar -->
 
-	<h1><center>Edit/Delete User</center></a></h1><br>
+	<h1><center>View Users</center></a></h1><br>
 
 	<!-- Begin Body -->
 	<div class="container">
@@ -48,12 +48,15 @@
 									<tr>
 										<td data-field="fname"><b>First Name</b></td>
 										<td data-field="lname"><b>Last Name</b></td>
-										<td data-field="userName"><b>User Name</b></td>
-										<td data-field="tags"><b>Tag Group</b></td>
-										<td style="width:80px"><a ><button type="button" class="btn btn-default">Edit</button></a></td>
-										<td style="width:80px"><button type="button" class="btn btn-default">Delete</button></td>
+										<td data-field="uname"><b>User Name</b></td>
+										<td data-field="pword"><b>Password</b></td>
+										<td data-field="tags"><b>Admin</b></td>
+										<td data-field="tags"><b>OE</b></td>
+										<td data-field="tags"><b>TAG</b></td>
+										<td></td>
 									</tr>
 								</thead>
+								<tbody class="result"></tbody>
 							</table>
 					  </div> <!--table-responsive-->
 				   </div><!--/panel-->
@@ -65,5 +68,33 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
+		<script type="text/javascript">
+
+			window.onload = getUsers;
+
+			function getUsers(){
+				var action = 'getUsers';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action};
+				$.post(ajaxurl, data, function(response){
+					$(".result").html(response);
+				});
+			}
+
+			function userCookie(user){
+				createCookie("user",user,0);
+			}
+
+			function createCookie(name,value,days){
+				if(days){
+					var date = new Date();
+					date.setTime(date.getTime()+(days*24*60*60*1000));
+					var expires = "; expires=" + date.toGMTString();
+				}
+				else var expires = "";
+				document.cookie = name + "=" + value + expires + "; path=/";
+			}
+
+		</script>
 	</body>
 </html>
