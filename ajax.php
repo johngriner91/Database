@@ -46,12 +46,13 @@ function newFO(){
 
 function popFO(){
 	require ("config.inc.php");
-	$query = "SELECT NO, FOapp, Notes FROM FO_TABLE WHERE NO='".$_POST['TagNo']."' and Rev= '".$_POST['RevNo']."';";
+	$query = "SELECT NO, FOapp, Notes FROM FO_TABLE WHERE NO='".$_POST['TagNo']."';";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
+			echo "We are in the POP POP function!";
 			echo "<tr>";
-			echo "<td>".$row['NO']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
+			echo "<td></td><td>".$NO."</td><td>".$FOapp."</td><td>".$Notes."</td>";
 			echo "</tr>";
 		}
 	}
