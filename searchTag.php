@@ -45,20 +45,6 @@
 	<!-- Begin Body -->
 	<div class="container">
 		<div class="no-gutter row">
-			<!-- left side column -->
-			<div class="col-md-2">
-				<div class="panel panel-default" id="sidebar">
-				<div class="panel-heading" style="background-color:#64F797"></div> 
-				<div class="panel-body">
-				<ul class="nav nav-stacked">
-					<li><a href="searchTag.php">Tag Search</a></li>
-					<li><a href="insertTag.php">Tag Insert</a></li>
-					<li><a href="viewTag.php">Tag View</a></li>
-				</ul>			  
-		
-				</div><!--/panel body-->
-			  </div><!--/panel-->
-			</div><!--/end left column-->
 				
 			<!--mid column-->
 			<div class="col-md-8">
