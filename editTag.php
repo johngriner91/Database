@@ -304,7 +304,7 @@
 
 			window.onload = populateAndCalc();
 
-			function newFO(){
+			/*function newFO(){
 
 				alert("We are starting the new FO function.");
 				var TagNO = document.getElementById("NO").value;
@@ -365,7 +365,7 @@
 					}
 					window.location = "whereIsHome.php";
 				});
-			}
+			}*/
 
 
 			//Populates entry fields and calculates values for current tag info
