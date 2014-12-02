@@ -17,7 +17,7 @@
 		<!-- Custom CSS -->
 		<link href="css/landing-page.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		
+
 	</head>
 	<body>
 
@@ -34,16 +34,16 @@
         </ul>
 		</div>
 	</nav><!-- /.navbar -->
-	
+
 	<h1><center>Tag Edit</center></a></h1><br>
-	
+
 	<!-- Begin Body -->
 	<div class="container">
 		<div class="no-gutter row">
 				<!-- left side column -->
 				<div class="col-md-2">
 					<div class="panel panel-default" id="sidebar">
-					<div class="panel-heading" style="background-color:#64F797"></div>
+						<!--<div class="panel-heading" style="background-color:#64F797"></div>
 					<div class="panel-body">
 					<ul class="nav nav-stacked">
 						<li><a href="searchTag.php">Tag Search</a></li>
@@ -51,7 +51,7 @@
 						<li><a href="viewTag.php">Tag View</a></li>
 					</ul>
 
-					</div><!--/panel body-->
+					</div>/panel body-->
 				  </div><!--/panel-->
 				</div><!--/end left column-->
 
@@ -97,7 +97,7 @@
 										echo $menu;
 									?>
 									</td>
-									<td> 
+									<td>
 									<?php
 										$options = '<option></option>';
 										$comp="SELECT * FROM COMPLEXITIES";
@@ -157,7 +157,7 @@
 						</table></div>
 
 						<div class="table-responsive">
-						<br>						
+						<br>
 						<table>
 							<tr>	<!--row0-->
 								<th>	</th>
@@ -221,14 +221,14 @@
 					  </div> <!--table-responsive-->
 					  <table align="right">
 								<tr>	<!--row0-->
-									<th><button type="button" class="btn btn-default">Apply new FO</button>&nbsp;&nbsp;&nbsp;</th>								
+									<th><button type="button" class="btn btn-default">Apply new FO</button>&nbsp;&nbsp;&nbsp;</th>
 									<th><button type="button" class="btn btn-default"><img style="width:20px; length:20px"src="images.jpg" style="width:400px; height=300px" alt=""></img></button></th>
 								</tr>
 					 </table>
-				   </div> 
+				   </div>
 				   </div><!--/panel-->
 				</div><!--/end mid column-->
-				
+
 				<!-- right content column-->
 				<div class="col-md-4">
 					<div class="panel" id ="rightcol">
@@ -269,7 +269,7 @@
 								<td>&nbsp;Check To Make TAG Permanently Obsolete</td>
 							</tr>
 						</table>
-					<br>				
+					<br>
 							<table align="center">
 								<tr>	<!--row0-->
 									<th><button type="button" style="width:150px" class="button" name="save" value="update" onclick="button(this.value);">Save</button> </th>
@@ -284,7 +284,7 @@
 					  </div><!--/panel-body-->
 					</div><!--/panel-->
 					<!--/end right column-->
-			</div> 
+			</div>
 		</div>
 		<div class="result"></div>
 	</div>
@@ -296,7 +296,7 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc();
-			
+
 			//Populates entry fields and calculates values for current tag info
 			function populateAndCalc(){
 				var tag = readCookie('tag');
@@ -375,12 +375,12 @@
 		        var action = value;
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
-		        		'NO':tag, 
-		        		'SubCategory':sub, 
-		        		'Rev':rev, 
+		        		'NO':tag,
+		        		'SubCategory':sub,
+		        		'Rev':rev,
 		        		'CurrentDate':date,
-		        		'Complexity':comp, 
-		        		'LeadTime':time, 
+		        		'Complexity':comp,
+		        		'LeadTime':time,
 		        		'Notes':notes,
 		        		'PriceNotes':price,
 		        		'MatCost':mat,

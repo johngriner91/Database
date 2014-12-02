@@ -21,7 +21,7 @@
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
-		  <a href="whereIsHome.php" class="navbar-brand" target="ext"><b>Schneider Electric</b></a>
+		  <a href="whereIsHome.php" class="navbar-brand" target=""><b>Schneider Electric: Administrator</b></a>
 		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		  </a>
@@ -89,17 +89,17 @@
 		        var pword = document.getElementById('PassWord').value;
 		        var admin = document.getElementById('Admin').checked;
 		        var oe = document.getElementById('OE').checked;
-		        var tag = document.getElementById('TAGMember').checked; 
+		        var tag = document.getElementById('TAGMember').checked;
 		        var action = 'saveUser';
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
 		        		'oldUname':oldUname,
-		        		'Fname':fname, 
-		        		'Lname':lname, 
+		        		'Fname':fname,
+		        		'Lname':lname,
 		        		'Uname':uname,
 		        		'Pword':pword,
 		        		'Admin':admin,
-		        		'OE':oe, 
+		        		'OE':oe,
 		        		'TAGMember':tag};
 		        $.post(ajaxurl, data, function (response) {
 		        	//$(".result").html(response);			//debug stuff

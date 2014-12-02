@@ -31,8 +31,30 @@ function functionFun(){
         header("Location: adminHomepage.html");
       }
       else{
-        echo "Currently not an administrator.";
-        header("Location: homepage.html");
+        $query3 = 'SELECT OE FROM USERS WHERE Uname = "'.$currentlyLoggedIn.'";';
+        $result3 = mysql_query($query3);
+        while($row3 = mysql_fetch_row($result3)){
+          foreach($row3 as $cell3){
+            if($cell3){
+              header("Location: Homepage.html");
+
+            }
+            else{
+              $query4 = 'SELECT TAGMember FROM USERS WHERE Uname = "'.$currentlyLoggedIn.'";';
+              $result4 = mysql_query($query4);
+              while($row4 = mysql_fetch_row($result4)){
+                foreach($row4 as $cell4){
+                  if($cell4){
+                    header("Location: Homepage.html");
+                  }
+                  else{
+                    header("Location: sadHomepage.html");
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

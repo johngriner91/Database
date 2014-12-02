@@ -17,7 +17,7 @@
 		<!-- Custom CSS -->
 		<link href="css/landing-page.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		
+
 	</head>
 	<body>
 
@@ -37,31 +37,35 @@
 
 		</div>
 	</nav><!-- /.navbar -->
-	
+
 	<h1><center>Tag Search</center></a></h1><br>
-	
+
 	<!-- Begin Body -->
 	<div class="container">
 		<div class="no-gutter row">
+<<<<<<< HEAD
 			<!-- left side column -->
 			<div class="col-md-2">
 				<div class="panel panel-default" id="sidebar">
-				<div class="panel-heading" style="background-color:#64F797"></div> 
+					<!--<div class="panel-heading" style="background-color:#64F797"></div>
 				<div class="panel-body">
 				<ul class="nav nav-stacked">
 					<li><a href="searchTag.php">Tag Search</a></li>
 					<li><a href="insertTag.php">Tag Insert</a></li>
 					<li><a href="viewTag.php">Tag View</a></li>
-				</ul>			  
-		
-				</div><!--/panel body-->
+				</ul>
+
+				</div>/panel body-->
 			  </div><!--/panel-->
 			</div><!--/end left column-->
-				
+
+=======
+
+>>>>>>> FETCH_HEAD
 			<!--mid column-->
 			<div class="col-md-8">
 			  <div class="panel" id="midCol">
-				<div class="panel-heading" style="background-color:#3DC66D"></div> 
+				<div class="panel-heading" style="background-color:#3DC66D"></div>
 				<div class="panel-body">
 				  <div class="table-responsive">
 				  	<table>
@@ -75,7 +79,7 @@
 								<th>Lead Time</th>
 								<th>User</th>
 							</tr>
-								 
+
 							<tr>         <!--row1-->
 								<td> <form method="post"> <input type="text" style="width:50px" id="TagNumber" name="TagNumber"> </form> </td>
 								<td> <form method="post"> <input type="text" style="text-align:right; width:40px" id="Rev" name="Rev"> </form></td>
@@ -98,7 +102,7 @@
 									echo $menu;
 								?>
 								</td>
-								<td> 
+								<td>
 								<?php
 									$options = '<option></option>';
 									$comp="SELECT * FROM COMPLEXITIES";
@@ -122,46 +126,46 @@
 						</tbody>
 					</table> <br>
 					</div>
-					
+
 					<div class="table-responsive">
 					<table>
 							<tr>		<!--row0-->
 							    <td><strong> Tag Description: </strong></td>
 							</tr>
-							 
+
 							<tr>		<!--row1-->
 								<td> <div class="form-group">
 										<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagDescription"></textarea>
 									</div></form></td>
-							</tr> 
+							</tr>
 
 							<tr>  	<!--row2-->
 							   <td><strong> Tag Note: </strong></td>
 							   </tr>
- 
+
 						   <tr>		<!--row3-->
 							   <td> <div class="form-group">
 										<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagNotes"></textarea>
 									</div></form></td>
-						   </tr> 
-						 
+						   </tr>
+
 						  <tr>  	<!--row2-->
 						       <td><strong> Price Note: </strong></td>
-						   </tr>						 
+						   </tr>
 						   <tr>		<!--row3-->
 							   <td>  <div class="form-group">
 										<textarea class="form-control" style="width:560px; height:100px" rows="5" id="comment"></textarea>
 									</div>
-						</tr> 							 
+						</tr>
 					</table></div>
-			   </div> 
+			   </div>
 			   </div><!--/panel-->
 			</div><!--/end mid column-->
-			
+
 			<!-- right content column-->
 			<div class="col-md-2">
 				<div class="panel" id ="rightcol">
-				<div class="panel-heading" style="background-color:#057A2E"></div>   
+				<div class="panel-heading" style="background-color:#057A2E"></div>
 				<div class="panel-body">
 					<div class="table-responsive">
 					<h4><strong>Product Types:</strong></h4>
@@ -178,7 +182,7 @@
 					<hr>
 					<table align="center">
 						<tr><th><button type="button" style="width:100px" class="button" name="search" value="Search">Search</button></th></tr>
-					</table>		
+					</table>
 					</div>
 				</div><!--/panel-body-->
 				</div><!--/panel-->
@@ -217,12 +221,12 @@
 		        var action = 'search';
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
-		        		'NO':tag, 
-		        		'Rev':rev, 
-		        		'CurrentDate':date, 
-		        		'SubCategory':sub, 
-		        		'Complexity':comp, 
-		        		'LeadTime':time, 
+		        		'NO':tag,
+		        		'Rev':rev,
+		        		'CurrentDate':date,
+		        		'SubCategory':sub,
+		        		'Complexity':comp,
+		        		'LeadTime':time,
 		        		'TAGMemmber':user,
 		        		'HVL':hvl,
 		        		'HVLCC':cc,
