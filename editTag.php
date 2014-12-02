@@ -277,7 +277,11 @@
 							</table> <br>
 							<table align="center">
 								<tr>
-									<th><button type="button" style="width:150px" class="button" value="attachments" onclick="button(this.value);">Add Attachments</button> </th>
+									<td width="246">
+										<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+										<input name="userfile" type="file" id="userfile">
+									</td>
+									<td width="80"><input name="upload" type="submit" class="box" id="upload" onclick="upload()" value=" Upload "></td>
 								</tr>
 							</table>
 
@@ -296,6 +300,29 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc();
+
+			function upload(){
+				var TagNO = document.getElementById("NO").value;
+				var RevNO = document.getElementByID("Rev").value;
+				var fileName = document.getElementByID("userfile").value;
+
+				var action = 'uploadFile';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action,
+										'TagNo':TagNo,
+										'RevNo':RevNo,
+										'fileName':filename};
+				$.post(ajaxurl,data,function(response){
+					var jsonData = JSON.parse(response);
+					if(jsonData){
+						alert("Attached successfully.");
+					}else{
+						alert("Error attaching file.");
+					}
+					window.location = "whereIsHome.php";
+				});
+			}
+
 
 			//Populates entry fields and calculates values for current tag info
 			function populateAndCalc(){

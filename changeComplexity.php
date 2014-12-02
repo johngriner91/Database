@@ -40,7 +40,6 @@
   <!-- Begin Body -->
   <div class="container">
     <div class="no-gutter row">
-<<<<<<< HEAD
         <!-- left side column -->
         <div class="col-md-2">
           <div class="panel panel-default" id="sidebar">
@@ -54,8 +53,6 @@
           </div>-->
           </div>
         </div><!--/end left column-->
-=======
->>>>>>> FETCH_HEAD
 
         <!--mid column-->
         <div class="col-md-8">
