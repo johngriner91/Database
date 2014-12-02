@@ -22,11 +22,13 @@ if(!empty($_POST)){
 			case 'getCountries':getCountries();break;
 			case 'getComplexities':getComplexities();break;
 			case 'updateCountry':updateCountry();break;
+			case 'insert':insertTag();break;
 			case 'updateComplexities':updateComplexities();break;
 		}
 	}
 }
 
+<<<<<<< HEAD
 function uploadFile(){
 	require ("config.inc.php");
 
@@ -52,6 +54,18 @@ function uploadFile(){
 
 
 	print json_encode($success);
+=======
+function insertTag(){
+	require("config.inc.php");
+	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('"
+		.$_POST['Description']."', '".$_POST['SubCategory']."');";
+		//." SELECT LAST_INSERT_ID();";
+	if($result = $db->query($query)){
+		$success = "true";
+		print json_encode($success);
+		exit;
+	}
+>>>>>>> FETCH_HEAD
 	exit;
 }
 

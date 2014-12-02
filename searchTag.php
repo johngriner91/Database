@@ -1,9 +1,7 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-
 <?php
 	require './config.inc.php';
 ?>
-
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -45,7 +43,6 @@
 	<!-- Begin Body -->
 	<div class="container">
 		<div class="no-gutter row">
-<<<<<<< HEAD
 			<!-- left side column -->
 			<div class="col-md-2">
 				<div class="panel panel-default" id="sidebar">
@@ -61,9 +58,6 @@
 			  </div><!--/panel-->
 			</div><!--/end left column-->
 
-=======
-
->>>>>>> FETCH_HEAD
 			<!--mid column-->
 			<div class="col-md-8">
 			  <div class="panel" id="midCol">
