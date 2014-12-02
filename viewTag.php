@@ -183,6 +183,7 @@
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
 								</thead>
+								<tbody class="result"></tbody>
 							</table>
 					  </div> <!--table-responsive-->
 				   </div>
@@ -257,6 +258,21 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc;
+
+			window.onload=getFO;
+
+			function getFO(){
+				var TagNO = document.getElementById("NO").value;
+				var RevNO = document.getElementById("Rev").value;
+				var action = 'popFO';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action,
+				'TagNo': TagNO,
+				'RevNo': RevNO};
+				$.post(ajaxurl,data,function(response){
+					$(".result").html(response);
+				});
+			}
 
 			function populateAndCalc(){
 				var tag = readCookie('tag');

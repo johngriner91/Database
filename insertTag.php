@@ -90,7 +90,7 @@
 										echo $menu;
 									?>
 									</td>
-									<td> 
+									<td>
 									<?php
 										$options = '<option></option>';
 										$comp="SELECT * FROM COMPLEXITIES";
@@ -280,7 +280,7 @@
 						</table> <br>
 						<table align="center">
 							<tr>
-								<th><button type="button" style="width:150px" class="button">Add Attachments</button> </th>
+								<th><a href="uploadFile.html"><button type="button" style="width:150px" class="button">Add Attachments</button></a></th>
 							</tr>
 						</table>
 					  </div><!--/panel-body-->
@@ -317,13 +317,13 @@
 			// var action = 'insert';
 			alert(comp);
 			// var ajaxurl = 'ajax.php',
-			// data = {'action':action, 
-	  //       		'Rev':rev, 
-	  //       		'CurrentDate':date, 
+			// data = {'action':action,
+	  //       		'Rev':rev,
+	  //       		'CurrentDate':date,
 	  //       		'Description':desc,
-	  //       		'SubCategory':sub, 
-	  //       		'Complexity':comp, 
-	  //       		'LeadTime':time, 
+	  //       		'SubCategory':sub,
+	  //       		'Complexity':comp,
+	  //       		'LeadTime':time,
 	  //       		'TAGMember':user,
 	  //       		'MatCost':mat,
 	  //       		'LabCost':mat,

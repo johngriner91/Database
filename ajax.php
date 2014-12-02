@@ -50,9 +50,8 @@ function popFO(){
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			echo "We are in the POP POP function!";
 			echo "<tr>";
-			echo "<td></td><td>".$NO."</td><td>".$FOapp."</td><td>".$Notes."</td>";
+			echo "<td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
 			echo "</tr>";
 		}
 	}
