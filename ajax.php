@@ -389,6 +389,20 @@ function display(){
 		}
 		$response['product'] = $product;
 	}
+
+	//Get HOURLY_COST multipliers
+	$query = "SELECT * FROM HOURLY_COST";
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		$hourly = array();
+		$count = 0;
+		while($row = $result->fetch_assoc()){
+			$hourly[$count] = $row;
+			$count++;
+		}
+		$response['hourly'] = $hourly;
+	}
+
 	print json_encode($response);
 	exit;
 }
@@ -396,7 +410,7 @@ function display(){
 //Fetches list of tags that match search criteria
 function search(){
 	require("config.inc.php");
-	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','oe','MVMCC','Obsolete');
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','oe','MVMCC');
 	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
@@ -436,7 +450,7 @@ function search(){
 	if(count($conditions)>0){
 		$query .= "WHERE " . implode(' AND ', $conditions);
 	}
-
+	$query .= " AND Obsolete=".$_POST['Obsolete'];
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 

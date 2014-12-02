@@ -269,6 +269,10 @@
 				$.post(ajaxurl,data,function(response){
 					//$(".result").html(response);		//debug stuff
 					var jsonData = JSON.parse(response);
+					var matCost = parseFloat(jsonData.tag.MatCost);
+					var labCost = (parseFloat(jsonData.tag.LabCost) * parseFloat(jsonData.hourly[1].Value));
+					var engCost = (parseFloat(jsonData.tag.EngCost) * parseFloat(jsonData.hourly[0].Value));
+					var insCost = (matCost + labCost + engCost);
 					document.getElementById("NO").value = jsonData.tag.NO;
 					document.getElementById("Description").value = jsonData.tag.Description;
 					document.getElementById("SubCategory").value = jsonData.tag.SubCategory;
@@ -278,10 +282,10 @@
 					document.getElementById("LeadTime").value = jsonData.tag.LeadTime;
 					document.getElementById("Notes").value = jsonData.tag.Notes;
 					document.getElementById("PriceNotes").value = jsonData.tag.PriceNotes;
-					document.getElementById("Material").value = jsonData.tag.MatCost;
-					document.getElementById("Labor").value = jsonData.tag.LabCost;
-					document.getElementById("Engineering").value = jsonData.tag.EngCost;
-					document.getElementById("Install").value = jsonData.tag.InsCost;
+					document.getElementById("Material").value = matCost.toFixed(2);
+					document.getElementById("Labor").value = labCost;
+					document.getElementById("Engineering").value = engCost;
+					document.getElementById("Install").value = insCost.toFixed(2);
 					document.getElementById("User").value = jsonData.tag.TAGMember;
 					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
 					if(jsonData.tag.HVL == 1)
