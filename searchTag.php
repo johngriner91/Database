@@ -6,7 +6,6 @@
 
 <html lang="en">
 	<head>
-		<style>a:link {color: #057E2F}</style>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Project Tag Search</title>
@@ -24,14 +23,20 @@
 	</head>
 	<body>
 
+
 	<nav class="navbar navbar-static">
 	   <div class="container">
 		<div class="navbar-header">
-		  <a class="navbar-brand" href="index.html" target="ext"><b>Schneider Electric</b></a>
+		  <a class="navbar-brand" href="whereIsHome.php" target=""><b>Schneider Electric</b></a>
 		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			<span class="glyphicon glyphicon-chevron-down"></span>
 		  </a>
 		</div>
+		<ul class="nav navbar-nav navbar-right navbar-user">
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+        </ul>
+
+
 		</div>
 	</nav><!-- /.navbar -->
 	
@@ -211,18 +216,18 @@
 		        var action = 'search';
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
-		        		'tag':tag, 
-		        		'rev':rev, 
-		        		'date':date, 
-		        		'sub':sub, 
-		        		'comp':comp, 
-		        		'time':time, 
-		        		'user':user,
-		        		'hvl':hvl,
-		        		'cc':cc,
-		        		'metal':metal,
-		        		'mvmcc':mvmcc,
-		        		'obs':obs};
+		        		'NO':tag, 
+		        		'Rev':rev, 
+		        		'CurrentDate':date, 
+		        		'SubCategory':sub, 
+		        		'Complexity':comp, 
+		        		'LeadTime':time, 
+		        		'TAGMemmber':user,
+		        		'HVL':hvl,
+		        		'HVLCC':cc,
+		        		'MetalClad':metal,
+		        		'MVMCC':mvmcc,
+		        		'Obsolete':obs};
 		        $.post(ajaxurl, data, function (response) {
 		            $( ".result" ).html( response );
 					document.getElementById('result').scrollIntoView();
@@ -245,10 +250,26 @@
 			else var expires = "";
 			document.cookie = name + "=" + value + expires + "; path=/";
 		}
+
+		function readCookie(name){
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++){
+				var c = ca[i];
+				while (c.charAt(0)==' '){
+					c = c.substring(1, c.length);
+				}
+				if(c.indexOf(nameEQ) == 0){
+					return c.substring(nameEQ.length, c.length);
+				}
+			}
+			return null;
+		}
+
+		function eraseCookie(name){
+			createCookie(name,"",-1);
+		}
+
 	</script>
-
 	</body>
-
-
-
 </html>

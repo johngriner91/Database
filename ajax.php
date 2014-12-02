@@ -13,61 +13,91 @@ if(!empty($_POST)){
 
 function display(){
 	require("config.inc.php");
+	$tag = $_POST['tag'];
+	$rev = $_POST['rev'];
+	$response = array();
 	$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.NO=".$_POST['tag']." AND B.Rev=".$_POST['rev'].";";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			echo "<p>".$row['NO'].$row['Rev'].$row['Description'].$row['TAGMember'].$row['PriceExpires'].$row['Complexity']."</p>";
+			$response['tag'] = $row;
 		}
 	}else{
-		echo "EMPTY<br>";
+		die("Failed to fetch $tag : $rev!");
 	}
+	$query = "SELECT * FROM COUNTRY";
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		$country = array();
+		$count = 0;
+		while($row = $result->fetch_assoc()){
+			$country[$count] = $row;
+			$count++;
+		}
+		$response['country'] = $country;
+	}
+	$query = "SELECT * FROM PRODUCT_TYPE";
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		$product = array();
+		$count = 0;
+		while($row = $result->fetch_assoc()){
+			$product[$count] = $row;
+			$count++;
+		}
+		$response['product'] = $product;
+	}
+	print json_encode($response);
 	exit;
 }
 
 function search(){
 	require("config.inc.php");
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC','Obsolete');
+	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
-	$obs = 0;
-	if($_POST['obs'] == "true"){
-		$obs = 1;
+	if($_POST['Obsolete'] == "true"){
+		$_POST['Obsolete'] = 1;
+	}else{
+		$_POST['Obsolete'] = 0;
 	}
-	//SEARCH BY TAG NO
-	if(isset($_POST['tag']) && notEmpty($_POST['tag'])){
-		$tag = $_POST['tag'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE A.NO=$tag AND Obsolete=$obs";
+	if($_POST['HVL'] == "true"){
+		$_POST['HVL'] = 1;
+	}else{
+		$_POST['HVL'] = 0;
 	}
-	//SEARCH BY Revision Number
-	if(isset($_POST['rev']) && notEmpty($_POST['rev'])){
-		$rev = $_POST['rev'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.Rev=$rev AND Obsolete=$obs";
+	if($_POST['HVLCC'] == "true"){
+		$_POST['HVLCC'] = 1;
+	}else{
+		$_POST['HVLCC'] = 0;
 	}
-	//SEARCH BY Date
-	if(isset($_POST['date']) && !empty($_POST['date'])){
-		$date = $_POST['date'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.CurrentDate='$date' AND Obsolete=$obs";
+	if($_POST['MetalClad'] == "true"){
+		$_POST['MetalClad'] = 1;
+	}else{
+		$_POST['MetalClad'] = 0;
 	}
-	//SEARCH BY Sub-Category
-	if(isset($_POST['sub']) && !empty($_POST['sub'])){
-		$sub = $_POST['sub'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE A.SubCategory='$sub' AND Obsolete=$obs";
+	if($_POST['MVMCC'] == "true"){
+		$_POST['MVMCC'] = 1;
+	}else{
+		$_POST['MVMCC'] = 0;
 	}
-	//SEARCH BY Complexity
-	if(isset($_POST['comp']) && !empty($_POST['comp'])){
-		$comp = $_POST['comp'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.Complexity='$comp' AND Obsolete=$obs";
+	
+	foreach($fields as $field){
+		if(isset($_POST[$field]) && !empty($_POST[$field])){ 
+			$conditions[] = "$field LIKE '%" . $_POST[$field] . "%'";
+		}
 	}
-	//SEARCH BY Lead Time
-	if(isset($_POST['time']) && !empty($_POST['time'])){
-		$time = $_POST['time'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.LeadTime=$time AND Obsolete=$obs";
+
+	//print_r($conditions);
+
+	$query = "SELECT * FROM view_TAGS ";
+	if(count($conditions)>0){
+		$query .= "WHERE " . implode(' AND ', $conditions);
 	}
-	//SEARCH BY TAGMember
-	if(isset($_POST['user']) && !empty($_POST['user'])){
-		$user = $_POST['user'];
-		$query = "SELECT * FROM TAGS A JOIN REVISIONS B ON A.NO=B.NO WHERE B.TAGMember='$user' AND Obsolete=$obs";
-	}
+	
+	//echo $query;
+	
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
@@ -91,4 +121,5 @@ function search(){
 function notEmpty($var){
 	return ($var==="0"||$var);
 }
+
 ?>		

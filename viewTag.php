@@ -68,9 +68,9 @@
 									<th>Date</th>
 								</tr>
 								<tr>
-									<td> <form method="post"> <input type="text" style="width:90px" name="tagNumber"> </form> </td>
-									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#"> </form></td>
-									<td> <form method="post"> <input type="text" style="width:80px" name="Date"></form></td>
+									<td> <form method="post"> <input type="text" style="width:90px" name="tagNumber" id="NO" readonly> </form> </td>
+									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#" id="Rev" readonly> </form></td>
+									<td> <form method="post"> <input type="text" style="width:80px" name="Date" id="Date" readonly></form></td>
 								</tr>
 								<tr>
 									<th>Sub-Category</th>
@@ -79,44 +79,10 @@
 									<th>User</th>
 								</tr>
 								<tr>         <!--row1-->
-									<td>
-									<?php
-										$options = '<option></option>';
-										$subcat="SELECT * FROM SUBCATEGORIES";
-										$result = $db->query($subcat);
-										while($row = $result->fetch_assoc()) {
-										    $options .="<option>" . $row['SubCategory'] . "</option>";
-										}
-
-										$menu="<form id='Subcat' name='Subcat' method='post' action=''>
-										    <select name='Sub' id='Sub'>
-										      " . $options . "
-										    </select>
-										</form>";
-
-										echo $menu;
-									?>
-									</td>
-									<td> 
-									<?php
-										$options = '<option></option>';
-										$comp="SELECT * FROM COMPLEXITIES";
-										$result = $db->query($comp);
-										while($row = $result->fetch_assoc()) {
-										    $options .="<option>" . $row['Complexity'] . "</option>";
-										}
-
-										$menu="<form id='Complexity' name='Complexity' method='post' action=''>
-										    <select name='Complexity' id='Complexity'>
-										      " . $options . "
-										    </select>
-										</form>";
-
-										echo $menu;
-									?>
-									</td>
-									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime"></form></td>
-									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="User"></form></td>
+									<td> <form method="post"> <input type="text" style="width:175px" name="SubCategory" id="SubCategory" readonly></form></td>
+									<td> <form method="post"> <input type="text" style="width:80px" name="Complexity" id="Complexity" readonly></form></td>
+									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime" id="LeadTime" readonly></form></td>
+									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="User" id="User" readonly></form></td>
 								</tr>
 						</table> <br>
 						</div>
@@ -129,7 +95,7 @@
 
 								<tr>		<!--row1-->
 									<td> <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagDescription"></textarea>
+											<textarea class="form-control" style="width:460px; height:75px" rows="5" id="Description" readonly></textarea>
 										</div></form></td>
 								</tr>
 
@@ -139,7 +105,7 @@
 
 							   <tr>		<!--row3-->
 								   <td> <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagNotes"></textarea>
+											<textarea class="form-control" style="width:460px; height:75px" rows="5" id="Notes" readonly></textarea>
 										</div></form></td>
 							   </tr>
 
@@ -148,7 +114,7 @@
 							   </tr>
 							   <tr>		<!--row3-->
 								   <td>  <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="comment"></textarea>
+											<textarea class="form-control" style="width:460px; height:75px" rows="5" id="PriceNotes" readonly></textarea>
 										</div>
 							</tr>
 							 <tr>   <!--row4-->
@@ -167,32 +133,32 @@
 								<th> <center>Mexico$</center><br></th>
 							</tr>
 							<tr>	<!--row1-->
-								<td><input type="checkbox" class="checkbox"/> </td>
+								<td><input type="checkbox" class="checkbox" id="HVL"/> </td>
 								<td> &nbsp; HVL &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA" id="HVLUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCA" id="HVLCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMEX" id="HVLMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row2-->
-								<td><input type="checkbox" class="checkbox"/> </td>
+								<td><input type="checkbox" class="checkbox" id="HVLCC"/> </td>
 								<td> &nbsp; HVL/CC &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCUSA" id="HVLCCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCCA" id="HVLCCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCMEX" id="HVLCCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row3-->
-								<td><input type="checkbox" class="checkbox"/> </td>
+								<td><input type="checkbox" class="checkbox" id="MetalClad" /> </td>
 								<td> &nbsp; Metal Clad &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCUSA" id="MCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCCA" id="MCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCMEX" id="MCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row4-->
-								<td><input type="checkbox" class="checkbox"/> </td>
+								<td><input type="checkbox" class="checkbox" id="MVMCC" /> </td>
 								<td> &nbsp; MVMCC &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCUSA" id="MVMCCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCCA" id="MVMCCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCMEX" id="MVMCCMEX" readonly></form></td>
 							</tr>
 						</table></div>
 
@@ -234,32 +200,32 @@
 						<table class="table table-borderless">
 							<tr>	<!--row0-->
 								<th>Material: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Material"></form></th>
+								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Material" id="Material" readonly></form></th>
 							</tr>
 							<tr>	<!--row1-->
 								<th>Labor: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Labor"></form></th>
+								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Labor" id="Labor" readonly></form></th>
 							</tr>
 							<tr>	<!--row2-->
 								<th>Engineering: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Engineering"></form></th>
+								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Engineering" id="Engineering" readonly></form></th>
 							</tr>
 						</table>
 						<hr>
 						<table class="table table-borderless">
 							<tr>	<!--row0-->
 								<th nowrap>Install Cost: </th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="InstallCost"></form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Install" id="Install" readonly></form></th>
 							</tr>
 							<tr>	<!--row1-->
 								<th nowrap>Price Expires: &nbsp;</th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="PriceExpires"></form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="PriceExpires" id="PriceExpires" readonly></form></th>
 							</tr>
 						</table>
 						<br>
 						<table>
 							<tr>	<!--row0-->
-								<td><input type="checkbox" class="checkbox"/></td>
+								<td><input type="checkbox" class="checkbox" id="Obsolete"/></td>
 								<td><strong> &nbsp;Obsolete </strong></td>
 							</tr>
 						</table>
@@ -267,10 +233,10 @@
 						<div class="btn-group">
 							<table class="table table-borderless">
 								<tr>	<!--row0-->
-									<th><button type="button" class="btn btn-default">Make Revision on Tag</button> </th>
+									<th><button type="button" class="btn btn-default" onclick="editTag();">Make Revision on Tag</button> </th>
 								</tr>
 								<tr>
-									<th><button type="button" class="btn btn-default">Review Attachments</button> </th>
+									<th><button type="button" class="btn btn-default" onclick="viewAttachments();">Review Attachments</button> </th>
 							</table>
 
 						</div> <!--/btn-group-->
@@ -288,48 +254,77 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
 		<script type="text/javascript">
-			
-			var tag = readCookie('tag');
-			var rev = readCookie('rev');
-			alert(tag + " : " + rev);
-			var action = 'display';
-			var ajaxurl = 'ajax.php',
-			data = {'action':action,
-					'tag':tag,
-					'rev':rev};
-			$.post(ajaxurl,data,function(response){
-				$(".result").html(response);
-				alert("result!");
-				eraseCookie('tag');
-				eraseCookie('rev');
-			});
 
-			// $(document).ready(function(){
-			// 	var tag = readCookie('tag');
-			// 	var rev = readCookie('rev');
-			// 	alert(tag + " : " + rev);
-			//     // setTimeout(function(){
-			//     //    loadAjax();
-			//     //  },3000); // milliseconds
-			// });
-				
-			function loadAjax(){
+			window.onload = populateAndCalc;
+			
+			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');
-				alert(tag + " : " + rev);
 				var action = 'display';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
 						'tag':tag,
 						'rev':rev};
 				$.post(ajaxurl,data,function(response){
-					//$(".result").html(response);
-					alert("result!");
+					$(".result").html(response);
+					var jsonData = JSON.parse(response);
+					document.getElementById("NO").value = jsonData.tag.NO;
+					document.getElementById("Description").value = jsonData.tag.Description;
+					document.getElementById("SubCategory").value = jsonData.tag.SubCategory;
+					document.getElementById("Rev").value = jsonData.tag.Rev;
+					document.getElementById("Date").value = jsonData.tag.CurrentDate;
+					document.getElementById("Complexity").value = jsonData.tag.Complexity;
+					document.getElementById("LeadTime").value = jsonData.tag.LeadTime;
+					document.getElementById("Notes").value = jsonData.tag.Notes;
+					document.getElementById("PriceNotes").value = jsonData.tag.PriceNotes;
+					document.getElementById("Material").value = jsonData.tag.MatCost;
+					document.getElementById("Labor").value = jsonData.tag.LabCost;
+					document.getElementById("Engineering").value = jsonData.tag.EngCost;
+					document.getElementById("Install").value = jsonData.tag.InsCost;
+					document.getElementById("User").value = jsonData.tag.TAGMember;
+					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
+					if(jsonData.tag.HVL == 1)
+						document.getElementById("HVL").checked = true;
+						document.getElementById("HVLUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
+						document.getElementById("HVLCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
+						document.getElementById("HVLMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
+					if(jsonData.tag.HVLCC == 1)
+						document.getElementById("HVLCC").checked = true;
+						document.getElementById("HVLCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
+						document.getElementById("HVLCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
+						document.getElementById("HVLCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
+					if(jsonData.tag.MetalClad == 1)
+						document.getElementById("MetalClad").checked = true;
+						document.getElementById("MCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
+						document.getElementById("MCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
+						document.getElementById("MCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
+					if(jsonData.tag.MVMCC == 1)
+						document.getElementById("MVMCC").checked = true;
+						document.getElementById("MVMCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
+						document.getElementById("MVMCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
+						document.getElementById("MVMCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
+					if(jsonData.tag.Obsolete == 1)
+						document.getElementById("Obsolete").checked = true;
 					eraseCookie('tag');
 					eraseCookie('rev');
 				});
 			}
-			
+
+			function editTag(){
+				createCookie('tag',document.getElementById('NO').value,0);
+				createCookie('rev',document.getElementById('Rev').value,0);
+				window.location = "editTag.php";
+			}
+
+			function createCookie(name,value,days){
+				if(days){
+					var date = new Date();
+					date.setTime(date.getTime()+(days*24*60*60*1000));
+					var expires = "; expires=" + date.toGMTString();
+				}
+				else var expires = "";
+				document.cookie = name + "=" + value + expires + "; path=/";
+			}
 
 			function readCookie(name){
 				var nameEQ = name + "=";
