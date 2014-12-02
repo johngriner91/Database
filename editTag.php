@@ -216,6 +216,12 @@
 										<td data-field="fo#">FO Number Applied To</td>
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
+									<tr>
+										<td></td>
+										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="tag#" id="tag#"></form></td>
+										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="fo#" id="fo#"></form></td>
+										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="notes" id="notes"></form></td>
+									</tr>
 								</thead>
 							</table>
 					  </div> <!--table-responsive-->
