@@ -1,4 +1,7 @@
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<?php
+	require './config.inc.php';
+?>
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -59,32 +62,53 @@
 					<div class="panel-heading" style="background-color:#3DC66D"></div>
 					<div class="panel-body">
 					  <!--div class="table-responsive"-->
-					  <table>
+					  <table class="table table-borderless">
 								<tr>         <!--row0-->
-									<td>Tag Number</td>
-									<td>Rev#</td>
-									<td>Date</td>
 									<td>Sub-Category</td>
 									<td>Complexity</td>
 									<td>Lead Time</td>
 								</tr>
 
 								<tr>         <!--row1-->
-									<td> <form method="post"><input type="text" style="width:90px" name="tagNumber"> </form> </td>
-									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#"> </form></td>
-									<td> <form method="post"> <input type="text" style="width:80px" name="Date"></form></td>
-									<td> <form method="post"> <input type="text" style="width:175px" name="Sub-Category"></form></td>
-									<td><form method="get" action="">
-											<select id="complexity" name="complexity">
+									<td>
+									<?php
+										$options = '<option></option>';
+										$subcat="SELECT * FROM SUBCATEGORIES";
+										$result = $db->query($subcat);
+										while($row = $result->fetch_assoc()) {
+										    $options .="<option>" . $row['SubCategory'] . "</option>";
+										}
 
-												<option>A</option> <!--temp -->
-												<option>B</option> <!--temp -->
+										$menu="<form id='Subcat' name='Subcat' method='post' action=''>
+										    <select name='SubCategory' id='SubCategory'>
+										      " . $options . "
+										    </select>
+										</form>";
 
-											</select>
-											</form></td>
+										echo $menu;
+									?>
+									</td>
+									<td> 
+									<?php
+										$options = '<option></option>';
+										$comp="SELECT * FROM COMPLEXITIES";
+										$result = $db->query($comp);
+										while($row = $result->fetch_assoc()) {
+										    $options .="<option>" . $row['Complexity'] . "</option>";
+										}
+
+										$menu="<form id='Complex' name='Complex' method='post' action=''>
+										    <select name='Complexity' id='Complexity'>
+										      " . $options . "
+										    </select>
+										</form>";
+
+										echo $menu;
+									?>
+									</td>
 									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime"></form></td>
 								</tr>
-						</table> <br>
+						</table>
 						<!--/div-->
 
 						<!--div class="table-responsive"-->
@@ -95,7 +119,7 @@
 
 								<tr>		<!--row1-->
 									<td> <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagDescription"></textarea>
+											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="Description"></textarea>
 										</div></form></td>
 								</tr>
 
@@ -105,7 +129,7 @@
 
 							   <tr>		<!--row3-->
 								   <td> <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="tagNotes"></textarea>
+											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="Notes"></textarea>
 										</div></form></td>
 							   </tr>
 
@@ -114,56 +138,11 @@
 							   </tr>
 							   <tr>		<!--row3-->
 								   <td>  <div class="form-group">
-											<textarea class="form-control" style="width:560px; height:100px" rows="5" id="comment"></textarea>
+											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="PriceNotes"></textarea>
 										</div>
-							</tr>
-							 <tr>   <!--row4-->
-							       <td> <strong>Product Lines Tag May be Applied To: </strong> </td>
-							 </tr>
-						</table><!--/div-->
+							</tr></table>
 
 						<!--div class="table-responsive"-->
-						<br><br><br><br><br>
-						<table class="table table-borderless">
-							<tr>	<!--row0-->
-								<th>	</th>
-								<th>	</th>
-								<th> <center>USA$	</center><br></th>
-								<th> <center>Canada$</center><br></th>
-								<th> <center>Mexico$</center><br></th>
-							</tr>
-							<tr>	<!--row1-->
-								<td><input type="checkbox" class="checkbox"/> </td>
-								<td> HVL </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
-							</tr>
-							<tr>	<!--row2-->
-								<td><input type="checkbox" class="checkbox"/> </td>
-								<td> HVL/CC </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
-							</tr>
-							<tr>	<!--row3-->
-								<td><input type="checkbox" class="checkbox"/> </td>
-								<td> Metal Clad </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
-							</tr>
-							<tr>	<!--row4-->
-								<td><input type="checkbox" class="checkbox"/> </td>
-								<td> MVMCC </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCanda"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMexico"></form></td>
-							</tr>
-						</table><!--/div-->
-
-						<!--div class="table-responsive"-->
-						<br><br>
 						<table class="table table-borderless">
 							<tr>
 								<td> Applied FO</td>
@@ -180,7 +159,7 @@
 										<td></td>
 										<td data-field="tag#">Tag Number</td>
 										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engine</center></td>
+										<td data-field="notes"><center>Notes to Next Engineer</center></td>
 									</tr>
 								</thead>
 							</table>
@@ -195,60 +174,55 @@
 					<div class="panel-heading" style="background-color:#057A2E"></div>
 					<div class="panel-body">
 
-						<h4><center><i>Pricing Information </i></center></h4>
-
-						<table class="table table-borderless">
-							<tr>	<!--row0-->
-								<th>Material: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Material"></form></th>
+						<h4><center><i>Product Types</i></center></h4>
+						<table align="center">
+							<tr>
+							<td><input type="checkbox" class="checkbox" id="HVL"/></td><td> &nbsp;HVL </td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td><input type="checkbox" class="checkbox" id="HVLCC"/></td><td> &nbsp;HVL/CC </td>
 							</tr>
-							<tr>	<!--row1-->
-								<th>Labor: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Labor"></form></th>
-							</tr>
-							<tr>	<!--row2-->
-								<th>Engineering: </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="Engineering"></form></th>
+							<tr>
+							<td><input type="checkbox" class="checkbox" id="MetalClad"/></td><td> &nbsp;Metal Clad </td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td><input type="checkbox" class="checkbox" id="MVMCC"/></td><td> &nbsp;MVMCC </td>
 							</tr>
 						</table>
 						<hr>
+
+						<h4><center><i>Pricing Information </i></center></h4>
 						<table class="table table-borderless">
 							<tr>	<!--row0-->
-								<th>Install Cost </th>
-								<th><form method="post"> <input type="text" style="width:200px; text-align:right" name="InstalCost"></form></th>
-							</tr>
-						</table>
-						<br><br>
-						<table align="center">
-							<tr>	<!--row0-->
-								<th>Tag Member: &nbsp;</th>
-								<th><form method="post"> <input type="text" style="width:150px" name="TagMember"></form><br></th>
+								<th>Material: </th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Material">$</form></th>
 							</tr>
 							<tr>	<!--row1-->
-								<th>Price Expires &nbsp;</th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="PriceExpires"></form></th>
+								<th>Labor: </th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Labor">hrs</form></th>
+							</tr>
+							<tr>	<!--row2-->
+								<th>Engineering: </th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Engineering">hrs</form></th>
+							</tr>
+						</table>
+						<hr>
+						<table align="center">
+							<tr>	<!--row1-->
+								<th>Price Expires: &nbsp;</th>
+								<th><form method="post"> <input type="date" style="width:150px; text-align:right" name="PriceExpires"></form></th>
 							</tr>
 						</table>
 						<br>
-						<table class="table table-borderless">
+						<br>
+						<table align="center">
 							<tr>	<!--row0-->
-								<td><input type="checkbox" class="checkbox"/></td>
-								<td>Click Box to Make TAG Permanently Obsolete </td>
+								<th><button type="button" style="width:150px" class="button" onclick="insertTag()">Save</button> </th>
+							</tr>
+						</table> <br>
+						<table align="center">
+							<tr>
+								<th><button type="button" style="width:150px" class="button">Add Attachments</button> </th>
 							</tr>
 						</table>
-					<br>
-							<table align="center">
-								<tr>	<!--row0-->
-									<th><button type="button" style="width:150px" class="btn btn-default">Save</button> </th>
-								</tr>
-							</table> <br>
-							<table align="center">
-								<tr>
-									<th><button type="button" style="width:150px" class="btn btn-default">Add Attachments</button> </th>
-								</tr>
-							</table>
-
-
 					  </div><!--/panel-body-->
 					</div><!--/panel-->
 					<!--/end right column-->
@@ -260,5 +234,68 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
+		<script type="text/javascript">
+
+		function insertTag(){
+			var rev = 0;
+			var date = currDate();
+			var desc = document.getElementById('Description').value;
+			var notes = document.getElementById('Notes').value;
+			var price = document.getElementById('PriceNotes').value;
+			var sub = document.getElementById('SubCategory').value;
+			var comp = document.getElementById('Complexity').value;
+			// var time = document.getElementById('LeadTime').value;
+			// var user = 'Tony';
+			// var mat = document.getElementById('Material').value;
+			// var lab = document.getElementById('Labor').value;
+			// var eng = document.getElementById('Engineering').value;
+			// var exp = document.getElementById('PriceExpires').value;
+			// var hvl = document.getElementById('HVL').checked;
+			// var hvlcc = document.getElementById('HVLCC').checked;
+			// var mc = document.getElementById('MetalClad').checked;
+			// var mvmcc = document.getElementById('MVMCC').checked;
+			// var action = 'insert';
+			alert(comp);
+			// var ajaxurl = 'ajax.php',
+			// data = {'action':action, 
+	  //       		'Rev':rev, 
+	  //       		'CurrentDate':date, 
+	  //       		'Description':desc,
+	  //       		'SubCategory':sub, 
+	  //       		'Complexity':comp, 
+	  //       		'LeadTime':time, 
+	  //       		'TAGMember':user,
+	  //       		'MatCost':mat,
+	  //       		'LabCost':mat,
+	  //       		'EngCost':eng,
+	  //       		'PriceExpires':exp,
+	  //       		'HVL':hvl,
+	  //       		'HVLCC':cc,
+	  //       		'MetalClad':metal,
+	  //       		'MVMCC':mvmcc};
+	  //      	//alert(data);
+	  //       $.post(ajaxurl,data,function(response){
+	  //       	var jsonData = JSON.parse(response);
+	  //       	alert(jsonData);
+	  //       	//window.location = "searchTag.php";
+	  //       });
+		}
+
+		function currDate(){
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth()+1;
+			var y = date.getFullYear();
+			if(d<10){
+				d='0'+d;
+			}
+			if(m<10){
+				m='0'+m;
+			}
+			date = m+'/'+d+'/'+y;
+			return date;
+		}
+
+		</script>
 	</body>
 </html>

@@ -19,8 +19,22 @@ if(!empty($_POST)){
 			case 'saveUser':saveUser();break;
 			case 'getCountries':getCountries();break;
 			case 'updateCountry':updateCountry();break;
+			case 'insert':insertTag();break;
 		}
 	}
+}
+
+function insertTag(){
+	require("config.inc.php");
+	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('"
+		.$_POST['Description']."', '".$_POST['SubCategory']."');";
+		//." SELECT LAST_INSERT_ID();";
+	if($result = $db->query($query)){
+		$success = "true";
+		print json_encode($success);
+		exit;
+	}
+	exit;
 }
 
 function updateCountry(){
