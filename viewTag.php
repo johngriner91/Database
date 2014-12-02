@@ -133,28 +133,28 @@
 								<th> <center>Mexico$</center><br></th>
 							</tr>
 							<tr>	<!--row1-->
-								<td><input type="checkbox" class="checkbox" id="HVL"/> </td>
+								<td><input type="checkbox" class="checkbox" id="HVL" disabled/> </td>
 								<td> &nbsp; HVL &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA" id="HVLUSA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCA" id="HVLCA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMEX" id="HVLMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row2-->
-								<td><input type="checkbox" class="checkbox" id="HVLCC"/> </td>
+								<td><input type="checkbox" class="checkbox" id="HVLCC" disabled/> </td>
 								<td> &nbsp; HVL/CC &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCUSA" id="HVLCCUSA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCCA" id="HVLCCCA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCMEX" id="HVLCCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row3-->
-								<td><input type="checkbox" class="checkbox" id="MetalClad" /> </td>
+								<td><input type="checkbox" class="checkbox" id="MetalClad" disabled/> </td>
 								<td> &nbsp; Metal Clad &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCUSA" id="MCUSA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCCA" id="MCCA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCMEX" id="MCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row4-->
-								<td><input type="checkbox" class="checkbox" id="MVMCC" /> </td>
+								<td><input type="checkbox" class="checkbox" id="MVMCC" disabled/> </td>
 								<td> &nbsp; MVMCC &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCUSA" id="MVMCCUSA" readonly></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCCA" id="MVMCCCA" readonly></form></td>
@@ -225,7 +225,7 @@
 						<br>
 						<table>
 							<tr>	<!--row0-->
-								<td><input type="checkbox" class="checkbox" id="Obsolete"/></td>
+								<td><input type="checkbox" class="checkbox" id="Obsolete" disabled/></td>
 								<td><strong> &nbsp;Obsolete </strong></td>
 							</tr>
 						</table>
@@ -266,7 +266,7 @@
 						'tag':tag,
 						'rev':rev};
 				$.post(ajaxurl,data,function(response){
-					$(".result").html(response);
+					//$(".result").html(response);		//debug stuff
 					var jsonData = JSON.parse(response);
 					document.getElementById("NO").value = jsonData.tag.NO;
 					document.getElementById("Description").value = jsonData.tag.Description;
@@ -313,6 +313,11 @@
 			function editTag(){
 				createCookie('tag',document.getElementById('NO').value,0);
 				createCookie('rev',document.getElementById('Rev').value,0);
+				document.getElementById('HVL').disabled="false";
+				document.getElementById('HVLCC').disabled="false";
+				document.getElementById('MetalClad').disabled="false";
+				document.getElementById('MVMCC').disabled="false";
+				document.getElementById('Obsolete').disabled="false";
 				window.location = "editTag.php";
 			}
 

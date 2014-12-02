@@ -156,7 +156,6 @@
 									</div>
 						</tr> 							 
 					</table></div>
-					<input type="submit" class="button" name="search" value="Search"/>
 			   </div> 
 			   </div><!--/panel-->
 			</div><!--/end mid column-->
@@ -178,6 +177,10 @@
 					<table>
 						<tr><td><input type="checkbox" class="checkbox" id="obsolete"/></td><td><strong> &nbsp;Obsolete </strong></td></tr>
 					</table>
+					<hr>
+					<table align="center">
+						<tr><th><button type="button" style="width:100px" class="button" name="search" value="Search">Search</button></th></tr>
+					</table>		
 					</div>
 				</div><!--/panel-body-->
 				</div><!--/panel-->
@@ -198,7 +201,7 @@
 	<!-- script section -->
 	<script type="text/javascript">
 
-		//Handles search button functionality
+		//Handles button functionality
 		$(document).ready(function(){
 	    	$('.button').click(function(){
 		        var tag = $('#TagNumber').val();
@@ -237,8 +240,8 @@
 		});
 
 		function tagCookie(tag,rev){
-			createCookie('tag',tag,1);
-			createCookie('rev',rev,1);
+			createCookie('tag',tag,0);
+			createCookie('rev',rev,0);
 		}
 
 		function createCookie(name,value,days){

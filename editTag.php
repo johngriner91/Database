@@ -68,8 +68,8 @@
 									<th>Date</th>
 								</tr>
 								<tr>
-									<td> <form method="post"> <input type="text" style="width:90px" name="tagNumber" id="NO"> </form> </td>
-									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#" id="Rev"> </form></td>
+									<td> <form method="post"> <input type="text" style="width:90px" name="NO" id="NO" readonly> </form> </td>
+									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#" id="Rev" readonly> </form></td>
 									<td> <form method="post"> <input type="date" style="width:150px" name="Date" id="Date"></form></td>
 								</tr>
 								<tr>
@@ -89,7 +89,7 @@
 										}
 
 										$menu="<form id='Subcat' name='Subcat' method='post' action=''>
-										    <select name='Sub' id='Sub'>
+										    <select name='SubCategory' id='SubCategory'>
 										      " . $options . "
 										    </select>
 										</form>";
@@ -106,7 +106,7 @@
 										    $options .="<option value=" . '"' . $row['Complexity'] . '"' . ">" . $row['Complexity'] . "</option>";
 										}
 
-										$menu="<form id='Complexity' name='Complexity' method='post' action=''>
+										$menu="<form id='Complex' name='Complex' method='post' action=''>
 										    <select name='Complexity' id='Complexity'>
 										      " . $options . "
 										    </select>
@@ -181,14 +181,14 @@
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCMEX" id="HVLCCMEX"></form></td>
 							</tr>
 							<tr>	<!--row3-->
-								<td><input type="checkbox" class="checkbox" id="MetalClad" /> </td>
+								<td><input type="checkbox" class="checkbox" id="MetalClad"/> </td>
 								<td> &nbsp; Metal Clad &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCUSA" id="MCUSA"></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCCA" id="MCCA"></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCMEX" id="MCMEX"></form></td>
 							</tr>
 							<tr>	<!--row4-->
-								<td><input type="checkbox" class="checkbox" id="MVMCC" /> </td>
+								<td><input type="checkbox" class="checkbox" id="MVMCC"/> </td>
 								<td> &nbsp; MVMCC &nbsp;&nbsp; </td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCUSA" id="MVMCCUSA"></form></td>
 								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCCA" id="MVMCCCA"></form></td>
@@ -204,7 +204,7 @@
 								<td> <input type="checkbox" class="checkbox"/> </td>
 								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Factor order </th>
+								<td> &nbsp;&nbsp; Factory order </th>
 							</tr>
 						</table><br> </div>
 						<div class="table-responsive">
@@ -266,18 +266,18 @@
 						<table>
 							<tr>	<!--row0-->
 								<td><input type="checkbox" class="checkbox" id="Obsolete"/></td>
-								<td><strong> &nbsp;Obsolete </strong></td>
+								<td>&nbsp;Check To Make TAG Permanently Obsolete</td>
 							</tr>
 						</table>
 					<br>				
 							<table align="center">
 								<tr>	<!--row0-->
-									<th><button type="button" style="width:150px" class="btn btn-default">Save</button> </th>
+									<th><button type="button" style="width:150px" class="button" name="save" value="update" onclick="button(this.value);">Save</button> </th>
 								</tr>
 							</table> <br>
 							<table align="center">
 								<tr>
-									<th><button type="button" style="width:150px" class="btn btn-default">Add Attachments</button> </th>
+									<th><button type="button" style="width:150px" class="button" value="attachments" onclick="button(this.value);">Add Attachments</button> </th>
 								</tr>
 							</table>
 
@@ -295,8 +295,9 @@
 		<script src="js/scripts.js"></script>
 		<script type="text/javascript">
 
-			$(document).ready(populateAndCalc());
+			window.onload = populateAndCalc();
 			
+			//Populates entry fields and calculates values for current tag info
 			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');
@@ -306,14 +307,14 @@
 						'tag':tag,
 						'rev':rev};
 				$.post(ajaxurl,data,function(response){
-					$(".result").html(response);
+					//$(".result").html(response);		//debug stuff
 					var jsonData = JSON.parse(response);
 					document.getElementById("NO").value = jsonData.tag.NO;
 					document.getElementById("Description").value = jsonData.tag.Description;
-					//document.getElementById("SubCategory").value = jsonData.tag.SubCategory;
 					document.getElementById("Rev").value = jsonData.tag.Rev;
 					document.getElementById("Date").value = jsonData.tag.CurrentDate;
-					//document.getElementById("Complexity").value = jsonData.tag.Complexity;
+					document.getElementById("SubCategory").value = jsonData.tag.SubCategory;
+					document.getElementById("Complexity").value = jsonData.tag.Complexity;
 					document.getElementById("LeadTime").value = jsonData.tag.LeadTime;
 					document.getElementById("Notes").value = jsonData.tag.Notes;
 					document.getElementById("PriceNotes").value = jsonData.tag.PriceNotes;
@@ -350,12 +351,57 @@
 				});
 			}
 
-			function editTag(){
-				createCookie('tag',document.getElementById('NO'),0);
-				createCookie('rev',document.getElementById('Rev'),0);
-				window.location = "editTag.php";
-			}
+			//Handles button functionality
+			function button(value){
+		        var tag = $('#NO').val();
+		        var rev = $('#Rev').val();
+		        var date = $('#Date').val();
+		        var sub = $('#Subcat option:selected').html();
+		        var comp = $('#Complex option:selected').html();
+		        var mat = $('#Material').val();
+		        var lab = $('#Labor').val();
+		        var eng = $('#Engineering').val();
+		        var ins = $('#Install').val();
+		        var exp = $('#PriceExpires').val();
+		        var notes = $('#Notes').val();
+		        var price = $('#PriceNotes').val();
+		        var time = $('#LeadTime').val();
+		        var user = $('#User').val();
+		        var hvl = $("#HVL").is(':checked');
+		        var cc = $("#HVLCC").is(':checked');
+		        var metal = $("#MetalClad").is(':checked');
+		        var mvmcc = $("#MVMCC").is(':checked');
+		        var obs = $("#Obsolete").is(':checked');
+		        var action = value;
+		        var ajaxurl = 'ajax.php',
+		        data = {'action':action,
+		        		'NO':tag, 
+		        		'SubCategory':sub, 
+		        		'Rev':rev, 
+		        		'CurrentDate':date,
+		        		'Complexity':comp, 
+		        		'LeadTime':time, 
+		        		'Notes':notes,
+		        		'PriceNotes':price,
+		        		'MatCost':mat,
+		        		'LabCost':lab,
+		        		'EngCost':eng,
+		        		'InsCost':ins,
+		        		'PriceExpires':exp,
+		        		'TAGMember':user,
+		        		'HVL':hvl,
+		        		'HVLCC':cc,
+		        		'MetalClad':metal,
+		        		'MVMCC':mvmcc,
+		        		'Obsolete':obs};
+		        $.post(ajaxurl, data, function (response) {
+		        	//$(".result").html(response);			//debug stuff
+					var jsonData = JSON.parse(response);
+					alert(jsonData.success);
+		        });
+		    }
 
+			//Creates cookie with specified name:value pair and length of existance
 			function createCookie(name,value,days){
 				if(days){
 					var date = new Date();
@@ -366,6 +412,7 @@
 				document.cookie = name + "=" + value + expires + "; path=/";
 			}
 
+			//Returns value of specified cookie key
 			function readCookie(name){
 				var nameEQ = name + "=";
 				var ca = document.cookie.split(';');
@@ -381,6 +428,7 @@
 				return null;
 			}
 
+			//Erases cookie of specified key
 			function eraseCookie(name){
 				createCookie(name,"",-1);
 			}
