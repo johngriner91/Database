@@ -180,22 +180,8 @@
 								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="PriceExpires"></form></th>
 							</tr>
 						</table>
-					<br>
-						
-							<input type="button" value = "Print this page" onclick="printPage()"><br>
-						<script language="JavaScript">
-						function printPage() {
-						if(document.all) {
-						document.all.divButtons.style.visibility = 'hidden';
-						window.print();
-						document.all.divButtons.style.visibility = 'visible';
-						} else {
-						document.getElementById('divButtons').style.visibility = 'hidden';
-						window.print();
-						document.getElementById('divButtons').style.visibility = 'visible';
-						}
-						}
-						</script>
+					<br>					
+						<button type="button" class="btn btn-default" onclick="window.print();">Print Me</button>
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
