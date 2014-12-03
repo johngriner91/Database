@@ -238,7 +238,7 @@
 								</tr>
 								<tr>
 									<th><button type="button" class="btn btn-default" onclick="viewAttachments();">Review Attachments</button> </th>
-									<th><button type="button" class="btn btn-default" onclick="window.print();">Print Me</button> </th>
+									<th><a href="print.php"><button type="button" class="btn btn-default">Print Me</button></a> </th>
 							</table>
 
 						</div> <!--/btn-group-->
