@@ -10,7 +10,6 @@ if(!empty($_POST)){
 	if(isset($_POST['action']) && !empty($_POST['action'])){
 		switch($_POST['action']){
 			case 'search': search();break;
-			case 'insert': insert();break;
 			case 'uploadFile': uploadFile();break;
 			case 'display': display();break;
 			case 'update': update();break;
@@ -61,14 +60,65 @@ function popFO(){
 
 function insertTag(){
 	require("config.inc.php");
-	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('"
-		.$_POST['Description']."', '".$_POST['SubCategory']."');";
-		//." SELECT LAST_INSERT_ID();";
+	$NO ='';
+	$query = "INSERT INTO TAGS (Description,SubCategory) VALUES('".$_POST['Description']."', '".$_POST['SubCategory']."');";
 	if($result = $db->query($query)){
-		$success = "true";
-		print json_encode($success);
-		exit;
+		$query = "SELECT LAST_INSERT_ID();";
+		$result = $db->query($query);
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()){
+				$NO = $row['LAST_INSERT_ID()'];
+			}
+		}
+		if($_POST['HVL'] == "true"){
+			$_POST['HVL'] = 1;
+		}else{
+			$_POST['HVL'] = 0;
+		}
+		if($_POST['HVLCC'] == "true"){
+			$_POST['HVLCC'] = 1;
+		}else{
+			$_POST['HVLCC'] = 0;
+		}
+		if($_POST['MetalClad'] == "true"){
+			$_POST['MetalClad'] = 1;
+		}else{
+			$_POST['MetalClad'] = 0;
+		}
+		if($_POST['MVMCC'] == "true"){
+			$_POST['MVMCC'] = 1;
+		}else{
+			$_POST['MVMCC'] = 0;
+		}
+		$query = "INSERT INTO REVISIONS ("
+			."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
+			."MatCost, LabCost, EngCost, TAGMember, PriceExpires, "
+			."HVL, HVLCC, MetalClad, MVMCC) "
+			."VALUES("
+			. $NO . ", "
+			. $_POST['Rev'] . ", '"
+			. $_POST['CurrentDate'] . "', '"
+			. $_POST['Complexity'] . "', "
+			. $_POST['LeadTime'] . ", '"
+			. $_POST['Notes'] . "', '"
+			. $_POST['PriceNotes'] . "', "
+			. $_POST['MatCost'] . ", "
+			. $_POST['LabCost'] . ", "
+			. $_POST['EngCost'] .", '"
+			. $_COOKIE['lastLoggedIn'] . "', '"
+			. $_POST['PriceExpires'] . "', "
+			. $_POST['HVL'] . ", "
+			. $_POST['HVLCC'] . ", "
+			. $_POST['MetalClad'] . ", "
+			. $_POST['MVMCC'] . ");";
+		echo $query;
+		if($result = $db->query($query)){
+			$success = "Tag successfully added.";
+		}else{
+			$success = "There was a problem inserting into the database.";
+		}
 	}
+	print json_encode($success);
 	exit;
 }
 
@@ -303,10 +353,10 @@ function update(){
 	}else{
 		$_POST['HVLCC'] = 0;
 	}
-	if($_POST['oe'] == "true"){
-		$_POST['oe'] = 1;
+	if($_POST['MetalClad'] == "true"){
+		$_POST['MetalClad'] = 1;
 	}else{
-		$_POST['oe'] = 0;
+		$_POST['MetalClad'] = 0;
 	}
 	if($_POST['MVMCC'] == "true"){
 		$_POST['MVMCC'] = 1;
@@ -317,7 +367,7 @@ function update(){
 	$query = "INSERT INTO REVISIONS ("
 		."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
 		."MatCost, LabCost, EngCost, InsCost, TAGMember, PriceExpires, "
-		."HVL, HVLCC, oe, MVMCC, Obsolete) "
+		."HVL, HVLCC, MetalClad, MVMCC, Obsolete) "
 		."VALUES("
 		. $_POST['NO'] . ", "
 		. $_POST['Rev'] . ", '"
@@ -330,11 +380,11 @@ function update(){
 		. $_POST['LabCost'] . ", "
 		. $_POST['EngCost'] . ", "
 		. $_POST['InsCost'] . ", '"
-		. $_POST['TAGMember'] . "', '"
+		. $_COOKIE['lastLoggedIn'] . "', '"
 		. $_POST['PriceExpires'] . "', "
 		. $_POST['HVL'] . ", "
 		. $_POST['HVLCC'] . ", "
-		. $_POST['oe'] . ", "
+		. $_POST['MetalClad'] . ", "
 		. $_POST['MVMCC'] . ", "
 		. $_POST['Obsolete'] . ");";
 	if($result = $db->query($query)){
@@ -411,7 +461,7 @@ function display(){
 //Fetches list of tags that match search criteria
 function search(){
 	require("config.inc.php");
-	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','oe','MVMCC');
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC');
 	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
@@ -430,10 +480,10 @@ function search(){
 	}else{
 		$_POST['HVLCC'] = 0;
 	}
-	if($_POST['oe'] == "true"){
-		$_POST['oe'] = 1;
+	if($_POST['MetalClad'] == "true"){
+		$_POST['MetalClad'] = 1;
 	}else{
-		$_POST['oe'] = 0;
+		$_POST['MetalClad'] = 0;
 	}
 	if($_POST['MVMCC'] == "true"){
 		$_POST['MVMCC'] = 1;
@@ -451,7 +501,6 @@ function search(){
 	if(count($conditions)>0){
 		$query .= "WHERE " . implode(' AND ', $conditions);
 	}
-	$query .= " AND Obsolete=".$_POST['Obsolete'];
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
