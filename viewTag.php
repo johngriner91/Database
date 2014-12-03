@@ -183,7 +183,7 @@
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
 								</thead>
-								<tbody class="result"></tbody>
+								<tbody class="result2"></tbody>
 							</table>
 					  </div> <!--table-responsive-->
 				   </div>
@@ -257,9 +257,13 @@
 		<script src="js/scripts.js"></script>
 		<script type="text/javascript">
 
-			window.onload = populateAndCalc;
+			window.onload = start;
 
-			window.onload = getFO;
+			//window.onload = getFO;
+			function start(){
+				getFO();
+				populateAndCalc();
+			}
 
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
@@ -270,7 +274,7 @@
 				'TagNo': TagNO,
 				'RevNo': RevNO};
 				$.post(ajaxurl,data,function(response){
-					$(".result").html(response);
+					$(".result2").html(response);
 				});
 			}
 
@@ -283,7 +287,7 @@
 						'tag':tag,
 						'rev':rev};
 				$.post(ajaxurl,data,function(response){
-					//$(".result").html(response);		//debug stuff
+					$(".result").html(response);		//debug stuff
 					var jsonData = JSON.parse(response);
 					var matCost = parseFloat(jsonData.tag.MatCost);
 					var labCost = (parseFloat(jsonData.tag.LabCost) * parseFloat(jsonData.hourly[1].Value));
