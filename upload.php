@@ -50,19 +50,52 @@
                       <input name="userfile" type="file" id="userfile">
                     </td>
                     <td width="80"><input name="upload" onclick="uploadFile()" type="submit" class="box" id="upload" value=" Upload "></td>
-                    <td width="80"><input name="review" onclick="reviewFile()" type="submit" class="box" id="review" value=" Review "></td>                  </tr>
+                    <td width="80"><input name="review" onclick="getAttachments()" type="button" class="box" id="review" value=" Review "></td>                  </tr>
                 </table>
               </form>
+              <br><br><br>
+              <table align="center" style="width:200px" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <td data-field="Attachments">Attachments</td>
+                  </tr>
+                </thead>
+                <tbody class="result"></tbody>
+              </table>
             </div> <!--table-responsive-->
             <br><br><br>
           </div><!--/panel-->
         </div>
+        <div class="result9"></div>
       </div> <!--/end mid column-->
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script type="text/javascript">
+
+    function downloadAttachments(id){
+      var action = 'downloadAttachments';
+      var ajaxurl = 'ajax.php',
+      data = {'action':action, 'id':id};
+      $.post(ajaxurl,data,function(response){
+        $(".result9").html(response);
+      });
+    }
+
+
+    function getAttachments(){
+      var action = 'getAttachments';
+      var TagNo = document.getElementById("TagNo").value;
+      var RevNo = document.getElementById("RevNo").value;
+      var ajaxurl = 'ajax.php',
+      data = {'action':action, 'TagNo':TagNo, 'RevNo':RevNo};
+      $.post(ajaxurl,data,function(response){
+        $(".result").html(response);
+      });
+    }
+    </script>
   </body>
 </html>
 
@@ -95,25 +128,6 @@ if(isset($_POST['upload'])){
     echo "<br>File $fileName uploaded<br>";
   }else{
     echo "<br>File $fileName not uploaded.<br>";
-  }
-}
-
-if(isset($_POST['review'])){
-  $TagNo = $_POST['TagNo'];
-  $RevNo = $_POST['RevNo'];
-  $query = "SELECT TagNo, RevNo, filename, content FROM FILETESTING WHERE TagNo ='".$TagNo."' and RevNo='".$RevNo."'$RevNo."';";
-
-  $result = $db->query($query);
-  if($result->num_rows > 0){
-    echo "<table><thead><tr><td>Tag No</td><td>Rev No</td><td>File</td></tr></thead>
-    while($row = $result->fetch_assoc()){
-      echo "<tr>";
-      echo "<td>".$row['Name']."</td>";
-      echo "<td><form method=".'"'."post".'"'."><input type=".'"'."text".'"'." style=".'"'."width:80px;".'"';
-      echo " id=".'"'.$row['Name'].'"'." value=".'"'.$row['Mult'].'"'."></form></td>";
-      echo "</tr>";
-    }
-    echo "</table>";
   }
 }
 ?>

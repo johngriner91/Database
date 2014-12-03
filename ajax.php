@@ -25,8 +25,64 @@ if(!empty($_POST)){
 			case 'updateComplexities':updateComplexities();break;
 			case 'popFO':popFO();break;
 			case 'newFO':newFO();break;
+			case 'getAttachments':getAttachments();break;
+			case 'downloadAttachments':downloadAttachments();break;
 		}
 	}
+}
+
+function getAttachments(){
+	require ("config.inc.php");
+	$TNO = $_POST['TagNo'];
+	$RNO = $_POST['RevNo'];
+	$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.' and RevNo='.$RNO.';';
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()){
+			$id = $row['id'];
+			echo "<tr>";
+			echo "<td>".$row['TagNo']."</td><td>".$row['RevNo']."</td><td><a href=".'"javascript:downloadAttachments('.$id.')'.'"'.">".$row['filename']."</a></td>";
+			echo "</tr>";
+		}
+	}
+	exit;
+}
+
+function downloadAttachments(){
+	require ("config.inc.php");
+	$id = $_POST['id'];
+	$query = 'SELECT * FROM FILETESTING WHERE id='.$id.';';
+	$result = $db->query($query);
+	$row = $result->fetch_assoc();
+	$bytes = $row['content'];
+	$type = $row['filetype'];
+	$name = $row['filename'];
+	$size = $row['filesize'];
+
+	header("Content-type: $type");
+	header("Content-length: $size");
+	header("Content-Disposition: attachment; filename=$name");
+	header("Content-Description: PHP Generated Data");
+	echo $bytes;
+/*
+	$head1 = "Content-type: ".$type;
+	$head3 = "Content-disposition: attachment; filename=".$name;
+	$head2 = "Content-length: ".$size;
+
+	echo $head3."<br>";
+	echo $head1."<br>";
+	echo $head2."<br>";
+
+	header($head3);
+	header($head1);
+	header($head2);
+
+	ob_clean();
+	ob_flush();
+
+	readfile($name);
+*/
+	print $bytes;
 }
 
 function newFO(){
