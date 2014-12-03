@@ -1,16 +1,7 @@
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
-<?
-# connect to mysql database
-
-//=============Configuring Server and Database=======
-$host = 'mysql.cs.mtsu.edu';
-$user = 'jls7h';
-$pass = 'database2014';
-$dbname = 'jls7h';
-
-$link = mysql_connect($hostname, $user, $pass);
-mysql_select_db($dbname, $link);
+<?php
+  require("config.inc.php");
 ?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -29,7 +20,6 @@ mysql_select_db($dbname, $link);
 
 </head>
 <body>
-
   <nav class="navbar navbar-static">
     <div class="container">
       <div class="navbar-header">
@@ -53,12 +43,14 @@ mysql_select_db($dbname, $link);
               <form method="post" enctype="multipart/form-data">
                 <table width="350" border="0" cellpadding="1" cellspacing="1" class="box">
                   <tr>
+                    <td>Tag Number <input type=text id="TagNo" name="TagNo"><br></td>
+                    <td>Rev Number <input type=text id="RevNo" name="RevNo"><br></td>
                     <td width="246">
                       <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
                       <input name="userfile" type="file" id="userfile">
                     </td>
-                    <td width="80"><input name="upload" type="submit" class="box" id="upload" value=" Upload "></td>
-                  </tr>
+                    <td width="80"><input name="upload" onclick="uploadFile()" type="submit" class="box" id="upload" value=" Upload "></td>
+                    <td width="80"><input name="review" onclick="reviewFile()" type="submit" class="box" id="review" value=" Review "></td>                  </tr>
                 </table>
               </form>
             </div> <!--table-responsive-->
@@ -68,30 +60,60 @@ mysql_select_db($dbname, $link);
       </div> <!--/end mid column-->
     </div>
 
-    <!-- script references -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
   </body>
-  <?php
-  if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
+</html>
+
+
+<?php
+
+if(isset($_POST['upload'])){
+
+  $fileName = $_FILES['userfile']['name'];
+  $tmpName  = $_FILES['userfile']['tmp_name'];
+  $fileSize = $_FILES['userfile']['size'];
+  $fileType = $_FILES['userfile']['type'];
+  $TagNo = $_POST['TagNo'];
+  $RevNo = $_POST['RevNo'];
+
+  $fp      = fopen($tmpName, 'r');
+  $content = fread($fp, filesize($tmpName));
+  $content = addslashes($content);
+  fclose($fp);
+
+  if(!get_magic_quotes_gpc())
   {
-    $fileName = $_FILES['userfile']['name'];
-    $tmpName  = $_FILES['userfile']['tmp_name'];
-    $fileType = $_FILES['userfile']['type'];
-    $fileSize = $_FILES['userfile']['size'];
-    $fp      = fopen($tmpName, 'r');
-    $content = fread($fp, filesize($tmpName));
-    $content = addslashes($content);
-    fclose($fp);
-    if(!get_magic_quotes_gpc())
-    {
-      $fileName = addslashes($fileName);
-    }
-    $query = "INSERT INTO FILETESTING (filename, filetype, filesize, filecontents) ".
-    "VALUES ('$fileName', '$fileType', '$fileSize', '$content')";
-    mysql_query($query) or die('Error, query failed');
-    echo "<br>File $fileName uploaded<br>";
+    $fileName = addslashes($fileName);
   }
-  ?>
-  
+
+  $query = "INSERT INTO FILETESTING (filecontents, filename, filesize, filetype, TagNo, RevNo ) VALUES ('".$content."', '".$fileName."', '".$fileSize."', '".$fileType."', '".$TagNo."', '".$RevNo."');";
+
+  $result = $db->query($query) or die('Error, query failed');
+  if($result){
+    echo "<br>File $fileName uploaded<br>";
+  }else{
+    echo "<br>File $fileName not uploaded.<br>";
+  }
+}
+
+if(isset($_POST['review'])){
+  $TagNo = $_POST['TagNo'];
+  $RevNo = $_POST['RevNo'];
+  $query = "SELECT TagNo, RevNo, filename, content FROM FILETESTING WHERE TagNo ='".$TagNo."' and RevNo='".$RevNo."'$RevNo."';";
+
+  $result = $db->query($query);
+  if($result->num_rows > 0){
+    echo "<table><thead><tr><td>Tag No</td><td>Rev No</td><td>File</td></tr></thead>
+    while($row = $result->fetch_assoc()){
+      echo "<tr>";
+      echo "<td>".$row['Name']."</td>";
+      echo "<td><form method=".'"'."post".'"'."><input type=".'"'."text".'"'." style=".'"'."width:80px;".'"';
+      echo " id=".'"'.$row['Name'].'"'." value=".'"'.$row['Mult'].'"'."></form></td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+  }
+}
+?>
