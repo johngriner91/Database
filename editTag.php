@@ -411,6 +411,9 @@
 					}else{
 						alert("Error adding FO.");
 					}
+					createCookie("tag", TagNO, 0);
+					createCookie("rev", RevNO, 0);
+					location.reload();
 				});
 			}
 
@@ -621,11 +624,10 @@ if(isset($_POST['upload'])){
 
 	$result = $db->query($query) or die('Error, query failed');
 	if($result){
-		echo "<br>File $fileName uploaded<br>";
+		echo "<script type=".'"'."text/javascript".'"'.">alert(".'"'."File $fileName uploaded.".'"'.");window.location=".'"'."searchTag.php".'"'.";</script>";
 	}else{
-		echo "<br>File $fileName not uploaded.<br>";
+		echo "<script type=".'"'."text/javascript".'"'.">alert(".'"'."File $fileName NOT uploaded.".'"'.");window.location=".'"'."searchTag.php".'"'.";</script>";
 	}
-	//echo "<script type=".'"'."text/javascript".'"'.">location.reload();</script>";
 }
 
 ?>

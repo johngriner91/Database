@@ -123,14 +123,13 @@ function getAttachments(){
 function newFO(){
 	require ("config.inc.php");
 	$query = "INSERT INTO FO_TABLE (NO, Rev, FOapp, Notes, FO, Quote) VALUES ('".$_POST['TagNO']."','".$_POST['RevNO']."', '".$_POST['FoNo']."','".$_POST['Notes']."','".$_POST['CkF']."','".$_POST['CkQ']."');";
-	$result = $db->query($query);
-	if($result2 = $db->query($query2)){
+	//$result = $db->query($query);
+	if($result = $db->query($query)){
 		$success = "true";
 	}else{
 		$success = "false";
-		print json_encode($success);
-		exit;
 	}
+	print json_encode($success);
 	exit;
 }
 
@@ -219,9 +218,9 @@ function insertTag(){
 			. $_POST['MetalClad'] . ", "
 			. $_POST['MVMCC'] . ");";
 		if($result = $db->query($query)){
-			$success = "Tag successfully added.";
+			$success = "Tag $NO successfully added.";
 		}else{
-			$success = "Problem inserting tag in database.";
+			$success = "Problem inserting tag $NO in database.";
 		}
 	}
 	print json_encode($success);
