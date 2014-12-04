@@ -280,7 +280,7 @@
 					<br>
 							<table align="center">
 								<tr>	<!--row0-->
-									<th><button type="button" style="width:150px" class="button" name="save" value="update" onclick="button(this.value);">Save</button> </th>
+									<th><button type="button" style="width:150px" class="button" name="save" value="update" onclick="save();">Save</button> </th>
 								</tr>
 							</table> <br>
 							<table align="center">
@@ -423,7 +423,7 @@
 			}
 
 			//Handles button functionality
-			function button(value){
+			function save(){
 		        var tag = $('#NO').val();
 		        var rev = $('#Rev').val();
 		        var date = $('#Date').val();
@@ -443,7 +443,7 @@
 		        var metal = $("#MetalClad").is(':checked');
 		        var mvmcc = $("#MVMCC").is(':checked');
 		        var obs = $("#Obsolete").is(':checked');
-		        var action = value;
+		        var action = 'update';
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
 		        		'NO':tag,
@@ -469,6 +469,9 @@
 		        	//$(".result").html(response);			//debug stuff
 					var jsonData = JSON.parse(response);
 					alert(jsonData.success);
+					createCookie("tag",tag,0);
+					createCookie("rev",rev,0);
+					window.location="viewTag.php";
 		        });
 		    }
 
