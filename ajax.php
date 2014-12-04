@@ -75,7 +75,6 @@ function getAttachments(){
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
 			$id = $row['id'];
-			echo "<h1>We have $result->num_rows files.</h1>";
 			echo "<tr>";
 			echo "<td><a href=".'"javascript:downloadAttachments('.$id.')'.'"'.">".$row['filename']."</a></td>";
 			echo "</tr>";
@@ -84,42 +83,43 @@ function getAttachments(){
 	exit;
 }
 
-function downloadAttachments(){
-	require ("config.inc.php");
-	$id = $_POST['id'];
-	$query = 'SELECT * FROM FILETESTING WHERE id='.$id.';';
-	$result = $db->query($query);
-	$row = $result->fetch_assoc();
-	$bytes = $row['content'];
-	$type = $row['filetype'];
-	$name = $row['filename'];
-	$size = $row['filesize'];
+// function downloadAttachments(){
+// 	require ("config.inc.php");
+// 	$id = $_POST['id'];
+// 	$query = 'SELECT * FROM FILETESTING WHERE id='.$id.';';
+// 	$result = $db->query($query);
+// 	$row = $result->fetch_assoc();
+// 	$bytes = $row['content'];
+// 	$type = $row['filetype'];
+// 	$name = $row['filename'];
+// 	$size = $row['filesize'];
 
-	header("Content-type: $type");
-	header("Content-length: $size");
-	header("Content-Disposition: attachment; filename=$name");
-	header("Content-Description: PHP Generated Data");
-	echo $bytes;
-/*
-	$head1 = "Content-type: ".$type;
-	$head3 = "Content-disposition: attachment; filename=".$name;
-	$head2 = "Content-length: ".$size;
+// 	header("Content-Disposition: attachment; filename=$name");
+// 	header("Content-length: $size");
+// 	header("Content-Transfer-Encoding: Binary"); 
+// 	header("Content-type: $type");
+// 	header("Content-Description: PHP Generated Data");
+// 	//echo $bytes;
+// /*
+// 	$head1 = "Content-type: ".$type;
+// 	$head3 = "Content-disposition: attachment; filename=".$name;
+// 	$head2 = "Content-length: ".$size;
 
-	echo $head3."<br>";
-	echo $head1."<br>";
-	echo $head2."<br>";
+// 	echo $head3."<br>";
+// 	echo $head1."<br>";
+// 	echo $head2."<br>";
 
-	header($head3);
-	header($head1);
-	header($head2);
+// 	header($head3);
+// 	header($head1);
+// 	header($head2);
 
-	ob_clean();
-	ob_flush();
+// 	ob_clean();
+// 	ob_flush();
 
-	readfile($name);
-*/
-	print $bytes;
-}
+// 	readfile($name);
+// */
+// 	print $bytes;
+// }
 
 function newFO(){
 	require ("config.inc.php");

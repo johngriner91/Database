@@ -274,6 +274,17 @@
 				});
 			}
 
+			function downloadAttachments(id){
+				$.ajax({
+					url: 'fileDownload.php',
+					type: 'POST',
+					success: function(){
+						createCookie('id',id,0);
+						window.location = 'fileDownload.php';
+					}
+				});
+			}
+
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
 				var RevNO = document.getElementById("Rev").value;
