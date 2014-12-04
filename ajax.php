@@ -114,7 +114,7 @@ function popFO(){
 				$valueToPrint = 'Q';
 			}
 			echo "<tr>";
-			echo "<td>".$valueToPrint."</td><td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
+			echo "<td>".$valueToPrint."</td><td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>"; 
 			echo "</tr>";
 		}
 	}

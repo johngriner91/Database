@@ -162,17 +162,7 @@
 							</tr>
 						</table></div>
 
-						<div class="table-responsive">
-						<br><br>
-						<table>
-							<tr>
-								<th> Applied FO: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Factory order </th>
-							</tr>
-						</table><br> </div>
+
 						<div class="table-responsive">
 							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
 								<thead>
@@ -180,7 +170,7 @@
 										<td></td>
 										<td data-field="tag#">Tag Number</td>
 										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engine</center></td>
+										<td data-field="notes"><center>Notes to Next Engineer</center></td>
 									</tr>
 								</thead>
 								<tbody class="result2"></tbody>
@@ -272,8 +262,8 @@
 				var action = 'popFO';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
-				'TagNo': TagNO,
-				'RevNo': RevNO};
+						'TagNo': TagNO,
+						'RevNo': RevNO};
 				$.post(ajaxurl,data,function(response){
 					$(".result2").html(response);
 				});
