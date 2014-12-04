@@ -167,7 +167,7 @@
 							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<td></td>
+										<td>Type</td>
 										<td data-field="tag#">Tag Number</td>
 										<td data-field="fo#">FO Number Applied To</td>
 										<td data-field="notes"><center>Notes to Next Engineer</center></td>
