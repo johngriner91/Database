@@ -30,7 +30,7 @@
 		  </a>
 		</div>
 		<ul class="nav navbar-nav navbar-right navbar-user">
-              <li><a href="#"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
         </ul>
 		</div>
 	</nav><!-- /.navbar -->
