@@ -299,7 +299,7 @@
 						'tag':tag,
 						'rev':rev};
 				$.post(ajaxurl,data,function(response){
-					$(".result").html(response);		//debug stuff
+					//$(".result").html(response);		//debug stuff
 					var jsonData = JSON.parse(response);
 					var matCost = parseFloat(jsonData.tag.MatCost);
 					var labCost = (parseFloat(jsonData.tag.LabCost) * parseFloat(jsonData.hourly[1].Value));

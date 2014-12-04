@@ -509,7 +509,7 @@
 		        		'MVMCC':mvmcc,
 		        		'Obsolete':obs};
 		        $.post(ajaxurl, data, function (response) {
-		        	//$(".result").html(response);			//debug stuff
+		        	$(".result").html(response);			//debug stuff
 					var jsonData = JSON.parse(response);
 					alert(jsonData.success);
 					rev = parseInt(rev)+1;

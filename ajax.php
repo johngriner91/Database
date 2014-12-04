@@ -174,7 +174,6 @@ function insertTag(){
 			. $_POST['HVLCC'] . ", "
 			. $_POST['MetalClad'] . ", "
 			. $_POST['MVMCC'] . ");";
-		echo $query;
 		if($result = $db->query($query)){
 			$success = "Tag successfully added.";
 		}else{
@@ -582,18 +581,18 @@ function search(){
 		$query .= "WHERE " . implode(' AND ', $conditions) . "AND Obsolete LIKE '%" . $_POST['Obsolete'] . "%'";
 	}
 
-	echo $query;
+	//echo $query;
 	
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
-		echo "<tr><th>NO</th><th>Rev#</th><th>Description</th><th nowrap>Sub-Category</th><th>Edit</tr></tr>";
+		echo "<tr><th>NO</th><th>Rev#</th><th>Description</th><th nowrap>Sub-Category</th>"; //<th>Edit</tr></tr>
 		echo "<tbody style=" . '"' . "overflow-y:scroll;" . '"' . ">";
 	    // output data of each row
 	    while($row = $result->fetch_assoc()) {
 	    	echo "<tr>";
 	        echo "<td><a onclick=".'"'."tagCookie('".$row["NO"]."','".$row['Rev']."'); ".'"'."href=" . '"' . "viewTag.php" . '"' . ">" . $row["NO"] . "</a>" . "</td><td>" . $row["Rev"] . "</td><td>" . $row["Description"] . "</td><td>" . $row["SubCategory"];
-	        echo "<td><a onclick=".'"'."tagCookie('".$row["NO"]."','".$row['Rev']."'); ".'"'."href=" . '"' . "editTag.php" . '"' . ">Edit</a><br>";
+	        //echo "<td><a onclick=".'"'."tagCookie('".$row["NO"]."','".$row['Rev']."'); ".'"'."href=" . '"' . "editTag.php" . '"' . ">Edit</a><br>";
 	        echo "</tr>";
 	    }
 	} else {

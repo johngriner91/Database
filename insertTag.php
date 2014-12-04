@@ -253,46 +253,11 @@
 	        		'MetalClad':mc,
 	        		'MVMCC':mvmcc};
 	        $.post(ajaxurl, data, function(response){
-	        	$(".result").html(response);		//debug stuff
+	        	//$(".result").html(response);		//debug stuff
 	        	var jsonData = JSON.parse(response);
 	        	alert(jsonData);
-	        	//window.location = "searchTag.php";
+	        	window.location = "searchTag.php";
 	        });
-			// var time = document.getElementById('LeadTime').value;
-			// var user = 'Tony';
-			// var mat = document.getElementById('Material').value;
-			// var lab = document.getElementById('Labor').value;
-			// var eng = document.getElementById('Engineering').value;
-			// var exp = document.getElementById('PriceExpires').value;
-			// var hvl = document.getElementById('HVL').checked;
-			// var hvlcc = document.getElementById('HVLCC').checked;
-			// var mc = document.getElementById('MetalClad').checked;
-			// var mvmcc = document.getElementById('MVMCC').checked;
-			// var action = 'insert';
-			alert(comp);
-			// var ajaxurl = 'ajax.php',
-			// data = {'action':action,
-	  //       		'Rev':rev,
-	  //       		'CurrentDate':date,
-	  //       		'Description':desc,
-	  //       		'SubCategory':sub,
-	  //       		'Complexity':comp,
-	  //       		'LeadTime':time,
-	  //       		'TAGMember':user,
-	  //       		'MatCost':mat,
-	  //       		'LabCost':mat,
-	  //       		'EngCost':eng,
-	  //       		'PriceExpires':exp,
-	  //       		'HVL':hvl,
-	  //       		'HVLCC':cc,
-	  //       		'MetalClad':metal,
-	  //       		'MVMCC':mvmcc};
-	  //      	//alert(data);
-	  //       $.post(ajaxurl,data,function(response){
-	  //       	var jsonData = JSON.parse(response);
-	  //       	alert(jsonData);
-	  //       	//window.location = "searchTag.php";
-	  //       });
 		}
 
 		function currDate(){
