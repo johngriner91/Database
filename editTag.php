@@ -310,6 +310,9 @@
 									</tr>
 								</thead>
 								<tbody class="result3"></tbody>
+								<tr>
+									<td></td>
+								</tr>
 							</table>
 							<br><hr><br>
 						</div>
@@ -342,17 +345,27 @@
 			}
 
 			function getFO(){
-				var TagNO = document.getElementById("NO").value;
-				var RevNO = document.getElementById("Rev").value;
+				var TagNo = document.getElementById("NO").value;
+				var RevNo = document.getElementById("Rev").value;
+
+				setCookie("TagNumber", TagNo, 1);
+				setCookie("RevNumber", RevNo, 1);
 				var action = 'popFO';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
-				'TagNo': TagNO,
-				'RevNo': RevNO};
+				'TagNo': TagNo,
+				'RevNo': RevNo};
 				$.post(ajaxurl,data,function(response){
 					$("#result2").html(response);
 					getAttachments();
 				});
+			}
+
+			function setCookie(cname, cvalue, exdays) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exdays*24*60*60*1000));
+				var expires = "expires="+d.toUTCString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
 			}
 
 			function newFO(){
@@ -573,9 +586,16 @@ if(isset($_POST['upload'])){
 	$tmpName  = $_FILES['userfile']['tmp_name'];
 	$fileSize = $_FILES['userfile']['size'];
 	$fileType = $_FILES['userfile']['type'];
-	$TagNo = $_POST['TagNo'];
-	$RevNo = $_POST['RevNo'];
 
+	$TagNo = $_COOKIE['TagNumber'];
+	$RevNo = $_COOKIE['RevNumber'];
+
+	unset($_COOKIE['TagNumber']);
+	unset($_COOKIE['RevNumber']);
+
+
+	echo '<script language="javascript">';
+	echo '</script>';
 	$fp      = fopen($tmpName, 'r');
 	$content = fread($fp, filesize($tmpName));
 	$content = addslashes($content);
