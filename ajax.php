@@ -538,8 +538,7 @@ function notEmpty($var){
 //Fetches list of tags that match search criteria
 function search(){
 	require("config.inc.php");
-	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC','Obsolete');
-	$fields2 = array('HVL','HVLCC','MetalClad','MVMCC','Obsolete');
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC');
 	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
