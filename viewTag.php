@@ -261,12 +261,7 @@
 		<script src="js/scripts.js"></script>
 		<script type="text/javascript">
 
-			window.onload = start;
-
-			//window.onload = getFO;
-			function start(){
-				populateAndCalc();
-			}
+			window.onload = populateAndCalc;
 
 			function getAttachments(){
 				var TagNo = document.getElementById("NO").value;
@@ -298,7 +293,6 @@
 			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');
-				alert(tag + " : " + rev);
 				var action = 'display';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,

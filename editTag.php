@@ -267,7 +267,7 @@
 							</tr>
 							<tr>	<!--row1-->
 								<th nowrap>Price Expires: &nbsp;</th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="PriceExpires" id="PriceExpires"></form></th>
+								<th><form method="post"> <input type="date" style="width:150px; text-align:right" name="PriceExpires" id="PriceExpires"></form></th>
 							</tr>
 						</table>
 						<br>
@@ -512,8 +512,7 @@
 		        	//$(".result").html(response);			//debug stuff
 					var jsonData = JSON.parse(response);
 					alert(jsonData.success);
-					alert(tag + " : " + rev);
-					rev = parseInt(rev)++;
+					rev = parseInt(rev)+1;
 					createCookie("tag",tag,0);		//current tag
 					createCookie("rev",rev,0);	//next revision
 					window.location="viewTag.php";
