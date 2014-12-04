@@ -65,12 +65,12 @@
 								<tr>         <!--row0-->
 									<th>Tag#</th>
 									<th>Rev#</th>
-									<th>Date</th>
+									<th>Last Revised</th>
 								</tr>
 								<tr>
 									<td> <form method="post"> <input type="text" style="width:90px" name="NO" id="NO" readonly> </form> </td>
 									<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#" id="Rev" readonly> </form></td>
-									<td> <form method="post"> <input type="date" style="width:150px" name="Date" id="Date"></form></td>
+									<td> <form method="post"> <input type="text" style="width:150px" name="Date" id="Date" readonly></form></td>
 								</tr>
 								<tr>
 									<th>Sub-Category</th>
@@ -116,7 +116,7 @@
 									?>
 									</td>
 									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime" id="LeadTime"></form></td>
-									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="User" id="User"></form></td>
+									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="User" id="User" readonly></form></td>
 								</tr>
 						</table> <br>
 						</div>
@@ -169,30 +169,30 @@
 							<tr>	<!--row1-->
 								<td><input type="checkbox" class="checkbox" id="HVL"/> </td>
 								<td> &nbsp; HVL &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA" id="HVLUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCA" id="HVLCA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMEX" id="HVLMEX"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLUSA" id="HVLUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCA" id="HVLCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLMEX" id="HVLMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row2-->
 								<td><input type="checkbox" class="checkbox" id="HVLCC"/> </td>
 								<td> &nbsp; HVL/CC &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCUSA" id="HVLCCUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCCA" id="HVLCCCA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCMEX" id="HVLCCMEX"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCUSA" id="HVLCCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCCA" id="HVLCCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="HVLCCMEX" id="HVLCCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row3-->
 								<td><input type="checkbox" class="checkbox" id="MetalClad"/> </td>
 								<td> &nbsp; Metal Clad &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCUSA" id="MCUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCCA" id="MCCA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCMEX" id="MCMEX"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCUSA" id="MCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCCA" id="MCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MCMEX" id="MCMEX" readonly></form></td>
 							</tr>
 							<tr>	<!--row4-->
 								<td><input type="checkbox" class="checkbox" id="MVMCC"/> </td>
 								<td> &nbsp; MVMCC &nbsp;&nbsp; </td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCUSA" id="MVMCCUSA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCCA" id="MVMCCCA"></form></td>
-								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCMEX" id="MVMCCMEX"></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCUSA" id="MVMCCUSA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCCA" id="MVMCCCA" readonly></form></td>
+								<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="MVMCCMEX" id="MVMCCMEX" readonly></form></td>
 							</tr>
 						</table></div>
 
@@ -265,7 +265,7 @@
 						<table class="table table-borderless">
 							<tr>	<!--row0-->
 								<th nowrap>Install Cost: </th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Install" id="Install"></form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Install" id="Install" readonly></form></th>
 							</tr>
 							<tr>	<!--row1-->
 								<th nowrap>Price Expires: &nbsp;</th>

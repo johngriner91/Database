@@ -65,7 +65,7 @@
 								<tr>         <!--row0-->
 									<th>Tag#</th>
 									<th>Rev#</th>
-									<th>Date</th>
+									<th>Last Revised</th>
 								</tr>
 								<tr>
 									<td> <form method="post"> <input type="text" style="width:90px" name="tagNumber" id="NO" readonly> </form> </td>
