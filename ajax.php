@@ -106,8 +106,15 @@ function popFO(){
 	if($result->num_rows > 0){
 		echo "<h1>We found $result->num_rows rows.</h1>";
 		while($row = $result->fetch_assoc()){
+			$fValue = $row['FO'];
+			if($fValue){
+				$valueToPrint = 'F';
+			}
+			else{
+				$valueToPrint = 'Q';
+			}
 			echo "<tr>";
-			echo "<td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
+			echo "<td>".$valueToPrint."</td><td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
 			echo "</tr>";
 		}
 	}
