@@ -227,7 +227,6 @@
 									<th><button type="button" class="btn btn-default" onclick="editTag();" >Make Revision on Tag</button> </th>
 								</tr>
 								<tr>
-									<th><button type="button" class="btn btn-default" onclick="viewAttachments();">Review Attachments</button> </th>
 									<th><a href="print.php"><button type="button" class="btn btn-default">Print Me</button></a> </th>
 								</tr>
 							</table>
