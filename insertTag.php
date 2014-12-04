@@ -43,7 +43,7 @@
 	<div class="container">
 		<div class="no-gutter row">
 			<!-- left side column -->
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<div class="panel panel-default" id="sidebar">
 					<!--<div class="panel-heading" style="background-color:#64F797"></div>
 					<div class="panel-body">
@@ -156,7 +156,10 @@
 								</div>
 							</div><!--/panel-->
 						</div><!--/end mid column-->
-						<div class="col-md-3">
+			<div class="col-md-4">
+				<div class="panel" id ="rightcol">
+					<div class="panel-heading" style="background-color:#057A2E"></div>
+					<div class="panel-body">
 						<h4><center><i>Product Types</i></center></h4>
 						<table align="center">
 							<tr>

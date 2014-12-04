@@ -44,7 +44,7 @@
 	<div class="container">
 		<div class="no-gutter row">
 			<!-- left side column -->
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<div class="panel panel-default" id="sidebar">
 					<!--<div class="panel-heading" style="background-color:#64F797"></div>
 				<div class="panel-body">
