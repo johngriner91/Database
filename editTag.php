@@ -273,12 +273,12 @@
 							</tr>
 						</table>
 						<br>
-						<table id="obsoleteCB">
-							<tr>	<!--row0-->
+						<!-- <table id="obsoleteCB">
+							<tr>	
 								<td><input type="checkbox" class="checkbox" id="Obsolete"/></td>
 								<td>&nbsp;Check To Make TAG Permanently Obsolete</td>
 							</tr>
-						</table>
+						</table> -->
 					<br>
 							<table align="center">
 								<tr>	<!--row0-->
@@ -624,10 +624,15 @@ if(isset($_POST['upload'])){
 
 	$result = $db->query($query) or die('Error, query failed');
 	if($result){
-		echo "<script type=".'"'."text/javascript".'"'.">alert(".'"'."File $fileName uploaded.".'"'.");window.location=".'"'."searchTag.php".'"'.";</script>";
+		echo "<script type=".'"'."text/javascript".'"'.">alert(".'"'."File $fileName uploaded.".'"'.");window.location=".'"'."searchTag.php".'"'.";</script>"; //
 	}else{
 		echo "<script type=".'"'."text/javascript".'"'.">alert(".'"'."File $fileName NOT uploaded.".'"'.");window.location=".'"'."searchTag.php".'"'.";</script>";
 	}
+	// echo "<script type=".'"'."text/javascript".'"'.">";
+	// echo "createCookie(".'"'."tag".'"'.",$TagNo,0);";
+	// echo "createCookie(".'"'."rev".'"'.",$RevNo,0);";
+	// echo "location.reload();";
+	// echo "</script>";
 }
 
 ?>
