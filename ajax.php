@@ -75,7 +75,7 @@ function getAttachments(){
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
 			$id = $row['id'];
-			echo "<h1>We have '.$result->num_rows.' files.</h1>";
+			echo "<h1>We have $result->num_rows files.</h1>";
 			echo "<tr>";
 			echo "<td><a href=".'"javascript:downloadAttachments('.$id.')'.'"'.">".$row['filename']."</a></td>";
 			echo "</tr>";

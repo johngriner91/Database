@@ -277,23 +277,23 @@
 							</tr>
 						</table>
 					<br>
-					<form method="post" enctype="multipart/form-data">
 							<table align="center">
 								<tr>	<!--row0-->
 									<th><button type="button" style="width:150px" class="button" name="save" value="update" id="saveBtn" onclick="save();">Save</button> </th>
 								</tr>
 							</table> <br>
-							<table align="center">
-								<tr></tr>
-								<tr colspan="2">
-								<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
-								<input name="userfile" type="file" id="userfile">
-							</tr>
-								<tr>
-									<td width="80"><input name="upload" type="submit" class="box" id="upload" value="Add Attachment"></td>
-								</tr>
-							</table>
-						</form>
+							<form method="post" enctype="multipart/form-data">
+								<table align="center">
+									<tr></tr>
+									<tr colspan="2">
+										<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+										<input name="userfile" type="file" id="userfile">
+									</tr>
+									<tr>
+										<td width="80"><input name="upload" type="submit" class="box" id="upload" value="Add Attachment"></td>
+									</tr>
+								</table>
+							</form>
 
 					  </div><!--/panel-body-->
 						<div>
