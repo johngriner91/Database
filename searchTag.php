@@ -223,7 +223,7 @@
 		        		'SubCategory':sub,
 		        		'Complexity':comp,
 		        		'LeadTime':time,
-		        		'TAGMemmber':user,
+		        		'TAGMember':user,
 		        		'HVL':hvl,
 		        		'HVLCC':cc,
 		        		'MetalClad':metal,

@@ -395,26 +395,30 @@
 					document.getElementById("Install").value = jsonData.tag.InsCost;
 					document.getElementById("User").value = jsonData.tag.TAGMember;
 					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
-					if(jsonData.tag.HVL == 1)
+					if(jsonData.tag.HVL == 1){
 						document.getElementById("HVL").checked = true;
 						document.getElementById("HVLUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.HVLCC == 1)
+					}
+					if(jsonData.tag.HVLCC == 1){
 						document.getElementById("HVLCC").checked = true;
 						document.getElementById("HVLCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MetalClad == 1)
+					}
+					if(jsonData.tag.MetalClad == 1){
 						document.getElementById("MetalClad").checked = true;
 						document.getElementById("MCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MVMCC == 1)
+					}
+					if(jsonData.tag.MVMCC == 1){
 						document.getElementById("MVMCC").checked = true;
 						document.getElementById("MVMCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MVMCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MVMCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
+					}
 					if(jsonData.tag.Obsolete == 1)
 						document.getElementById("Obsolete").checked = true;
 					eraseCookie('tag');
@@ -470,8 +474,10 @@
 		        	//$(".result").html(response);			//debug stuff
 					var jsonData = JSON.parse(response);
 					alert(jsonData.success);
-					createCookie("tag",tag,0);
-					createCookie("rev",rev,0);
+					alert(tag + " : " + rev);
+					rev = parseInt(rev)++;
+					createCookie("tag",tag,0);		//current tag
+					createCookie("rev",rev,0);	//next revision
 					window.location="viewTag.php";
 		        });
 		    }

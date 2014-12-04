@@ -401,7 +401,7 @@ function attachments(){
 function update(){
 	require("config.inc.php");
 	$response = array();
-	$_POST['Rev'] = $_POST['Rev'] + 1;
+	
 	if($_POST['Obsolete'] == "true"){
 		$_POST['Obsolete'] = 1;
 	}else{
@@ -427,7 +427,18 @@ function update(){
 	}else{
 		$_POST['MVMCC'] = 0;
 	}
+	//Set old revision to obsolete
+	$query = "UPDATE REVISIONS SET Obsolete=1 WHERE NO =" . $_POST['NO'] . " AND Rev=" . $_POST['Rev'];
+	if($result = $db->query($query)){
+		$response['success'] = "Changes saved successfully.";
+	}else{
+		$response['success'] = "There was a problem inserting into the database.";
+	}
 
+	//Increment revision
+	$_POST['Rev'] = $_POST['Rev'] + 1;
+	
+	//Insert new revision
 	$query = "INSERT INTO REVISIONS ("
 		."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
 		."MatCost, LabCost, EngCost, InsCost, TAGMember, PriceExpires, "
@@ -565,6 +576,7 @@ function search(){
 	if(count($conditions)>0){
 		$query .= "WHERE " . implode(' AND ', $conditions);
 	}
+	echo $query;
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 

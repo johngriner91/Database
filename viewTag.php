@@ -271,6 +271,7 @@
 			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');
+				alert(tag + " : " + rev);
 				var action = 'display';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
@@ -303,7 +304,7 @@
 						document.getElementById("HVLUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-						}
+					}
 					if(jsonData.tag.HVLCC == 1){
 						document.getElementById("HVLCC").checked = true;
 						document.getElementById("HVLCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
