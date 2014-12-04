@@ -88,7 +88,8 @@ function getAttachments(){
 	require ("config.inc.php");
 	$TNO = $_POST['TagNo'];
 	$RNO = $_POST['RevNo'];
-	$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.' and RevNo='.$RNO.';';
+	$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.';';
+	//$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.' and RevNo='.$RNO.';';
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
@@ -114,7 +115,7 @@ function getAttachments(){
 
 // 	header("Content-Disposition: attachment; filename=$name");
 // 	header("Content-length: $size");
-// 	header("Content-Transfer-Encoding: Binary"); 
+// 	header("Content-Transfer-Encoding: Binary");
 // 	header("Content-type: $type");
 // 	header("Content-Description: PHP Generated Data");
 // 	//echo $bytes;

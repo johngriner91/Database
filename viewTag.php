@@ -217,8 +217,8 @@
 					<br>
 						<div class="btn-group">
 							<table class="table table-borderless">
-								<tr id="revisionBtn">	<!--row0-->
-									<th><button type="button" class="btn btn-default" onclick="editTag();" >Make Revision on Tag</button> </th>
+								<tr>	<!--row0-->
+									<th id="revisionBtn"><button type="button" class="btn btn-default" onclick="editTag();" >Make Revision on Tag</button> </th>
 									<th><button type="button" onclick="print();" class="btn btn-default">Print Me</button></th>
 								</tr>
 							</table>
