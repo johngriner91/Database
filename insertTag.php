@@ -108,41 +108,12 @@
 										echo $menu;
 									?>
 									</td>
-									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime"></form></td>
+									<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime" id="LeadTime"></form></td>
 								</tr>
 						</table>
 						<!--/div-->
 						<!--div class="table-responsive"-->
-						<table>
-							<tr>         <!--row0-->
-								<td>Tag#</td>
-								<td>Rev#</td>
-								<td>Date</td>
-								<td>Sub-Category</td>
-								<td>Complexity</td>
-								<td>Lead Time</td>
-							</tr>
-
-							<tr>         <!--row1-->
-								<td> <form method="post"><input type="text" style="width:90px" name="NO" id="NO"> </form> </td>
-								<td> <form method="post"> <input type="text" style="text-align:right; width:40px" name="Rev#" id="Rev"> </form></td>
-								<td> <form method="post"> <input type="date" style="width:80px" name="Date" id="Date"></form></td>
-								<td>
-									<form id='Subcat' name='Subcat' method='post' action=''>
-										<select name='SubCategory' id='SubCategory'>
-											<option></option><option>Power Fuses</option><option>Power Fuses MTG</option><option>Product Selector</option><option>Provisions</option><option>Relays</option><option>Roof Bushing</option><option>Shop Time</option><option>Space Heaters</option><option>Special Enclosure</option><option>Surge Arester</option><option>Surge Capacitor</option><option>SWGR Acessories</option><option>Switches</option><option>Test Blcks</option><option>Testing</option><option>Transitions</option><option>UPS</option><option>Utility</option><option>Voltage Xfmr (VT's)</option>
-										</select>
-									</form>									</td>
-									<td>
-										<form id='Complex' name='Complex' method='post' action=''>
-											<select name='Complexity' id='Complexity'>
-												<option></option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option>
-											</select>
-										</form>									</td>
-										<td> <form method="post"> <input type="text" style="width:75px; text-align:right" name="LeadTime"></form></td>
-									</tr>
-								</table> <br>
-								<!--/div-->
+						
 
 								<!--div class="table-responsive"-->
 								<table class="table table-borderless">
@@ -180,33 +151,6 @@
 										</div>
 							</tr></table>
 
-						<!--div class="table-responsive"-->
-						<table class="table table-borderless">
-							<tr>
-								<td> Applied FO</td>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<th> Quote </th>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<th> Factor order </th>
-							</tr>
-						</table><br> <!--/div-->
-						<!--div class="table-responsive"-->
-							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<td></td>
-										<td data-field="tag#">Tag Number</td>
-										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engineer</center></td>
-									<tr>  	<!--row2-->
-										<td> Price Note </td>
-									</tr>
-									<tr>		<!--row3-->
-										<td>  <div class="form-group">
-											<textarea class="form-control" style="width:440px; height:100px" rows="5" id="PriceNotes"></textarea>
-										</div>
-									</tr>
-
 									<!--div class="table-responsive"-->
 									<br><br>
 									<table class="table table-borderless">
@@ -215,7 +159,7 @@
 											<td> <input type="checkbox" class="checkbox"/> </td>
 											<th> Quote </th>
 											<td> <input type="checkbox" class="checkbox"/> </td>
-											<th> Factor order </th>
+											<th> Factory order </th>
 										</tr>
 									</table><br> <!--/div-->
 									<!--div class="table-responsive"-->
@@ -225,7 +169,7 @@
 												<td></td>
 												<td data-field="tag#">Tag Number</td>
 												<td data-field="fo#">FO Number Applied To</td>
-												<td data-field="notes"><center>Notes to Next Engine</center></td>
+												<td data-field="notes"><center>Notes to Next Engineer</center></td>
 											</tr>
 										</thead>
 									</table>
@@ -233,7 +177,7 @@
 								</div>
 							</div><!--/panel-->
 						</div><!--/end mid column-->
-
+						<div class="col-md-3">
 						<h4><center><i>Product Types</i></center></h4>
 						<table align="center">
 							<tr>
@@ -253,22 +197,22 @@
 						<table class="table table-borderless">
 							<tr>	<!--row0-->
 								<th>Material: </th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Material">$</form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Material" id="Material">$</form></th>
 							</tr>
 							<tr>	<!--row1-->
 								<th>Labor: </th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Labor">hrs</form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Labor" id="Labor">hrs</form></th>
 							</tr>
 							<tr>	<!--row2-->
 								<th>Engineering: </th>
-								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Engineering">hrs</form></th>
+								<th><form method="post"> <input type="text" style="width:150px; text-align:right" name="Engineering" id="Engineering">hrs</form></th>
 							</tr>
 						</table>
 						<hr>
 						<table align="center">
 							<tr>	<!--row1-->
 								<th>Price Expires: &nbsp;</th>
-								<th><form method="post"> <input type="date" style="width:150px; text-align:right" name="PriceExpires"></form></th>
+								<th><form method="post"> <input type="date" style="width:150px; text-align:right" name="PriceExpires" id="PriceExpires"></form></th>
 							</tr>
 						</table>
 						<br>
@@ -287,7 +231,7 @@
 					</div><!--/panel-->
 					<!--/end right column-->
 			</div>
-		</div>
+		</div><div class="result"></div>
 	</div>
 
 	<!-- script references -->
@@ -304,6 +248,44 @@
 			var price = document.getElementById('PriceNotes').value;
 			var sub = document.getElementById('SubCategory').value;
 			var comp = document.getElementById('Complexity').value;
+<<<<<<< HEAD
+			var time = document.getElementById('LeadTime').value;
+			var user = 'Tony';
+			var mat = document.getElementById('Material').value;
+			var lab = document.getElementById('Labor').value;
+			var eng = document.getElementById('Engineering').value;
+			var exp = document.getElementById('PriceExpires').value;
+			var hvl = document.getElementById('HVL').checked;
+			var hvlcc = document.getElementById('HVLCC').checked;
+			var mc = document.getElementById('MetalClad').checked;
+			var mvmcc = document.getElementById('MVMCC').checked;
+			var action = 'insert';
+			var ajaxurl = 'ajax.php',
+			data = {'action':action, 
+	        		'Rev':rev, 
+	        		'CurrentDate':date, 
+	        		'Description':desc,
+	        		'Notes':notes,
+	        		'PriceNotes':price,
+	        		'SubCategory':sub, 
+	        		'Complexity':comp, 
+	        		'LeadTime':time, 
+	        		'TAGMember':user,
+	        		'MatCost':mat,
+	        		'LabCost':lab,
+	        		'EngCost':eng,
+	        		'PriceExpires':exp,
+	        		'HVL':hvl,
+	        		'HVLCC':hvlcc,
+	        		'MetalClad':mc,
+	        		'MVMCC':mvmcc};
+	        $.post(ajaxurl, data, function(response){
+	        	$(".result").html(response);		//debug stuff
+	        	var jsonData = JSON.parse(response);
+	        	alert(jsonData);
+	        	//window.location = "searchTag.php";
+	        });
+=======
 			// var time = document.getElementById('LeadTime').value;
 			// var user = 'Tony';
 			// var mat = document.getElementById('Material').value;
@@ -339,6 +321,7 @@
 	  //       	alert(jsonData);
 	  //       	//window.location = "searchTag.php";
 	  //       });
+>>>>>>> origin/master
 		}
 
 		function currDate(){

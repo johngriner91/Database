@@ -271,7 +271,7 @@
 							</tr>
 						</table>
 						<br>
-						<table>
+						<table id="obsoleteCB">
 							<tr>	<!--row0-->
 								<td><input type="checkbox" class="checkbox" id="Obsolete"/></td>
 								<td>&nbsp;Check To Make TAG Permanently Obsolete</td>
@@ -280,7 +280,7 @@
 					<br>
 							<table align="center">
 								<tr>	<!--row0-->
-									<th><button type="button" style="width:150px" class="button" name="save" value="update" onclick="save();">Save</button> </th>
+									<th><button type="button" style="width:150px" class="button" name="save" value="update" id="saveBtn" onclick="save();">Save</button> </th>
 								</tr>
 							</table> <br>
 							<table align="center">

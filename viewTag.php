@@ -330,6 +330,8 @@
 						document.getElementById("MVMCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
 					if(jsonData.tag.Obsolete == 1)
 						document.getElementById("Obsolete").checked = true;
+						document.getElementById("obsoleteCB").style.visibility = 'hidden';
+						document.getElementById("saveBtn").style.visibility = 'hidden';
 					eraseCookie('tag');
 					eraseCookie('rev');
 				});

@@ -107,7 +107,7 @@ function popFO(){
 		echo "<h1>We found $result->num_rows rows.</h1>";
 		while($row = $result->fetch_assoc()){
 			$fValue = $row['FO'];
-			if($fValue){
+			if($fValue == 1){
 				$valueToPrint = 'F';
 			}
 			else{
