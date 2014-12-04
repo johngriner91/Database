@@ -162,7 +162,7 @@
 							</tr>
 						</table></div>
 
-
+						<br><br>
 						<div class="table-responsive">
 							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
 								<thead>

@@ -87,7 +87,7 @@ function downloadAttachments(){
 
 function newFO(){
 	require ("config.inc.php");
-	$query = "INSERT INTO FO_TABLE (NO, Rev, FOapp, Notes, FO, Quote) VALUES ('".$_POST['TagNO']."','".$_POST['RevNO']."', '".$_POST['FoNo']."','".$_POST['Notes']."','".$_POST['CkQ']."','".$_POST['CkF']."');";
+	$query = "INSERT INTO FO_TABLE (NO, Rev, FOapp, Notes, FO, Quote) VALUES ('".$_POST['TagNO']."','".$_POST['RevNO']."', '".$_POST['FoNo']."','".$_POST['Notes']."','".$_POST['CkF']."','".$_POST['CkQ']."');";
 	$result = $db->query($query);
 	if($result2 = $db->query($query2)){
 		$success = "true";
@@ -107,13 +107,11 @@ function popFO(){
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
-			$fValue = $row['FO'];
-			if($fValue == 1){
-				$valueToPrint = 'F';
-			}
-			else{
-				$valueToPrint = 'Q';
-			}
+			$fValue = intval($row['Quote']);
+			switch($fValue){
+				case '0': $valueToPrint = "F";break;
+				case '1': $valueToPrint = "Q";break;
+				}
 			echo "<tr>";
 			echo "<td>".$valueToPrint."</td><td>".$row['NO']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
 			echo "</tr>";

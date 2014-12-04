@@ -304,9 +304,21 @@
 
 			window.onload = populateAndCalc();
 
-			/*function newFO(){
+			function getFO(){
+				var TagNO = document.getElementById("NO").value;
+				var RevNO = document.getElementById("Rev").value;
+				var action = 'popFO';
+				var ajaxurl = 'ajax.php',
+				data = {'action':action,
+				'TagNo': TagNO,
+				'RevNo': RevNO};
+				$.post(ajaxurl,data,function(response){
+					$(".result2").html(response);
+				});
+			}
 
-				alert("We are starting the new FO function.");
+			function newFO(){
+
 				var TagNO = document.getElementById("NO").value;
 				var RevNO = document.getElementById("Rev").value;
 				var FoNo = document.getElementById("fo#").value;
@@ -324,7 +336,9 @@
 				}
 				else{
 					var CkF = 0;
-				}
+				};
+				alert("CkQ is "+CkQ);
+				alert("CkF is "+CkF);
 				var action = 'newFO';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
@@ -344,6 +358,7 @@
 					window.location = "whereIsHome.php";
 				});
 			}
+			/*
 
 			function upload(){
 				var TagNO = document.getElementById("NO").value;
@@ -423,7 +438,7 @@
 						document.getElementById("Obsolete").checked = true;
 					eraseCookie('tag');
 					eraseCookie('rev');
-					
+					getFO();
 				});
 			}
 
