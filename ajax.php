@@ -39,7 +39,7 @@ function uploadAttachments(){
 	$tmpName  = $_FILES['userfile']['tmp_name'];
 	$fileSize = $_FILES['userfile']['size'];
 	$fileType = $_FILES['userfile']['type'];
-	
+
 	$TagNo = $_POST['TagNo'];
 	$RevNo = $_POST['RevNo'];
 
@@ -610,11 +610,13 @@ function search(){
 
 	$query = "SELECT * FROM view_TAGS ";
 
-	if(count($conditions)>0){
+	if(count($conditions) > 0){
 		$query .= "WHERE " . implode(' AND ', $conditions) . "AND Obsolete LIKE '%" . $_POST['Obsolete'] . "%'";
+	}else{
+		$query .= "WHERE Obsolete LIKE '%" . $_POST['Obsolete'] . "%'";
 	}
 
-	//echo $query;
+	echo $query;
 
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {

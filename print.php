@@ -129,29 +129,25 @@
 						<br><br>
 						<table>
 							<tr>
-								<th> Applied FO: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Factor order </th>
+								<th> Applied FO: </td>
 							</tr>
 						</table><br> </div>
 						<div class="table-responsive">
 							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<td></td>
-										<td data-field="tag#">Tag Number</td>
-										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engine</center></td>
+										<td data-field="tag#"><center>Tag Number</center></td>
+										<td data-field="fo#"><center>FO Number Applied To</center></td>
+										<td data-field="notes"><center>Notes to Next Engineer</center></td>
 									</tr>
 								</thead>
 								<tbody class="result"></tbody>
 							</table>
 					  </div> <!--table-responsive-->
 						<br>
+					<aside>
+					<div>
 						<h4><i>Pricing Information </i></h4>
-
 						<table>
 							<tr>	<!--row0-->
 								<th>Material: </th>
@@ -180,7 +176,8 @@
 						</table>						
 						<br>
 						<button type="button" class="btn btn-default" onclick="window.print();">Print Me</button>
-
+					</div>
+					</aside>
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -188,8 +185,6 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc;
-
-			window.onload = getFO;
 
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
@@ -199,7 +194,6 @@
 				data = {'action':action,
 				'TagNo': TagNO,
 				'RevNo': RevNO};
-				alert("about to do the ajax call");
 				$.post(ajaxurl,data,function(response){
 					$(".result").html(response);
 				});
@@ -208,6 +202,7 @@
 			function populateAndCalc(){
 				var tag = readCookie('tag');
 				var rev = readCookie('rev');
+				alert(tag + " : " + rev);
 				var action = 'display';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
@@ -235,30 +230,36 @@
 					document.getElementById("Install").value = insCost.toFixed(2);
 					document.getElementById("User").value = jsonData.tag.TAGMember;
 					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
-					if(jsonData.tag.HVL == 1)
+					if(jsonData.tag.HVL == 1){
 						document.getElementById("HVL").checked = true;
 						document.getElementById("HVLUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.HVLCC == 1)
+					}
+					if(jsonData.tag.HVLCC == 1){
 						document.getElementById("HVLCC").checked = true;
 						document.getElementById("HVLCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MetalClad == 1)
+					}
+					if(jsonData.tag.MetalClad == 1){
 						document.getElementById("MetalClad").checked = true;
 						document.getElementById("MCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MVMCC == 1)
+					}
+					if(jsonData.tag.MVMCC == 1){
 						document.getElementById("MVMCC").checked = true;
 						document.getElementById("MVMCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MVMCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MVMCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.Obsolete == 1)
+					}
+					if(jsonData.tag.Obsolete == 1){
 						document.getElementById("Obsolete").checked = true;
+					}
 					eraseCookie('tag');
 					eraseCookie('rev');
+					getFO();
 				});
 			}
 
