@@ -144,8 +144,8 @@ function popFO(){
 		while($row = $result->fetch_assoc()){
 			$fValue = intval($row['Quote']);
 			switch($fValue){
-				case '0': $valueToPrint = "F";break;
-				case '1': $valueToPrint = "Q";break;
+				case '0': $valueToPrint = "FO";break;
+				case '1': $valueToPrint = "Quote";break;
 				}
 			echo "<tr>";
 			echo "<td>".$valueToPrint."</td><td>".$row['NO']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
