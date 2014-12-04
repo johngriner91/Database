@@ -32,12 +32,14 @@
       <span class="glyphicon glyphicon-chevron-down"></span>
       </a>
     </div>
+    <ul class="nav navbar-nav navbar-right navbar-user">
+      <li><a href="index.html"><i class="fa fa-power-off"></i><b>Log Back In</b></a></li>
+    </ul>
     </div>
   </nav><!-- /.navbar -->
 
   <div class="container">
     <h1 class="text-center login-title" name="Warning" >You have logged out.  :(  </h1>
-    <a href="index.html">Back</a>
   </div>
 
 
