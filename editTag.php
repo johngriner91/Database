@@ -291,7 +291,7 @@
 								<input name="userfile" type="file" id="userfile">
 							</tr>
 								<tr>
-									<td width="80"><input name="upload" type="button" onclick="uploadIt()" class="box" id="upload" value="Add Attachment"></td>
+									<td width="80"><input name="upload" onclick="uploadFile()" type="submit" class="box" id="upload" value="Add Attachment"></td>
 								</tr>
 							</table>
 						</form>
@@ -391,6 +391,7 @@
 				});
 			}
 
+			/*
 			function uploadIt(){
 				var TagNo = document.getElementById("NO").value;
 				var RevNo = document.getElementById("Rev").value;
@@ -410,7 +411,7 @@
 					window.location = "whereIsHome.php";
 				});
 			}
-
+			*/
 
 			//Populates entry fields and calculates values for current tag info
 			function populateAndCalc(){
@@ -562,7 +563,7 @@
 </html>
 
 <?php
-/*
+
 if(isset($_POST['upload'])){
 
 	$fileName = $_FILES['userfile']['name'];
@@ -591,5 +592,5 @@ if(isset($_POST['upload'])){
 		echo "<br>File $fileName not uploaded.<br>";
 	}
 }
-*/
+
 ?>
