@@ -294,7 +294,7 @@
 								<input name="userfile" type="file" id="userfile">
 							</tr>
 								<tr>
-									<td width="80"><input name="upload" onclick="uploadFile()" type="submit" class="box" id="upload" value="Add Attachment"></td>
+									<td width="80"><input name="upload"  type="submit" class="box" id="upload" value="Add Attachment"></td>
 								</tr>
 							</table>
 						</form>
