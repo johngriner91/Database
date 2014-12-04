@@ -202,7 +202,7 @@
 							<tr>
 								<th> Applied FO: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
 							</tr>
-						</table><br> </div>
+						</table><br><hr></div>
 						<div class="table-responsive">
 							<table id="result2" data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
 							</table>
@@ -216,7 +216,6 @@
 									<td> &nbsp;&nbsp; Factory order </th>
 								</tr>
 							</table>
-							<br>
 							<br>
 							<table class="table table-bordered table-striped">
 									<thead>

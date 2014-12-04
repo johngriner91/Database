@@ -138,12 +138,10 @@ function newFO(){
 function popFO(){
 	require ("config.inc.php");
 	$number = $_POST['TagNo'];
-	echo "<thead>";
-	echo "<tr><strong>Applied FO:</strong></tr>";
 	$query = "SELECT * FROM FO_TABLE WHERE NO= '".$number."';";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
-
+		echo "<thead>";
 		echo "<tr>";
 		echo "<td>Type</td>";
 		echo "<td>Tag Number</td>";
@@ -164,7 +162,7 @@ function popFO(){
 		}
 		echo "</tbody>";
 	}else{
-		echo "</thead><tbody><center><strong>No FO or Quotes</strong></center></tbody>";
+		echo "<center><strong>No FO or Quotes</strong></center>";
 	}
 	exit;
 }

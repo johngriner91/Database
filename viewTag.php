@@ -164,8 +164,11 @@
 
 						<br><br>
 						<div class="table-responsive">
+							<h4>Applied FO:</h4>
+							<hr>
 							<table id="result2" class="table table-bordered table-striped">
 							</table>
+							<hr>
 					  </div> <!--table-responsive-->
 				   </div>
 				   </div><!--/panel-->
