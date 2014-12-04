@@ -36,12 +36,13 @@ function getAttachments(){
 	$TNO = $_POST['TagNo'];
 	$RNO = $_POST['RevNo'];
 	$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.' and RevNo='.$RNO.';';
+	echo "<script type='text/javascript'>alert($query);</script>";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
 			$id = $row['id'];
 			echo "<tr>";
-			echo "<td>".$row['TagNo']."</td><td>".$row['RevNo']."</td><td><a href=".'"javascript:downloadAttachments('.$id.')'.'"'.">".$row['filename']."</a></td>";
+			echo "<td><a href=".'"javascript:downloadAttachments('.$id.')'.'"'.">".$row['filename']."</a></td>";
 			echo "</tr>";
 		}
 	}
@@ -399,7 +400,7 @@ function attachments(){
 function update(){
 	require("config.inc.php");
 	$response = array();
-	
+
 	if($_POST['Obsolete'] == "true"){
 		$_POST['Obsolete'] = 1;
 	}else{
@@ -435,7 +436,7 @@ function update(){
 
 	//Increment revision
 	$_POST['Rev'] = $_POST['Rev'] + 1;
-	
+
 	//Insert new revision
 	$query = "INSERT INTO REVISIONS ("
 		."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "

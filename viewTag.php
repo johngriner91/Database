@@ -235,6 +235,19 @@
 						</div> <!--/btn-group-->
 
 					  </div><!--/panel-body-->
+						<div>
+							<hr><h4><center><i>Attachments</i></center></h4>
+							<br>
+							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<td data-field="notes">File Name</td>
+									</tr>
+								</thead>
+								<tbody class="result3"></tbody>
+							</table>
+							<br><hr><br>
+						</div>
 					</div><!--/panel-->
 					<!--/end right column-->
 			</div>
@@ -255,6 +268,19 @@
 				populateAndCalc();
 			}
 
+			function getAttachments(){
+				var TagNo = document.getElementById("NO").value;
+				var RevNo = document.getElementById("Rev").value;
+				var action = 'getAttachments';
+				var ajaxurl = 'ajax.php',
+				data = { 'action':action,
+				'TagNo': TagNo,
+				'RevNo': RevNo};
+				$.post(ajaxurl,data,function(response){
+					$(".result3").html(response);
+				});
+			}
+
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
 				var RevNO = document.getElementById("Rev").value;
@@ -265,6 +291,7 @@
 						'RevNo': RevNO};
 				$.post(ajaxurl,data,function(response){
 					$(".result2").html(response);
+					getAttachments();
 				});
 			}
 
