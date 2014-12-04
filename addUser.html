@@ -58,7 +58,7 @@
 										<td><form method="post"> <input type="text" style="width:80px" name="FirstName" id="FirstName"></form></td>
 										<td><form method="post"> <input type="text" style="width:80px" name="LastName" id="LastName"></form></td>
 										<td><form method="post"> <input type="text" style="width:80px" name="UserName" id="UserName"></form></td>
-										<td><form method="post"> <input type="text" style="width:80px" name="PassWord" id="PassWord"></form></td>
+										<td><form method="post"> <input type="password" style="width:80px" name="PassWord" id="PassWord"></form></td>
 										<td><input type="checkbox" class="checkbox" id="Admin"/></td>
 										<td><input type="checkbox" class="checkbox" id="OE"/></td>
 										<td><input type="checkbox" class="checkbox" id="TAGMember"/></td>
@@ -86,16 +86,16 @@
 		        var pword = document.getElementById('PassWord').value;
 		        var admin = document.getElementById('Admin').checked;
 		        var oe = document.getElementById('OE').checked;
-		        var tag = document.getElementById('TAGMember').checked; 
+		        var tag = document.getElementById('TAGMember').checked;
 		        var action = 'addUser';
 		        var ajaxurl = 'ajax.php',
 		        data = {'action':action,
-		        		'Fname':fname, 
-		        		'Lname':lname, 
+		        		'Fname':fname,
+		        		'Lname':lname,
 		        		'Uname':uname,
 		        		'Pword':pword,
 		        		'Admin':admin,
-		        		'OE':oe, 
+		        		'OE':oe,
 		        		'TAGMember':tag};
 		        $.post(ajaxurl, data, function (response) {
 		        	//$(".result").html(response);			//debug stuff
