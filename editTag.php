@@ -621,6 +621,7 @@ if(isset($_POST['upload'])){
 	}else{
 		echo "<br>File $fileName not uploaded.<br>";
 	}
+	echo "<script type=".'"'."text/javascript".'"'.">location.reload();</script>";
 }
 
 ?>

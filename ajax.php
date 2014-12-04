@@ -199,13 +199,12 @@ function insertTag(){
 			$_POST['MVMCC'] = 0;
 		}
 		$query = "INSERT INTO REVISIONS ("
-			."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
+			."NO, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
 			."MatCost, LabCost, EngCost, TAGMember, PriceExpires, "
 			."HVL, HVLCC, MetalClad, MVMCC) "
 			."VALUES("
-			. $NO . ", "
-			. $_POST['Rev'] . ", '"
-			. $_POST['CurrentDate'] . "', '"
+			. $NO . ", '"
+			. date("Y-m-d") . "', '"
 			. $_POST['Complexity'] . "', "
 			. $_POST['LeadTime'] . ", '"
 			. $_POST['Notes'] . "', '"
@@ -222,7 +221,7 @@ function insertTag(){
 		if($result = $db->query($query)){
 			$success = "Tag successfully added.";
 		}else{
-			$success = "There was a problem inserting into the database.";
+			$success = "Problem inserting tag in database.";
 		}
 	}
 	print json_encode($success);
@@ -483,20 +482,19 @@ function update(){
 	//Insert new revision
 	$query = "INSERT INTO REVISIONS ("
 		."NO, Rev, CurrentDate, Complexity, LeadTime, Notes, PriceNotes, "
-		."MatCost, LabCost, EngCost, InsCost, TAGMember, PriceExpires, "
+		."MatCost, LabCost, EngCost, TAGMember, PriceExpires, "
 		."HVL, HVLCC, MetalClad, MVMCC, Obsolete) "
 		."VALUES("
 		. $_POST['NO'] . ", "
 		. $_POST['Rev'] . ", '"
-		. $_POST['CurrentDate'] . "', '"
+		. date("Y-m-d") . "', '"
 		. $_POST['Complexity'] . "', "
 		. $_POST['LeadTime'] . ", '"
 		. $_POST['Notes'] . "', '"
 		. $_POST['PriceNotes'] . "', "
 		. $_POST['MatCost'] . ", "
 		. $_POST['LabCost'] . ", "
-		. $_POST['EngCost'] . ", "
-		. $_POST['InsCost'] . ", '"
+		. $_POST['EngCost'] . ", '"
 		. $_COOKIE['lastLoggedIn'] . "', '"
 		. $_POST['PriceExpires'] . "', "
 		. $_POST['HVL'] . ", "

@@ -274,7 +274,7 @@
 			if(m<10){
 				m='0'+m;
 			}
-			date = m+'/'+d+'/'+y;
+			date = m+'-'+d+'-'+y;
 			return date;
 		}
 

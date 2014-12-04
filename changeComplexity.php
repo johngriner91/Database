@@ -84,6 +84,9 @@
                 <tr>	<!--row0-->
                   <button type="button" style="float:right;" class="button" name="save" onclick="updateComplexities()" value="Save">Save</button>
                 </tr>
+                <tr>  <!--row0-->
+                  <button type="button" style="float:right;" class="button" name="done" onclick="done()" value="Done">Done</button>
+                </tr>
               </table>
            </div><!--/panel-->
         </div>
@@ -121,7 +124,8 @@
         }else{
           alert("Error updating complexities.");
         }
-        window.location = "adminHomepage.html";
+        location.reload();
+        //window.location = "adminHomepage.html";
       });
     }
 
@@ -133,6 +137,11 @@
         $(".result").html(response);
       });
     }
+
+    function done(){
+      window.location = "adminHomepage.html";
+    }
+
   </script>
 </body>
 </html>
