@@ -27,9 +27,43 @@ if(!empty($_POST)){
 			case 'newFO':newFO();break;
 			case 'getAttachments':getAttachments();break;
 			case 'downloadAttachments':downloadAttachments();break;
+			case 'uploadAttachments':uploadAttachments();break;
 		}
 	}
 }
+
+
+function uploadAttachments(){
+	require ("config.inc.php");
+	$fileName = $_FILES['userfile']['name'];
+	$tmpName  = $_FILES['userfile']['tmp_name'];
+	$fileSize = $_FILES['userfile']['size'];
+	$fileType = $_FILES['userfile']['type'];
+	
+	$TagNo = $_POST['TagNo'];
+	$RevNo = $_POST['RevNo'];
+
+	$fp      = fopen($tmpName, 'r');
+	$content = fread($fp, filesize($tmpName));
+	$content = addslashes($content);
+	fclose($fp);
+
+	if(!get_magic_quotes_gpc())
+	{
+		$fileName = addslashes($fileName);
+	}
+
+	$query = "INSERT INTO FILETESTING (filecontents, filename, filesize, filetype, TagNo, RevNo ) VALUES ('".$content."', '".$fileName."', '".$fileSize."', '".$fileType."', '".$TagNo."', '".$RevNo."');";
+
+	$result = $db->query($query) or die('Error, query failed');
+	if($result){
+		echo "<br>File $fileName uploaded<br>";
+	}else{
+		echo "<br>File $fileName not uploaded.<br>";
+	}
+	exit;
+}
+
 
 function getAttachments(){
 	require ("config.inc.php");
@@ -391,7 +425,6 @@ function addUser(){
 //Review attachments
 function attachments(){
 	require("config.inc.php");
-	print "ATTACHMENTS";
 	exit;
 }
 
@@ -582,7 +615,7 @@ function search(){
 	}
 
 	//echo $query;
-	
+
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
