@@ -118,11 +118,11 @@
 										</div>
 							</tr>
 							 <tr>   <!--row4-->
-							       <td> <strong>Product Lines Tag May be Applied To: </strong> </td>
+							       <td id="productHead"> <strong>Product Lines Tag May be Applied To: </strong> </td>
 							 </tr>
 						</table></div>
 
-						<div class="table-responsive">
+						<div class="table-responsive" id="productTable">
 						<br>
 						<table>
 							<tr>	<!--row0-->
@@ -163,7 +163,7 @@
 						</table></div>
 
 						<br><br>
-						<div class="table-responsive">
+						<div class="table-responsive" id="fotable">
 							<h4>Applied FO:</h4>
 							<hr>
 							<table id="result2" class="table table-bordered table-striped">
@@ -175,7 +175,7 @@
 				</div><!--/end mid column-->
 
 				<!-- right content column-->
-				<div class="col-md-4">
+				<div class="col-md-4" id="pricing">
 					<div class="panel" id ="rightcol">
 					<div class="panel-heading" style="background-color:#057A2E"></div>
 					<div class="panel-body">
@@ -253,6 +253,21 @@
 
 			window.onload = populateAndCalc;
 
+			function getUser(){
+				var action = 'getUserType';
+				var ajaxurl = 'ajax.php';
+				var data = { 'action':action};
+				$.post(ajaxurl,data,function(response){
+					var json = JSON.parse(response);
+					if(json.admin==0 && json.oe==0 && json.tag==0){ //
+						document.getElementById("productHead").style.visibility = "hidden";
+						document.getElementById("productTable").style.visibility = "hidden";
+						document.getElementById("pricing").style.visibility = "hidden";
+						document.getElementById("fotable").style.visibility = "hidden";
+					}
+				});
+			}
+
 			function print(){
 				var tag = document.getElementById("NO").value;
 				var rev = document.getElementById("Rev").value;
@@ -271,6 +286,7 @@
 				'RevNo': RevNo};
 				$.post(ajaxurl,data,function(response){
 					$(".result3").html(response);
+					getUser();
 				});
 			}
 

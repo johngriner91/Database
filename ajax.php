@@ -28,10 +28,29 @@ if(!empty($_POST)){
 			case 'getAttachments':getAttachments();break;
 			case 'downloadAttachments':downloadAttachments();break;
 			case 'uploadAttachments':uploadAttachments();break;
+			case 'getUserType':getUserType();break;
 		}
 	}
 }
 
+function getUserType(){
+	require ("config.inc.php");
+	$userInfo = array();
+	$user = $_COOKIE['lastLoggedIn'];
+	$query = "SELECT * FROM USERS WHERE Uname='".$user."'";
+	$result = $db->query($query);
+	if($result->num_rows > 0){
+    	while($row = $result->fetch_assoc()){
+    		$userInfo['tag'] = $row['TAGMember'];
+    		$userInfo['oe'] = $row['OE'];
+    		$userInfo['admin'] = $row['Admin'];
+    	}
+    }else{
+    	$userInfo[]=$user;
+    }
+    print json_encode($userInfo);
+    exit;
+}
 
 function uploadAttachments(){
 	require ("config.inc.php");

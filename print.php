@@ -28,7 +28,7 @@
 								<tr>         <!--row0-->
 									<th>Tag#</th>
 									<th>Rev#</th>
-									<th>Date</th>
+									<th>Last Revised</th>
 								</tr>
 								<tr>
 									<td> <form method="post"> <input type="text" style="width:90px" name="tagNumber" id="NO" readonly> </form> </td>
@@ -175,7 +175,7 @@
 							</tr>
 						</table>						
 						<br>
-						<button type="button" class="btn btn-default" onclick="window.print();">Print Me</button>
+						<button type="button" class="btn btn-default" id="print" onclick="printBtn();">Print Me</button>
 					</div>
 					</aside>
 	<!-- script references -->
@@ -185,6 +185,11 @@
 		<script type="text/javascript">
 
 			window.onload = populateAndCalc;
+
+			function printBtn(){
+				document.getElementById("print").style.visibility="hidden";
+				window.print();
+			}
 
 			function getFO(){
 				var TagNO = document.getElementById("NO").value;
