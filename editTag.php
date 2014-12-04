@@ -30,7 +30,7 @@
 		  </a>
 		</div>
 		<ul class="nav navbar-nav navbar-right navbar-user">
-              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b> Log Out</b></a></li>
+              <li><a href="userLogout.php"><i class="fa fa-power-off"></i><b>Log Out</b></a></li>
         </ul>
 		</div>
 	</nav><!-- /.navbar -->
@@ -278,15 +278,23 @@
 							</tr>
 						</table>
 					<br>
+					<form method="post" enctype="multipart/form-data">
 							<table align="center">
 								<tr>	<!--row0-->
 									<th><button type="button" style="width:150px" class="button" name="save" value="update" id="saveBtn" onclick="save();">Save</button> </th>
 								</tr>
 							</table> <br>
 							<table align="center">
+								<tr></tr>
+								<tr colspan="2">
+								<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+								<input name="userfile" type="file" id="userfile">
+							</tr>
 								<tr>
-									<th><a href="upload.php"><button type="button" style="width:150px" class="button">Add Attachments</button></a></th>
+									<td width="80"><input name="upload" type="submit" class="box" id="upload" value="Add Attachment"></td>
+								</tr>
 							</table>
+						</form>
 
 					  </div><!--/panel-body-->
 						<div>
@@ -554,3 +562,35 @@
 		</script>
 	</body>
 </html>
+
+<?php
+
+if(isset($_POST['upload'])){
+
+	$fileName = $_FILES['userfile']['name'];
+	$tmpName  = $_FILES['userfile']['tmp_name'];
+	$fileSize = $_FILES['userfile']['size'];
+	$fileType = $_FILES['userfile']['type'];
+	$TagNo = $_POST['TagNo'];
+	$RevNo = $_POST['RevNo'];
+
+	$fp      = fopen($tmpName, 'r');
+	$content = fread($fp, filesize($tmpName));
+	$content = addslashes($content);
+	fclose($fp);
+
+	if(!get_magic_quotes_gpc())
+	{
+		$fileName = addslashes($fileName);
+	}
+
+	$query = "INSERT INTO FILETESTING (filecontents, filename, filesize, filetype, TagNo, RevNo ) VALUES ('".$content."', '".$fileName."', '".$fileSize."', '".$fileType."', '".$TagNo."', '".$RevNo."');";
+
+	$result = $db->query($query) or die('Error, query failed');
+	if($result){
+		echo "<br>File $fileName uploaded<br>";
+	}else{
+		echo "<br>File $fileName not uploaded.<br>";
+	}
+}
+?>
