@@ -170,7 +170,7 @@
 								<td> <input type="checkbox" class="checkbox"/> </td>
 								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 								<td> <input type="checkbox" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Factor order </th>
+								<td> &nbsp;&nbsp; Factory order </th>
 							</tr>
 						</table><br> </div>
 						<div class="table-responsive">
@@ -233,12 +233,13 @@
 					<br>
 						<div class="btn-group">
 							<table class="table table-borderless">
-								<tr>	<!--row0-->
-									<th><button type="button" class="btn btn-default" onclick="editTag();">Make Revision on Tag</button> </th>
+								<tr id="revisionBtn">	<!--row0-->
+									<th><button type="button" class="btn btn-default" onclick="editTag();" >Make Revision on Tag</button> </th>
 								</tr>
 								<tr>
 									<th><button type="button" class="btn btn-default" onclick="viewAttachments();">Review Attachments</button> </th>
 									<th><a href="print.php"><button type="button" class="btn btn-default">Print Me</button></a> </th>
+								</tr>
 							</table>
 
 						</div> <!--/btn-group-->
@@ -308,30 +309,34 @@
 					document.getElementById("Install").value = insCost.toFixed(2);
 					document.getElementById("User").value = jsonData.tag.TAGMember;
 					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
-					if(jsonData.tag.HVL == 1)
+					if(jsonData.tag.HVL == 1){
 						document.getElementById("HVL").checked = true;
 						document.getElementById("HVLUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[0].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.HVLCC == 1)
+						}
+					if(jsonData.tag.HVLCC == 1){
 						document.getElementById("HVLCC").checked = true;
 						document.getElementById("HVLCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("HVLCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("HVLCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[1].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MetalClad == 1)
+					}
+					if(jsonData.tag.MetalClad == 1){
 						document.getElementById("MetalClad").checked = true;
 						document.getElementById("MCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[2].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.MVMCC == 1)
+					}
+					if(jsonData.tag.MVMCC == 1){
 						document.getElementById("MVMCC").checked = true;
 						document.getElementById("MVMCCUSA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[2].Mult)).toFixed(2);
 						document.getElementById("MVMCCCA").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[0].Mult)).toFixed(2);
 						document.getElementById("MVMCCMEX").value = (parseFloat(jsonData.tag.InsCost) * parseInt(jsonData.product[3].Mult) * parseFloat(jsonData.country[1].Mult)).toFixed(2);
-					if(jsonData.tag.Obsolete == 1)
+					}
+					if(jsonData.tag.Obsolete == 1){
 						document.getElementById("Obsolete").checked = true;
-						document.getElementById("obsoleteCB").style.visibility = 'hidden';
-						document.getElementById("saveBtn").style.visibility = 'hidden';
+						document.getElementById("revisionBtn").style.visibility = 'hidden';
+					}
 					eraseCookie('tag');
 					eraseCookie('rev');
 				});

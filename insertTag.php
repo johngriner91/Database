@@ -151,28 +151,7 @@
 										</div>
 							</tr></table>
 
-									<!--div class="table-responsive"-->
-									<br><br>
-									<table class="table table-borderless">
-										<tr>
-											<td> Applied FO</td>
-											<td> <input type="checkbox" class="checkbox"/> </td>
-											<th> Quote </th>
-											<td> <input type="checkbox" class="checkbox"/> </td>
-											<th> Factory order </th>
-										</tr>
-									</table><br> <!--/div-->
-									<!--div class="table-responsive"-->
-									<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<td></td>
-												<td data-field="tag#">Tag Number</td>
-												<td data-field="fo#">FO Number Applied To</td>
-												<td data-field="notes"><center>Notes to Next Engineer</center></td>
-											</tr>
-										</thead>
-									</table>
+								
 									<!--div--> <!--table-responsive-->
 								</div>
 							</div><!--/panel-->
@@ -222,11 +201,6 @@
 								<th><button type="button" style="width:150px" class="button" onclick="insertTag()">Save</button> </th>
 							</tr>
 						</table> <br>
-						<table align="center">
-							<tr>
-								<th><a href="uploadFile.html"><button type="button" style="width:150px" class="button">Add Attachments</button></a></th>
-							</tr>
-						</table>
 					  </div><!--/panel-body-->
 					</div><!--/panel-->
 					<!--/end right column-->
@@ -248,7 +222,6 @@
 			var price = document.getElementById('PriceNotes').value;
 			var sub = document.getElementById('SubCategory').value;
 			var comp = document.getElementById('Complexity').value;
-<<<<<<< HEAD
 			var time = document.getElementById('LeadTime').value;
 			var user = 'Tony';
 			var mat = document.getElementById('Material').value;
@@ -285,7 +258,6 @@
 	        	alert(jsonData);
 	        	//window.location = "searchTag.php";
 	        });
-=======
 			// var time = document.getElementById('LeadTime').value;
 			// var user = 'Tony';
 			// var mat = document.getElementById('Material').value;
@@ -321,7 +293,6 @@
 	  //       	alert(jsonData);
 	  //       	//window.location = "searchTag.php";
 	  //       });
->>>>>>> origin/master
 		}
 
 		function currDate(){

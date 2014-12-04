@@ -105,7 +105,7 @@
 		        	//$(".result").html(response);			//debug stuff
 					var jsonData = JSON.parse(response);
 					alert(jsonData.success);
-					eraseCookie('user');
+					eraseCookie("user");
 					window.location = "viewUsers.html";
 		        });
 			}
@@ -130,6 +130,17 @@
 					if(jsonData.user.TAGMember == 1)
 						document.getElementById("TAGMember").checked = true;
 		        });
+			}
+
+			//Creates cookie with specified name:value pair and length of existance
+			function createCookie(name,value,days){
+				if(days){
+					var date = new Date();
+					date.setTime(date.getTime()+(days*24*60*60*1000));
+					var expires = "; expires=" + date.toGMTString();
+				}
+				else var expires = "";
+				document.cookie = name + "=" + value + expires + "; path=/";
 			}
 
 			function readCookie(name){
