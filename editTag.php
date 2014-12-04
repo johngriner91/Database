@@ -337,8 +337,6 @@
 				else{
 					var CkF = 0;
 				};
-				alert("CkQ is "+CkQ);
-				alert("CkF is "+CkF);
 				var action = 'newFO';
 				var ajaxurl = 'ajax.php',
 				data = {'action':action,
