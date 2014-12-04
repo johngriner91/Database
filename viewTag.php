@@ -252,7 +252,6 @@
 
 			//window.onload = getFO;
 			function start(){
-				getFO();
 				populateAndCalc();
 			}
 
@@ -329,6 +328,7 @@
 					}
 					eraseCookie('tag');
 					eraseCookie('rev');
+					getFO();
 				});
 			}
 

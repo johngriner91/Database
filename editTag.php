@@ -217,7 +217,7 @@
 										<td data-field="notes"><center>Notes to Next Engine</center></td>
 									</tr>
 									</thead>
-									<tbody class="result"></tbody>
+									<tbody class="result2"></tbody>
 									<tr>
 										<td>
 									</td>
@@ -419,6 +419,7 @@
 						document.getElementById("Obsolete").checked = true;
 					eraseCookie('tag');
 					eraseCookie('rev');
+					
 				});
 			}
 

@@ -101,10 +101,11 @@ function newFO(){
 
 function popFO(){
 	require ("config.inc.php");
-	$query = "SELECT NO, FOapp, Notes FROM FO_TABLE WHERE NO='".$_POST['TagNo']."';";
+	$number = $_POST['TagNo'];
+
+	$query = "SELECT * FROM FO_TABLE WHERE NO= '".$number."';";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
-		echo "<h1>We found $result->num_rows rows.</h1>";
 		while($row = $result->fetch_assoc()){
 			$fValue = $row['FO'];
 			if($fValue == 1){
@@ -114,7 +115,7 @@ function popFO(){
 				$valueToPrint = 'Q';
 			}
 			echo "<tr>";
-			echo "<td>".$valueToPrint."</td><td>".$row['Name']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>"; 
+			echo "<td>".$valueToPrint."</td><td>".$row['NO']."</td><td>".$row['FOapp']."</td><td>".$row['Notes']."</td>";
 			echo "</tr>";
 		}
 	}
