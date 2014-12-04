@@ -198,38 +198,42 @@
 
 						<div class="table-responsive">
 						<br><br>
-						<table name="checks">
+						<table >
 							<tr>
 								<th> Applied FO: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-								<td> <input type="checkbox" name="ckQ" id="ckQ" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-								<td> <input type="checkbox" name="ckF" id="ckF" class="checkbox"/> </td>
-								<td> &nbsp;&nbsp; Factory order </th>
 							</tr>
 						</table><br> </div>
 						<div class="table-responsive">
-							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
-								<thead>
+							<table id="result2" data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
+							</table>
+							<hr>
+							<table name="checks">
+								<tr>
+									<th> Type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+									<td> <input type="checkbox" name="ckQ" id="ckQ" class="checkbox"/> </td>
+									<td> &nbsp;&nbsp; Quote &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+									<td> <input type="checkbox" name="ckF" id="ckF" class="checkbox"/> </td>
+									<td> &nbsp;&nbsp; Factory order </th>
+								</tr>
+							</table>
+							<br>
+							<br>
+							<table class="table table-bordered table-striped">
+									<thead>
 									<tr>
-										<td></td>
-										<td></td>
-										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engine</center></td>
+										<th><center>FO Number Applied To</center></th>
+										<th><center>Notes to Next Engineer</center></th>
 									</tr>
 									</thead>
-									<tbody class="result2"></tbody>
 									<tr>
-										<td></td>
-										<td></td>
-										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="fo#" id="fo#"></form></td>
-										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="notes" id="notes"></form></td>
+										<td><form method="post"> <input type="text" style="width:100%; text-align:center" name="fo#" id="fo#"></form></td>
+										<td><form method="post"> <input type="text" style="width:100%; text-align:center" name="notes" id="notes"></form></td>
 									</tr>
 							</table>
 					  </div> <!--table-responsive-->
 					  <table align="right">
 								<tr>	<!--row0-->
 									<th><button type="button" class="btn btn-default" onclick="newFO()" >Apply new FO</button>&nbsp;&nbsp;&nbsp;</th>
-									<th><button type="button" class="btn btn-default"><img style="width:20px; length:20px"src="images.jpg" style="width:400px; height=300px" alt=""></img></button></th>
 								</tr>
 					 </table>
 				   </div>
@@ -282,6 +286,7 @@
 									<th><button type="button" style="width:150px" class="button" name="save" value="update" id="saveBtn" onclick="save();">Save</button> </th>
 								</tr>
 							</table> <br>
+<<<<<<< HEAD
 							<form method="post" enctype="multipart/form-data">
 								<table align="center">
 									<tr></tr>
@@ -294,6 +299,19 @@
 									</tr>
 								</table>
 							</form>
+=======
+							<table align="center">
+								<tr></tr>
+								<tr colspan="2">
+								<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+								<input name="userfile" type="file" id="userfile">
+							</tr>
+								<tr>
+									<td width="80"><input name="upload"  type="submit" class="box" id="upload" value="Add Attachment"></td>
+								</tr>
+							</table>
+						</form>
+>>>>>>> FETCH_HEAD
 
 					  </div><!--/panel-body-->
 						<div>
@@ -352,7 +370,7 @@
 				'TagNo': TagNo,
 				'RevNo': RevNo};
 				$.post(ajaxurl,data,function(response){
-					$(".result2").html(response);
+					$("#result2").html(response);
 					getAttachments();
 				});
 			}

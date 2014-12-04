@@ -41,7 +41,7 @@
 	<div class="container">
 		<div class="no-gutter row">
 				<!-- left side column -->
-				<div class="col-md-2">
+				<div class="col-md-1">
 					<div class="panel panel-default" id="sidebar">
 						<!--<div class="panel-heading" style="background-color:#64F797"></div>
 					<div class="panel-body">
@@ -56,7 +56,7 @@
 				</div><!--/end left column-->
 
 				<!--mid column-->
-				<div class="col-md-6">
+				<div class="col-md-7">
 				  <div class="panel" id="midCol">
 					<div class="panel-heading" style="background-color:#3DC66D"></div>
 					<div class="panel-body">
@@ -164,16 +164,7 @@
 
 						<br><br>
 						<div class="table-responsive">
-							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<td>Type</td>
-										<td data-field="tag#">Tag Number</td>
-										<td data-field="fo#">FO Number Applied To</td>
-										<td data-field="notes"><center>Notes to Next Engineer</center></td>
-									</tr>
-								</thead>
-								<tbody class="result2"></tbody>
+							<table id="result2" class="table table-bordered table-striped">
 							</table>
 					  </div> <!--table-responsive-->
 				   </div>
@@ -289,7 +280,7 @@
 						'TagNo': TagNO,
 						'RevNo': RevNO};
 				$.post(ajaxurl,data,function(response){
-					$(".result2").html(response);
+					$("#result2").html(response);
 					getAttachments();
 				});
 			}
@@ -319,8 +310,8 @@
 					document.getElementById("Notes").value = jsonData.tag.Notes;
 					document.getElementById("PriceNotes").value = jsonData.tag.PriceNotes;
 					document.getElementById("Material").value = matCost.toFixed(2);
-					document.getElementById("Labor").value = labCost;
-					document.getElementById("Engineering").value = engCost;
+					document.getElementById("Labor").value = labCost.toFixed(2);
+					document.getElementById("Engineering").value = engCost.toFixed(2);
 					document.getElementById("Install").value = insCost.toFixed(2);
 					document.getElementById("User").value = jsonData.tag.TAGMember;
 					document.getElementById("PriceExpires").value = jsonData.tag.PriceExpires;
