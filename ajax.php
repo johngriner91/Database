@@ -70,7 +70,6 @@ function getAttachments(){
 	$TNO = $_POST['TagNo'];
 	$RNO = $_POST['RevNo'];
 	$query = 'SELECT * FROM FILETESTING WHERE TagNo='.$TNO.' and RevNo='.$RNO.';';
-	echo "<script type='text/javascript'>alert($query);</script>";
 	$result = $db->query($query);
 	if($result->num_rows > 0){
 		while($row = $result->fetch_assoc()){
@@ -628,7 +627,7 @@ function search(){
 		$query .= "WHERE Obsolete LIKE '%" . $_POST['Obsolete'] . "%'";
 	}
 
-	echo $query;
+	//echo $query; //debug stuff
 
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {

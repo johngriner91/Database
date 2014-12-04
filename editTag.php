@@ -301,16 +301,14 @@
 						<div>
 							<hr><h4><center><i>Attachments</i></center></h4>
 							<br>
-							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<td data-field="notes">File Name</td>
+										<th>File Name</th>
 									</tr>
 								</thead>
-								<tbody class="result3"></tbody>
-								<tr>
-									<td></td>
-								</tr>
+								<tbody class="result3">
+								</tbody>
 							</table>
 							<br><hr><br>
 						</div>
@@ -334,11 +332,22 @@
 				var RevNo = document.getElementById("Rev").value;
 				var action = 'getAttachments';
 				var ajaxurl = 'ajax.php',
-				data = { 'action':action,
-									'TagNo': TagNo,
-									'RevNo': RevNo};
+				data = {'action':action,
+						'TagNo': TagNo,
+						'RevNo': RevNo};
 				$.post(ajaxurl,data,function(response){
 					$(".result3").html(response);
+				});
+			}
+
+			function downloadAttachments(id){
+				$.ajax({
+					url: 'fileDownload.php',
+					type: 'POST',
+					success: function(){
+						createCookie('id',id,0);
+						window.location = 'fileDownload.php';
+					}
 				});
 			}
 

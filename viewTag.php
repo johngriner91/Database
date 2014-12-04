@@ -228,15 +228,15 @@
 						<div>
 							<hr><h4><center><i>Attachments</i></center></h4>
 							<br>
-							<table data-toggle="table" data-url="" data-cache="false" class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<td data-field="notes">File Name</td>
+										<th>File Name</th>
 									</tr>
 								</thead>
 								<tbody class="result3"></tbody>
 							</table>
-							<br><hr><br>
+							<hr>
 						</div>
 					</div><!--/panel-->
 					<!--/end right column-->
