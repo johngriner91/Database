@@ -219,9 +219,8 @@
 									</thead>
 									<tbody class="result2"></tbody>
 									<tr>
-										<td>
-									</td>
-										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="tag#" id="tag#"></form></td>
+										<td></td>
+										<td></td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="fo#" id="fo#"></form></td>
 										<td><form method="post"> <input type="text" style="width:100px; text-align:center" name="notes" id="notes"></form></td>
 									</tr>
@@ -307,6 +306,9 @@
 									</tr>
 								</thead>
 								<tbody class="result3"></tbody>
+								<tr>
+									<td></td>
+								</tr>
 							</table>
 							<br><hr><br>
 						</div>
