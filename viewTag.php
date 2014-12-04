@@ -225,7 +225,7 @@
 							<table class="table table-borderless">
 								<tr id="revisionBtn">	<!--row0-->
 									<th><button type="button" class="btn btn-default" onclick="editTag();" >Make Revision on Tag</button> </th>
-									<th><a href="print.php"><button type="button" class="btn btn-default">Print Me</button></a> </th>
+									<th><button type="button" onclick="print();" class="btn btn-default">Print Me</button></th>
 								</tr>
 							</table>
 						</div> <!--/btn-group-->
