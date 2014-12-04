@@ -285,7 +285,7 @@
 							</table> <br>
 							<table align="center">
 								<tr>
-									<th><a href="uploadFile.html"><button type="button" style="width:150px" class="button">Add Attachments</button></a></th>
+									<th><a href="upload.php"><button type="button" style="width:150px" class="button">Add Attachments</button></a></th>
 							</table>
 
 					  </div><!--/panel-body-->
