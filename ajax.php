@@ -531,13 +531,19 @@ function display(){
 	exit;
 }
 
+function notEmpty($var){
+	return ($var==="0"||$var);
+}
+
 //Fetches list of tags that match search criteria
 function search(){
 	require("config.inc.php");
-	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC');
+	$fields = array('NO','Rev','CurrentDate','SubCategory','Complexity','LeadTime','TAGMember','HVL','HVLCC','MetalClad','MVMCC','Obsolete');
+	$fields2 = array('HVL','HVLCC','MetalClad','MVMCC','Obsolete');
 	$conditions = array();
 	echo "<strong>Search Results:</strong><br>";
 	echo "<table class=" . '"' . "table table-responsive" . '"' . "align=" . '"' . "center". '"' .">";
+
 	if($_POST['Obsolete'] == "true"){
 		$_POST['Obsolete'] = 1;
 	}else{
@@ -565,16 +571,19 @@ function search(){
 	}
 
 	foreach($fields as $field){
-		if(isset($_POST[$field]) && !empty($_POST[$field])){
+		if(isset($_POST[$field]) && notEmpty($_POST[$field])){
 			$conditions[] = "$field LIKE '%" . $_POST[$field] . "%'";
 		}
 	}
 
 	$query = "SELECT * FROM view_TAGS ";
+
 	if(count($conditions)>0){
-		$query .= "WHERE " . implode(' AND ', $conditions);
+		$query .= "WHERE " . implode(' AND ', $conditions) . "AND Obsolete LIKE '%" . $_POST['Obsolete'] . "%'";
 	}
+
 	echo $query;
+	
 	$result = $db->query($query);
 	if ($result->num_rows > 0) {
 
@@ -593,11 +602,6 @@ function search(){
 
 	echo "</tbody></table";
 	exit;
-}
-
-//
-function notEmpty($var){
-	return ($var==="0"||$var);
 }
 
 ?>
